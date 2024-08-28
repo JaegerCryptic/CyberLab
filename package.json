@@ -46,7 +46,6 @@
       "@visx/shape": "^3.5.0",
       "@visx/text": "^3.3.0",
       "@visx/tooltip": "^3.3.0",
-      "@xyris/models": "^1.0.151",
       "axios": "^1.6.8",
       "canvg": "^4.0.1",
       "countries-state-list": "^1.1.0",
