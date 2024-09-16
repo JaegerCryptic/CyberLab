@@ -20,11 +20,13 @@ import { lightTheme } from './theme/style'
 import { AUTHENTICATED_ROUTES } from './routes/AuthenticatedRoutes'
 import { STARTUP_ROUTE } from './routes/startup/Startup'
 import Notifier from './features/Notifications/Notifier'
+import { LOGOUT_ROUTE } from './routes/Logout'
 
 const router = createBrowserRouter([
   ROOT_ROUTE,
   AUTHENTICATED_ROUTES,
   STARTUP_ROUTE,
+  LOGOUT_ROUTE,
 ])
 
 const queryClient = new QueryClient({
