@@ -12,14 +12,13 @@ import { ErrorMessage } from '../../common/components/ErrorMessage'
 import { REQUIRED_FIELD_MESSAGE } from '../../constants/validation'
 
 
-const EmailLoginSchema = z
+const LoginSchema = z
   .object({
-    email: z.string({ required_error: REQUIRED_FIELD_MESSAGE }),
-    password: z.string({ required_error: REQUIRED_FIELD_MESSAGE }),
+    name: z.string({ required_error: REQUIRED_FIELD_MESSAGE }),
   })
   .strict()
 
-type EmailLoginSchema = z.infer<typeof EmailLoginSchema>
+type LoginSchema = z.infer<typeof LoginSchema>
 
 type ButtonBehaviour = 'HYPERLINK' | 'BUTTON'
 interface Props {
@@ -43,7 +42,7 @@ export const SignIn = ({
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<EmailLoginSchema>({
+  } = useForm<LoginSchema>({
     mode: 'onSubmit',
   })
 
@@ -51,7 +50,7 @@ export const SignIn = ({
 
   const formValues = watch()
 
-  const handleOnSubmit: SubmitHandler<EmailLoginSchema> = (data) => {
+  const handleOnSubmit: SubmitHandler<LoginSchema> = (data) => {
     
   }
 
@@ -68,7 +67,7 @@ export const SignIn = ({
           onSubmit={handleSubmit(handleOnSubmit)}
         >
           <Grid xs={12} display={'flex'} justifyContent={'center'}>
-            <ControlledInput<EmailLoginSchema>
+            <ControlledInput<LoginSchema>
               control={control}
               defaultValue=""
               name="email"
@@ -81,7 +80,7 @@ export const SignIn = ({
             {errors.email && <ErrorMessage message={errors.email.message} />}
           </Grid>
           <Grid xs={12} display={'flex'} justifyContent={'center'}>
-            <ControlledInput<EmailLoginSchema>
+            <ControlledInput<LoginSchema>
               control={control}
               name="password"
               defaultValue=""
