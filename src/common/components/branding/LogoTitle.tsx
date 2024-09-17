@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material'
 
-import logo from '../../../images/favicon.png'
+//import logo from '../../../images/favicon.png' TODO
 
 interface LogoTitleProps {
   title: string
@@ -17,7 +17,7 @@ export const LogoTitle = ({ title }: LogoTitleProps) => {
         }}
       >
         <img
-          src={logo}
+          src="https://via.placeholder.com/60" // Placeholder image URL
           alt="Logo"
           style={{
             height: 60,

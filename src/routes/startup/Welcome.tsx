@@ -6,5 +6,5 @@ import { WELCOME_PATH } from './startupPaths'
 
 export const WELCOME_ROUTE: RouteObject = {
   path: WELCOME_PATH,
-  element: <WelcomeDashboard />,
+  element: <></>,
 }

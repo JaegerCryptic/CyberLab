@@ -2,7 +2,7 @@ import { createContext, useCallback } from 'react'
 import { useIdleTimer } from 'react-idle-timer'
 
 import { useRefreshTokenStatus } from '../../utils/useRefreshTokenStatus'
-import { useWebsocket } from '../../utils/useWebSocket'
+import { useWebsocket } from '../../utils/useWebsocket'
 import { setAccessToken } from '../../utils/tokens'
 
 // This wrapper component is to initialize the app with the user context
