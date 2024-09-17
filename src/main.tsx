@@ -8,11 +8,6 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
 
-import '@fontsource/roboto/300.css'
-import '@fontsource/roboto/400.css'
-import '@fontsource/roboto/500.css'
-import '@fontsource/roboto/700.css'
-
 import { ROOT_ROUTE } from './routes/Root'
 import { lightTheme } from './theme/style'
 import { AUTHENTICATED_ROUTES } from './routes/AuthenticatedRoutes'
