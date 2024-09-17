@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ThemeProvider } from '@mui/material'
+import { GlobalStyles, ThemeProvider } from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
@@ -32,6 +32,13 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <CssBaseline enableColorScheme />
+      <GlobalStyles
+        styles={{
+          body: {
+            backgroundColor: '#121C21',
+          },
+        }}
+      />
       <ThemeProvider theme={darkTheme}>
         <Notifier />
         <QueryClientProvider client={queryClient}>
