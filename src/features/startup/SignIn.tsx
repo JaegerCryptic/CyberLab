@@ -7,7 +7,7 @@ import { z } from 'zod'
 
 import { StartupLayout } from './StartupLayout'
 import { CLButton } from '../../common/components/buttons/CLButton'
-import { ControlledInput } from '../../common/components/inputs/ControlledInput'
+import { ControlledInput } from '../../common/components/input/ControlledInput'
 import { ErrorMessage } from '../../common/components/ErrorMessage'
 import { REQUIRED_FIELD_MESSAGE } from '../../constants/validation'
 
