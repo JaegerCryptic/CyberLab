@@ -2,7 +2,6 @@ import { ReactNode } from 'react'
 import { Container, useTheme } from '@mui/material'
 
 import { LogoTitle } from '../../common/components/branding/LogoTitle'
-import { Copyright } from '../../common/components/branding/Copyright'
 
 /**
  * Wrapper for all startup pages to maintain consistent styling and provide logo, title, and copyright
@@ -19,18 +18,16 @@ export const StartupLayout = ({ children, title }: Props) => {
 
   return (
     <Container
-      maxWidth="sm"
+      maxWidth='md'
       component="main"
       sx={{
         marginTop: theme.spacing(4),
-        marginLeft: 0, 
-        marginRight: 'auto', 
+        marginLeft: 4, 
       }}
     >
       <LogoTitle title={title} />
-      {children}
-      <div style={{ marginTop: 10 }}>
-        <Copyright />
+      <div style={{ marginRight: '10vw' }}>
+        {children}
       </div>
     </Container>
   )

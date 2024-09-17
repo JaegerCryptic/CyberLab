@@ -64,16 +64,16 @@ export const SignIn = ({
           component="form"
           onSubmit={handleSubmit(handleOnSubmit)}
         >
-          <Grid xs={12} display={'flex'} justifyContent={'left'}>
-            <Typography>Please enter your name here:</Typography>
+          <Grid xs={10} display={'flex'} justifyContent={'left'} mt={2}>
+            <Typography>Please enter your name to get started:</Typography>
         </Grid>
-          <Grid xs={12} display={'flex'} justifyContent={'center'}>
+          <Grid xs={10} display={'flex'} justifyContent={'center'}>
             <ControlledInput<LoginSchema>
               control={control}
               defaultValue=""
               name='userName'
               inputProps={{
-                label: 'Name',
+                label: 'name',
                 autoFocus: true,
                 autoComplete: 'firstName',
               }}
@@ -81,7 +81,7 @@ export const SignIn = ({
             {errors.userName && <ErrorMessage message={errors.userName.message ?? ''} />}
           </Grid>
 
-          <Grid xs={12} display={'flex'} justifyContent={'center'}>
+          <Grid xs={10} display={'flex'} justifyContent={'center'}>
             <CLButton
               fullWidth
               type="submit"
