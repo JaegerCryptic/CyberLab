@@ -40,7 +40,6 @@ export const SignIn = ({
   const {
     control,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<LoginSchema>({
     mode: 'onSubmit',
@@ -66,7 +65,7 @@ export const SignIn = ({
           onSubmit={handleSubmit(handleOnSubmit)}
         >
           <Grid xs={12} display={'flex'} justifyContent={'left'}>
-            <Typography>Please enter your name here</Typography>
+            <Typography>Please enter your name here:</Typography>
         </Grid>
           <Grid xs={12} display={'flex'} justifyContent={'center'}>
             <ControlledInput<LoginSchema>
