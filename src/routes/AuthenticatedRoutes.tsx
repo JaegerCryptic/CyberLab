@@ -4,11 +4,10 @@ import {
     useNavigate,
     useRouteError,
   } from 'react-router-dom'
-  import { ReactNode, useEffect } from 'react'
+  import { ReactNode } from 'react'
   
   import { WELCOME_ROUTE } from './startup/Welcome'
   import { AuthenticatedRoutesWrapper } from '../common/components/routing/AuthenticatedRoutesWrapper'
-  import { putError } from '../api/galactose/errors/errors.put'
   
   // The ErrorBoundary element is a wrapper for all routes that require a jwt.
   // It catches the error stack and sends it to the server to be converted
@@ -25,11 +24,6 @@ import {
       message: error.message,
       minifiedFileName,
     }
-  
-    useEffect(() => {
-      // Catch error, don't care if it fails.
-      if (error) putError(props).catch((e) => console.error(e))
-    })
   
     return (
       <>

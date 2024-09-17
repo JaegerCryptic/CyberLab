@@ -3,18 +3,23 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { useQueryClient } from '@tanstack/react-query'
 import { Fade } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2/Grid2'
-import * as yup from 'yup'
-import { yupResolver } from '@hookform/resolvers/yup'
+import { z } from 'zod'
 
 import { StartupLayout } from './StartupLayout'
 import { CLButton } from '../../common/components/buttons/CLButton'
 import { ControlledInput } from '../../common/components/inputs/ControlledInput'
 import { ErrorMessage } from '../../common/components/ErrorMessage'
+import { REQUIRED_FIELD_MESSAGE } from '../../constants/validation'
 
-type EmailLoginSchema = {
-  email: string
-  password: string
-}
+
+const EmailLoginSchema = z
+  .object({
+    email: z.string({ required_error: REQUIRED_FIELD_MESSAGE }),
+    password: z.string({ required_error: REQUIRED_FIELD_MESSAGE }),
+  })
+  .strict()
+
+type EmailLoginSchema = z.infer<typeof EmailLoginSchema>
 
 type ButtonBehaviour = 'HYPERLINK' | 'BUTTON'
 interface Props {
@@ -22,10 +27,6 @@ interface Props {
   buttonUpdate?: () => void
 }
 
-const validationSchema = yup.object().shape({
-  email: yup.string().email('Invalid email').required('Email is required'),
-  password: yup.string().required('Password is required'),
-})
 
 export const SignIn = ({
   buttonBehaviour = 'HYPERLINK',
@@ -44,7 +45,6 @@ export const SignIn = ({
     formState: { errors },
   } = useForm<EmailLoginSchema>({
     mode: 'onSubmit',
-    resolver: yupResolver(validationSchema),
   })
 
   const [showTFAForm, setShowTFAForm] = useState(false)
@@ -52,7 +52,7 @@ export const SignIn = ({
   const formValues = watch()
 
   const handleOnSubmit: SubmitHandler<EmailLoginSchema> = (data) => {
-    loginUser.mutate(data)
+    
   }
 
   return (
