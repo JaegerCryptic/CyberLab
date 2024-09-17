@@ -14,14 +14,7 @@ import { TwoFactorAuthentication } from './components/TwoFactorAuthentication'
 import { useAuth } from '../../models/user/useAuth'
 import { REQUIRED_FIELD_MESSAGE } from '../../constants/validation'
 import { ErrorMessage } from '../../common/components/ErrorMessage'
-import { EmailValidation } from '../../common/components/EmailValidation'
-import { useProgressStore } from './hooks/useProgressStore'
 import { FWRouterLink } from '../../common/components/buttons/FWRouterLink'
-import {
-  FORGOT_PASSWORD_PATH,
-  SIGNUP_ROUTE_PATH,
-} from '../../routes/startup/startupPaths'
-import { FWLink } from '../../common/components/buttons/FWLink'
 
 const EmailLoginSchema = z
   .object({
