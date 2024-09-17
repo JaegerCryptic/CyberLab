@@ -1,7 +1,7 @@
 import { RouteObject } from 'react-router-dom'
 
 import { SignIn } from '../../features/startup/SignIn'
-import { WELCOME_PATH, WORKSPACES_ROUTE_PATH } from './startupPaths'
+import {  WORKSPACES_ROUTE_PATH } from './startupPaths'
 
 export const SIGNIN_ROUTE: RouteObject = {
   path: WORKSPACES_ROUTE_PATH,

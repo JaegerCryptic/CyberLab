@@ -32,15 +32,15 @@ const appColors = {
 }
 
 const appFontSizes = {
-  heading1: 24,
-  heading2: 20,
-  bodyText: 16,
-  buttonText: 16,
-  captionText: 12,
-  topWebsite: 18,
-  aboutSpc: 14,
-  fieldAgent: 14,
-  classifiedTabs: 14,
+  heading1: 48, 
+  heading2: 36, 
+  bodyText: 18,
+  buttonText: 18, 
+  captionText: 14, 
+  topWebsite: 22, 
+  aboutSpc: 18, 
+  fieldAgent: 18,
+  classifiedTabs: 18, 
 }
 
 const appFontFamilies = {

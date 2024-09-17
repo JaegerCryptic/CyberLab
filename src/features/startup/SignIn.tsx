@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useQueryClient } from '@tanstack/react-query'
-import { Fade } from '@mui/material'
+import { Fade, Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2/Grid2'
 import { z } from 'zod'
 
@@ -48,14 +48,13 @@ export const SignIn = ({
 
   const [showTFAForm, setShowTFAForm] = useState(false)
 
-  const formValues = watch()
 
   const handleOnSubmit: SubmitHandler<LoginSchema> = (data) => {
     
   }
 
   return (
-    <StartupLayout title="Sign in">
+    <StartupLayout title="Welcome to Griffith Uni Cyber Security challenge">
       {!showTFAForm && (
         <Grid
           container
@@ -66,6 +65,9 @@ export const SignIn = ({
           component="form"
           onSubmit={handleSubmit(handleOnSubmit)}
         >
+          <Grid xs={12} display={'flex'} justifyContent={'left'}>
+            <Typography>Please enter your name here</Typography>
+        </Grid>
           <Grid xs={12} display={'flex'} justifyContent={'center'}>
             <ControlledInput<LoginSchema>
               control={control}
@@ -107,6 +109,7 @@ export const SignIn = ({
           </Grid>
         </Grid>
       )}
+
       <Fade in={showTFAForm} mountOnEnter unmountOnExit>
         {/* extra <div> is required to prevent forwardRef error */}
         <div>

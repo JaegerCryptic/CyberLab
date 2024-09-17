@@ -1,0 +1,6 @@
+{
+    "eslint.format.enable": true,
+    "emmet.useInlineCompletions": true,
+    "eslint.lintTask.enable": true,
+    "eslint.run": "onSave"
+}
