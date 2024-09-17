@@ -6,10 +6,12 @@ const SECONDARY_COLOUR = '#1A262A'
 const SECONDARY_ACCENT_COLOUR = '#580602'
 const TERTIARY_COLOUR = '#6E0703'
 const TERTIARY_ACCENT_COLOUR = '#9A1D1D'
-const BACKGROUND_COLOUR = '#131516'
+const BACKGROUND_COLOUR = '#121C21'
 const BACKGROUND_ACCENT_COLOUR = '#580602'
 const TEXT_COLOUR = '#D8D4CF'
 const TEXT_ACCENT_COLOUR = '#E8E6E3'
+const WHITE_COLOUR = '#FFFFFF'
+const HIGHLIGHT_COLOUR = '#94B5C7'
 
 const appColors = {
   primary: PRIMARY_COLOUR,
@@ -22,6 +24,11 @@ const appColors = {
   backgroundAccent: BACKGROUND_ACCENT_COLOUR,
   text: TEXT_COLOUR,
   textAccent: TEXT_ACCENT_COLOUR,
+  white: WHITE_COLOUR,
+  highlight: HIGHLIGHT_COLOUR,
+  error: '#BA1A1A', 
+  warning: '#FF9A01', 
+  success: '#3FD79C', 
 }
 
 const appFontSizes = {
@@ -30,11 +37,15 @@ const appFontSizes = {
   bodyText: 16,
   buttonText: 16,
   captionText: 12,
+  topWebsite: 18,
+  aboutSpc: 14,
+  fieldAgent: 14,
+  classifiedTabs: 14,
 }
 
 const appFontFamilies = {
-  primary: 'Arial, sans-serif',
-  secondary: 'Arial, sans-serif',
+  primary: 'Space Grotesk, sans-serif',
+  secondary: 'Space Grotesk, sans-serif',
 }
 
 export const appTheme = {
@@ -48,6 +59,29 @@ export const h1Style = {
   fontWeight: 700,
   fontFamily: appFontFamilies.secondary,
   color: appColors.text,
+}
+
+export const customTypography = {
+  topWebsite: {
+    fontSize: appFontSizes.topWebsite,
+    fontWeight: 700,
+    color: appTheme.colors.white,
+  },
+  aboutSpc: {
+    fontSize: appFontSizes.aboutSpc,
+    fontWeight: 500,
+    color: appTheme.colors.white,
+  },
+  fieldAgent: {
+    fontSize: appFontSizes.fieldAgent,
+    fontWeight: 400,
+    color: appTheme.colors.highlight,
+  },
+  classifiedTabs: {
+    fontSize: appFontSizes.classifiedTabs,
+    fontWeight: 400,
+    color: appTheme.colors.white,
+  },
 }
 
 export const lightTheme = createTheme({
@@ -65,9 +99,9 @@ export const lightTheme = createTheme({
     secondary: {
       main: appTheme.colors.secondary,
     },
-    error: { main: '#BA1A1A' }, 
-    warning: { main: '#FF9A01' }, 
-    success: { main: '#3FD79C' }, 
+    error: { main: appTheme.colors.error },
+    warning: { main: appTheme.colors.warning },
+    success: { main: appTheme.colors.success },
   },
   typography: {
     fontSize: appFontSizes.bodyText,
@@ -98,7 +132,7 @@ export const lightTheme = createTheme({
       color: appTheme.colors.text,
     },
     body2: {
-      fontSize: 12,
+      fontSize: appFontSizes.captionText,
       fontWeight: 400,
       color: appTheme.colors.text,
     },
