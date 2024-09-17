@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { refreshTokens } from '../../api/nitroGen/users/refresh/refresh'
+import { refreshTokens } from '../../api/secure_core/users/refresh/refresh'
 import {
   getAccessToken,
   getAccessTokenId,
