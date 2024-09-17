@@ -14,6 +14,7 @@ export const LogoTitle = ({ title }: LogoTitleProps) => {
         align="center"
         style={{
           margin: 20,
+          marginLeft: -5
         }}
       >
         {title}
