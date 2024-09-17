@@ -10,7 +10,6 @@ import {
   setRefreshToken,
 } from './tokens'
 import { useRefreshTokenStatus } from './useRefreshTokenStatus'
-import { useAccessTokenBlockStatus } from './useBlockStatus'
 
 let refreshPromise: null | Promise<string> = null
 
@@ -51,12 +50,6 @@ authenticatedAxios.interceptors.request.use(
     if (refreshPromise) {
       accessToken = await refreshPromise
     }
-
-    // Check if the user has any blocks for us to handle elsewhere
-    const adminBlock = hasAdminBlock()
-    const paymentBlock = hasPaymentBlock()
-    useAccessTokenBlockStatus.getState().setAdminBlock(!!adminBlock)
-    useAccessTokenBlockStatus.getState().setPaymentBlock(!!paymentBlock)
 
     // After refreshing the token, we need to add the new token to the request
     const token = accessToken
