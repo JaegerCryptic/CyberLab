@@ -14,7 +14,7 @@ import { REQUIRED_FIELD_MESSAGE } from '../../constants/validation'
 
 const LoginSchema = z
   .object({
-    name: z.string({ required_error: REQUIRED_FIELD_MESSAGE }),
+    userName: z.string({ required_error: REQUIRED_FIELD_MESSAGE }),
   })
   .strict()
 
@@ -70,27 +70,14 @@ export const SignIn = ({
             <ControlledInput<LoginSchema>
               control={control}
               defaultValue=""
-              name="email"
+              name='userName'
               inputProps={{
-                label: 'Email',
+                label: 'Name',
                 autoFocus: true,
-                autoComplete: 'email',
+                autoComplete: 'firstName',
               }}
             />
-            {errors.email && <ErrorMessage message={errors.email.message} />}
-          </Grid>
-          <Grid xs={12} display={'flex'} justifyContent={'center'}>
-            <ControlledInput<LoginSchema>
-              control={control}
-              name="password"
-              defaultValue=""
-              inputProps={{
-                label: 'Password',
-                type: 'password',
-                autoComplete: 'current-password',
-              }}
-            />
-            {errors.password && <ErrorMessage message={errors.password.message} />}
+            {errors.userName && <ErrorMessage message={errors.userName.message ?? ''} />}
           </Grid>
 
           <Grid xs={12} display={'flex'} justifyContent={'center'}>
