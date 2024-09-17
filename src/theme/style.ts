@@ -32,11 +32,11 @@ const appColors = {
 }
 
 const appFontSizes = {
-  heading1: 48, 
-  heading2: 36, 
+  heading1: 36, 
+  heading2: 24, 
   bodyText: 18,
-  buttonText: 18, 
-  captionText: 14, 
+  buttonText: 14, 
+  captionText: 12, 
   topWebsite: 22, 
   aboutSpc: 18, 
   fieldAgent: 18,
@@ -84,9 +84,9 @@ export const customTypography = {
   },
 }
 
-export const lightTheme = createTheme({
+export const darkTheme = createTheme({
   palette: {
-    mode: 'light',
+    mode: 'dark',
     background: {
       default: appTheme.colors.background,
     },

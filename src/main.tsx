@@ -9,7 +9,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
 
 import { ROOT_ROUTE } from './routes/Root'
-import { lightTheme } from './theme/style'
+import {darkTheme } from './theme/style'
 import { AUTHENTICATED_ROUTES } from './routes/AuthenticatedRoutes'
 import { STARTUP_ROUTE } from './routes/startup/Startup'
 import Notifier from './features/Notifications/Notifier'
@@ -32,7 +32,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <CssBaseline enableColorScheme />
-      <ThemeProvider theme={lightTheme}>
+      <ThemeProvider theme={darkTheme}>
         <Notifier />
         <QueryClientProvider client={queryClient}>
           <RouterProvider router={router} />

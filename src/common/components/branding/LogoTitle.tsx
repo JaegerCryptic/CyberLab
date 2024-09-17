@@ -11,7 +11,7 @@ export const LogoTitle = ({ title }: LogoTitleProps) => {
     <>
       <Typography
         variant='h1'
-        align="center"
+        align='left'
         style={{
           margin: 20,
           marginLeft: -5
