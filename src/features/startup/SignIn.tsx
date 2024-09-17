@@ -6,7 +6,6 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 
-import { clearTokens } from '../../common/utils/tokens'
 import { StartupLayout } from './StartupLayout'
 import { CLButton } from '../../common/components/buttons/CLButton'
 import { ControlledInput } from '../../common/components/inputs/ControlledInput'
@@ -35,7 +34,6 @@ export const SignIn = ({
   const queryClient = useQueryClient()
 
   useEffect(() => {
-    clearTokens()
     queryClient.clear()
   }, [queryClient])
 

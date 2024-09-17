@@ -12,7 +12,7 @@ export interface FWButtonProps extends ButtonProps {
   tooltipWhenDisabled?: string
 }
 
-export const FWButton = (props: FWButtonProps) => {
+export const CLButton = (props: FWButtonProps) => {
   const {
     children,
     color = 'primary',
