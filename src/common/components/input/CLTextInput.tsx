@@ -32,7 +32,7 @@ export const CLTextInput = forwardRef<
         sx: {
           color: appTheme.colors.highlight, 
           '&.Mui-focused': {
-            color: 'red', 
+            color: appTheme.colors.selectHighlight, 
           },
           ...props.InputLabelProps?.sx,
         },
@@ -48,7 +48,7 @@ export const CLTextInput = forwardRef<
             borderColor: appTheme.colors.primary, 
           },
           '&.Mui-focused fieldset': {
-            borderColor: 'red', 
+            borderColor: appTheme.colors.selectHighlight, 
           },
         },
       }}

@@ -26,6 +26,7 @@ const appColors = {
   textAccent: TEXT_ACCENT_COLOUR,
   white: WHITE_COLOUR,
   highlight: HIGHLIGHT_COLOUR,
+  selectHighlight: '#FF0000',
   error: '#BA1A1A', 
   warning: '#FF9A01', 
   success: '#3FD79C', 
