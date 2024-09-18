@@ -60,14 +60,14 @@ export const SignIn = ({
           direction="column"
           spacing={2}
           display="flex"
-          alignItems="center"
+          alignItems="left"
           component="form"
           onSubmit={handleSubmit(handleOnSubmit)}
         >
-          <Grid xs={10} display={'flex'} justifyContent={'left'} mt={2}>
+          <Grid xs={8} display={'flex'} justifyContent={'left'} mt={2}>
             <Typography>Please enter your name to get started:</Typography>
         </Grid>
-          <Grid xs={10} display={'flex'} justifyContent={'center'}>
+          <Grid xs={8} display={'flex'} justifyContent={'left'}>
             <ControlledInput<LoginSchema>
               control={control}
               defaultValue=""
@@ -81,7 +81,7 @@ export const SignIn = ({
             {errors.userName && <ErrorMessage message={errors.userName.message ?? ''} />}
           </Grid>
 
-          <Grid xs={10} display={'flex'} justifyContent={'center'}>
+          <Grid xs={8} display={'flex'} justifyContent={'center'}>
             <CLButton
               fullWidth
               type="submit"
@@ -89,23 +89,7 @@ export const SignIn = ({
               Sign in
             </CLButton>
           </Grid>
-          <Grid xs={12} display="flex" justifyContent="space-between">
-            {buttonBehaviour === 'HYPERLINK' && (
-              <>
-                
-              </>
-            )}
-            {buttonBehaviour === 'BUTTON' && (
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  width: '100%',
-                }}
-              >
-              </div>
-            )}
-          </Grid>
+          
         </Grid>
       )}
 

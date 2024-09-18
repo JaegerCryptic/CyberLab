@@ -18,16 +18,17 @@ export const StartupLayout = ({ children, title }: Props) => {
 
   return (
     <Container
-      maxWidth='sm'
-      component="main"
+      maxWidth='md'
+      component='main'
       sx={{
         marginTop: theme.spacing(4),
         marginLeft: 4, 
-        height: '40vh',
+        height: '95vh',
       }}
     >
       <LogoTitle title={title} />
         {children}
+        
     </Container>
   )
 }
