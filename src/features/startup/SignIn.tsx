@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useQueryClient } from '@tanstack/react-query'
-import { Fade, Typography } from '@mui/material'
+import { Fade, Icon, Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2/Grid2'
 import { z } from 'zod'
 
@@ -10,7 +10,7 @@ import { CLButton } from '../../common/components/buttons/CLButton'
 import { ControlledInput } from '../../common/components/input/ControlledInput'
 import { ErrorMessage } from '../../common/components/ErrorMessage'
 import { REQUIRED_FIELD_MESSAGE } from '../../constants/validation'
-
+import SCPLogo from '../../images/scp_logo.png'
 
 const LoginSchema = z
   .object({
@@ -28,8 +28,6 @@ interface Props {
 
 
 export const SignIn = ({
-  buttonBehaviour = 'HYPERLINK',
-  buttonUpdate,
 }: Props) => {
   const queryClient = useQueryClient()
 
@@ -89,7 +87,11 @@ export const SignIn = ({
               Sign in
             </CLButton>
           </Grid>
-          
+          <Grid xs={12} display={'flex'} justifyContent={'center'} mt={2}>
+            <Icon sx={{ width: '100%', height: 'auto' }}>
+              <img src={SCPLogo} alt="Logo" style={{ width: '100%', height: 'auto' }} />
+            </Icon>
+          </Grid>
         </Grid>
       )}
 
