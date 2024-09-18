@@ -44,7 +44,7 @@ export const CLTextInput = forwardRef<
       sx={{
         '& .MuiOutlinedInput-root': {
           '& fieldset': {
-            borderColor: appTheme.colors.primary, 
+            borderRadius: '12px',
           },
           '&.Mui-focused fieldset': {
             borderColor: appTheme.colors.selectHighlight, 
