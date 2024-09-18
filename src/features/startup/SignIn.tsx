@@ -53,7 +53,7 @@ export const SignIn = ({
   }
 
   return (
-    <StartupLayout title="Welcome to Griffith Uni Cyber Security challenge">
+    <StartupLayout title="Welcome to CyberLab Security challenge">
       {!showTFAForm && (
         <Grid
           container
