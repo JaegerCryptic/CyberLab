@@ -87,9 +87,9 @@ export const SignIn = ({
               Sign in
             </CLButton>
           </Grid>
-          <Grid xs={12} display={'flex'} justifyContent={'center'} mt={2}>
+          <Grid xs={12} display={'flex'} justifyContent={'center'} mt={10} >
             <Icon sx={{ width: '100%', height: 'auto' }}>
-              <img src={SCPLogo} alt="Logo" style={{ width: '100%', height: 'auto' }} />
+              <img src={SCPLogo} alt="Logo" style={{ width: '100%', height: 'auto', marginLeft: -200 }} />
             </Icon>
           </Grid>
         </Grid>
