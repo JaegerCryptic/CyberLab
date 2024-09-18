@@ -53,7 +53,7 @@ export const SignIn = ({
   }
 
   return (
-    <StartupLayout title="Welcome to CyberLab Security challenge">
+    <StartupLayout title="Welcome to the SCP Field Agent Certification course">
       {!showTFAForm && (
         <Grid
           container
