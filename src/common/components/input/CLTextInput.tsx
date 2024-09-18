@@ -30,13 +30,27 @@ export const CLTextInput = forwardRef<
       inputRef={ref}
       InputLabelProps={{
         sx: {
-          color: appTheme.colors.secondaryAccent, //TODO change to theme
+          color: appTheme.colors.highlight, 
+          '&.Mui-focused': {
+            color: 'red', 
+          },
           ...props.InputLabelProps?.sx,
         },
       }}
       InputProps={{
         endAdornment,
         ...rest.InputProps,
+      }}
+      sx={{
+          borderRadius: '12px',
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            borderColor: appTheme.colors.primary, 
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: 'red', 
+          },
+        },
       }}
       fullWidth
       label={label}
