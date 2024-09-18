@@ -13,7 +13,7 @@ export const LogoTitle = ({ title }: LogoTitleProps) => {
         variant='h1'
         align='left'
         style={{
-          margin: 45,
+          marginLeft: 45,
           lineHeight: 1.5,
         }}
       >

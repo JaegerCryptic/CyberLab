@@ -42,7 +42,6 @@ export const CLTextInput = forwardRef<
         ...rest.InputProps,
       }}
       sx={{
-          borderRadius: '12px',
         '& .MuiOutlinedInput-root': {
           '& fieldset': {
             borderColor: appTheme.colors.primary, 

@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material/styles'
 
 const PRIMARY_COLOUR = '#7D0B02'
 const ACCENT_COLOUR = '#5E0C05'
-const SECONDARY_COLOUR = '#1A262A'
+const SECONDARY_COLOUR = '#243B47'
 const SECONDARY_ACCENT_COLOUR = '#580602'
 const TERTIARY_COLOUR = '#6E0703'
 const TERTIARY_ACCENT_COLOUR = '#9A1D1D'

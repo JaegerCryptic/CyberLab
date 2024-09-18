@@ -1,6 +1,7 @@
 import { Button, ButtonProps, CircularProgress, styled } from '@mui/material'
 
 import { CLTooltip } from '../tooltips/CLTooltip'
+import { appTheme } from '../../../theme/style'
 
 const StyledButton = styled(Button)({
   cursor: 'pointer',
@@ -15,7 +16,7 @@ export interface FWButtonProps extends ButtonProps {
 export const CLButton = (props: FWButtonProps) => {
   const {
     children,
-    color = 'primary',
+    color = 'secondary',
     isLoading,
     fullWidth = false,
     variant = 'contained',
