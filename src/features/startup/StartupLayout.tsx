@@ -23,6 +23,7 @@ export const StartupLayout = ({ children, title }: Props) => {
       sx={{
         marginTop: theme.spacing(4),
         marginLeft: 4, 
+        height: '90vh',
       }}
     >
       <LogoTitle title={title} />
