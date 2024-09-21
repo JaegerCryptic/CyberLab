@@ -44,7 +44,7 @@ export const SignIn = ({}: Props) => {
 	const handleOnSubmit: SubmitHandler<LoginSchema> = (data) => {};
 
 	return (
-		<StartupLayout title="Welcome to the SCP Field Agent Certification course">
+		<StartupLayout title="Welcome to the SCP Field Agent Certification course.">
 			<Grid
 				container
 				direction="column"
