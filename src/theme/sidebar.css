@@ -4,7 +4,7 @@
     background-color: #333;
     color: white;
     position: fixed;
-    left: -200px; /* Hide sidebar by default */
+    /* left: -200px; Hide sidebar by default */
     transition: left 0.3s;
   }
   

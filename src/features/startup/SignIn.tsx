@@ -4,13 +4,15 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Icon, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { z } from "zod";
-
+import { Route } from 'react-router-dom';
+import Dashboard from '../../features/dashboard/dashboard.tsx'
 import { StartupLayout } from "./StartupLayout";
 import { CLButton } from "../../common/components/buttons/CLButton";
 import { ControlledInput } from "../../common/components/input/ControlledInput";
 import { ErrorMessage } from "../../common/components/ErrorMessage";
 import { REQUIRED_FIELD_MESSAGE } from "../../constants/validation";
 import SCPLogo from "../../images/scp_logo.png";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const LoginSchema = z
 	.object({
@@ -26,8 +28,14 @@ interface Props {
 	buttonUpdate?: () => void;
 }
 
+
+
 export const SignIn = ({}: Props) => {
 	const queryClient = useQueryClient();
+	const navigate = useNavigate();
+	const GoToDashboard = () => {
+	  navigate('/dashboard'); // navigate to the dashboard route
+	}
 
 	useEffect(() => {
 		queryClient.clear();
@@ -39,12 +47,19 @@ export const SignIn = ({}: Props) => {
 		formState: { errors },
 	} = useForm<LoginSchema>({
 		mode: "onSubmit",
+		
 	});
 
+	// const MustardJar = () => {
+
+	// 	};
+
 	const handleOnSubmit: SubmitHandler<LoginSchema> = (data) => {};
+	
 
 	return (
 		<StartupLayout title="Welcome to the SCP Field Agent Certification course.">
+			{/* <Route path='/dashboard' Component={Dashboard} /> */}
 			<Grid
 				container
 				direction="column"
@@ -54,6 +69,7 @@ export const SignIn = ({}: Props) => {
 				component="form"
 				onSubmit={handleSubmit(handleOnSubmit)}
 			>
+				
 				<Grid xs={8} display={"flex"} justifyContent={"left"} mt={2}>
 					<Typography>Please enter your name to get started:</Typography>
 				</Grid>
@@ -74,7 +90,9 @@ export const SignIn = ({}: Props) => {
 				</Grid>
 
 				<Grid xs={8} display={"flex"} justifyContent={"center"}>
-					<CLButton fullWidth type="submit">
+					{/* TODO: Change the navigate to dashboard to the actual destination (if it is changed in the future) */}
+					{/* TODO: Figure out what the fuck im doing, theres aslo a null error for this onclick but it should work. */}
+					<CLButton fullWidth type="submit" onClick={GoToDashboard}>
 						Sign in
 					</CLButton>
 				</Grid>

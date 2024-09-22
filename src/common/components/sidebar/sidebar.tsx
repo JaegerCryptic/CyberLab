@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import '../../../theme/sidebar.css'
 
+// sidebar time
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -15,6 +16,7 @@ const Sidebar = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  // collapsable sidebar for the game selection options
   return (
     <div className={`sidebar ${isOpen ? 'open' : ''}`}>
       <div className="burger" onClick={toggleSidebar}>
