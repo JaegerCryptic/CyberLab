@@ -4,7 +4,7 @@ import { faBars, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import '../../../theme/sidebar.css'
 
 // sidebar time
-const Sidebar = () => {
+export const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
