@@ -6,7 +6,18 @@ import ListItemText from '@mui/material/ListItemText';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 
-const RuleList = ({ rules }) => {
+// Define the type for a single rule
+interface Rule {
+  text: string;
+  met: boolean;
+}
+
+// Define the props for RuleList component
+interface RuleListProps {
+  rules: Rule[];
+}
+
+const RuleList: React.FC<RuleListProps> = ({ rules }) => {
   return (
     <List>
       {rules.map((rule, index) => (

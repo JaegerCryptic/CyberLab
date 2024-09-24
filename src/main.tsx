@@ -1,24 +1,34 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { GlobalStyles, ThemeProvider } from '@mui/material'
-import CssBaseline from '@mui/material/CssBaseline'
-import { LocalizationProvider } from '@mui/x-date-pickers'
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { GlobalStyles, ThemeProvider } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 
-import { ROOT_ROUTE } from './routes/Root'
-import {darkTheme } from './theme/style'
-import { AUTHENTICATED_ROUTES } from './routes/AuthenticatedRoutes'
-import { STARTUP_ROUTE } from './routes/startup/Startup'
-import Notifier from './features/Notifications/Notifier'
+import { ROOT_ROUTE } from './routes/Root';
+import { darkTheme } from './theme/style';
+import { AUTHENTICATED_ROUTES } from './routes/AuthenticatedRoutes';
+import { STARTUP_ROUTE } from './routes/startup/Startup';
+import Notifier from './features/Notifications/Notifier';
+
+// Uncomment this import when testing PasswordChecker directly
+// import PasswordChecker from './components/PasswordChecker/PasswordChecker';
 
 const router = createBrowserRouter([
+  // Comment out the following routes when testing PasswordChecker directly
   ROOT_ROUTE,
   AUTHENTICATED_ROUTES,
   STARTUP_ROUTE,
-])
+
+  // Uncomment the following route when testing PasswordChecker directly
+  // {
+  //   path: '/',
+  //   element: <PasswordChecker />,
+  // },
+]);
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,7 +36,7 @@ const queryClient = new QueryClient({
       staleTime: 5 * 60 * 1000, // 5 minutes
     },
   },
-})
+});
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -47,4 +57,4 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       </ThemeProvider>
     </LocalizationProvider>
   </React.StrictMode>
-)
+);

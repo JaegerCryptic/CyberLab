@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import PasswordInput from './components/PasswordInput';
-import StrengthIndicator from './components/StrengthIndicator';
+import PasswordInput from './PasswordInput';
+import StrengthIndicator from './StrengthIndicator';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 
-const PasswordChecker = () => {
-  const [password, setPassword] = useState('');
-  const [timeToCrack, setTimeToCrack] = useState('');
-  const [bgColor, setBgColor] = useState('blue');
+const PasswordChecker: React.FC = () => {
+  const [password, setPassword] = useState<string>('');
+  const [timeToCrack, setTimeToCrack] = useState<string>('0 seconds');
+  const [bgColor, setBgColor] = useState<string>('blue');
 
-  const calculateStrength = (password) => {
+  const calculateStrength = (password: string): void => {
     if (password.length === 0) {
       setTimeToCrack('0 seconds');
       setBgColor('blue');
@@ -19,25 +20,21 @@ const PasswordChecker = () => {
     const length = password.length;
     let characterSetSize = 0;
 
-    // Determine the character set size
-    if (/[a-z]/.test(password)) characterSetSize += 26; // Lowercase letters
-    if (/[A-Z]/.test(password)) characterSetSize += 26; // Uppercase letters
-    if (/\d/.test(password)) characterSetSize += 10; // Digits
-    if (/[\W_]/.test(password)) characterSetSize += 32; // Symbols
+    if (/[a-z]/.test(password)) characterSetSize += 26;
+    if (/[A-Z]/.test(password)) characterSetSize += 26;
+    if (/\d/.test(password)) characterSetSize += 10;
+    if (/[\W_]/.test(password)) characterSetSize += 32;
 
-    // Estimate time to brute force based on character set size and length
-    const guessesPerSecond = 1e9; // 1 billion guesses per second
+    const guessesPerSecond = 1e9;
     const totalGuesses = Math.pow(characterSetSize, length);
     let timeToCrackInSeconds = totalGuesses / guessesPerSecond;
 
-    // Check for Infinity (i.e., time to crack is too large)
     if (!isFinite(timeToCrackInSeconds)) {
       setTimeToCrack('Infinity');
       setBgColor('black');
       return;
     }
 
-    // Convert time to a more readable format with metric prefixes and human-readable units
     const timeUnits = [
       { unit: 'nanoseconds', value: 1e-9 },
       { unit: 'microseconds', value: 1e-6 },
@@ -67,7 +64,6 @@ const PasswordChecker = () => {
       timeValue = timeToCrackInSeconds / timeUnits[i].value;
     }
 
-    // Determine background color based on time to crack
     if ((selectedUnit === 'weeks' && timeValue >= 1) || selectedUnit.includes('months') || selectedUnit.includes('years')) {
       setBgColor('green');
     } else {
@@ -77,7 +73,7 @@ const PasswordChecker = () => {
     setTimeToCrack(`${timeValue.toFixed(2)} ${selectedUnit}`);
   };
 
-  const handlePasswordChange = (newPassword) => {
+  const handlePasswordChange = (newPassword: string): void => {
     setPassword(newPassword);
     calculateStrength(newPassword);
   };
@@ -85,32 +81,46 @@ const PasswordChecker = () => {
   return (
     <Container
       sx={{
-        width: '100vw', // Full viewport width
-        height: '100vh', // Full viewport height
+        width: '100vw',
+        height: '100vh',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: bgColor, // Set the background color of the entire container
-        transition: 'background-color 0.3s', // Smooth transition for background color changes
-        padding: 0, // Remove any default padding
-        margin: 0, // Remove any default margin
+        backgroundColor: bgColor,
+        transition: 'background-color 0.3s',
+        padding: 0,
+        margin: 0,
       }}
-      maxWidth={false} // Disable max-width to ensure it covers the entire width
+      maxWidth={false}
     >
       <Box
         sx={{
           width: '100%',
-          maxWidth: 800,  // Increased width
-          backgroundColor: 'white', // Set the box to a solid white background
-          padding: 6, // Increased padding
+          maxWidth: 1000,
+          backgroundColor: 'white',
+          padding: 6,
           borderRadius: 3,
-          color: 'black', // Set text color to black for better contrast on white background
+          color: 'black',
           textAlign: 'center',
-          fontSize: '1.5rem', // Larger font size for all text
-          boxShadow: 3, // Add a slight shadow to the box for better visual separation
+          fontSize: '1.5rem',
+          boxShadow: 3,
         }}
       >
+        {/* Title */}
+        <Typography
+          variant="h6"  // Slightly bigger size
+          component="div"
+          fontWeight="bold"
+          gutterBottom
+          color="black"  // Black text
+        >
+          Password Strength Checker
+        </Typography>
+
+        {/* Password Input */}
         <PasswordInput password={password} setPassword={handlePasswordChange} />
+
+        {/* Strength Indicator */}
         <StrengthIndicator strength={timeToCrack} />
       </Box>
     </Container>

@@ -1,15 +1,21 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
 
-const PasswordInput = ({ password, setPassword, label = "Enter your password" }) => {
+interface PasswordInputProps {
+  password: string;
+  setPassword: (password: string) => void;
+}
+
+const PasswordInput: React.FC<PasswordInputProps> = ({ password, setPassword }) => {
   return (
     <TextField
-      label={label}
       variant="outlined"
       type="password"
       fullWidth
       value={password}
       onChange={(e) => setPassword(e.target.value)}
+      placeholder="Enter password"
+      inputProps={{ style: { color: '#4a4a4a' } }}  // Darker gray text
       margin="normal"
     />
   );
