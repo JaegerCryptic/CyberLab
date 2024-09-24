@@ -44,62 +44,52 @@ export const SignIn = ({}: Props) => {
 	const handleOnSubmit: SubmitHandler<LoginSchema> = (data) => {};
 
 	return (
-		<StartupLayout title="Welcome to the SCP Field Agent Certification course">
-			<Grid
-				container
-				direction="column"
-				spacing={2}
-				display="flex"
-				alignItems="left"
-				component="form"
-				onSubmit={handleSubmit(handleOnSubmit)}
-			>
-				<Grid xs={8} display={"flex"} justifyContent={"left"} mt={2}>
-					<Typography>Please enter your name to get started:</Typography>
-				</Grid>
-				<Grid xs={8} display={"flex"} justifyContent={"left"}>
-					<ControlledInput<LoginSchema>
-						control={control}
-						defaultValue=""
-						name="userName"
-						inputProps={{
-							label: "name",
-							autoFocus: true,
-							autoComplete: "firstName",
-						}}
-					/>
-					{errors.userName && (
-						<ErrorMessage message={errors.userName.message ?? ""} />
-					)}
-				</Grid>
-
-				<Grid xs={8} display={"flex"} justifyContent={"center"}>
-					<CLButton fullWidth type="submit">
-						Sign in
-					</CLButton>
-				</Grid>
-				<Grid xs={12} display={"flex"} justifyContent={"center"} mt={10}>
-					<Icon sx={{ width: "100%", height: "auto" }}>
-						<img
-							src={SCPLogo}
-							alt="Logo"
-							style={{ width: "100%", height: "auto", marginLeft: -200 }}
+			<StartupLayout title="Welcome to the SCP Field Agent Certification course">
+				<Grid
+					container
+					direction="column"
+					spacing={2}
+					display="flex"
+					alignItems="left"
+					component="form"
+					onSubmit={handleSubmit(handleOnSubmit)}
+				>
+					<Grid xs={8} display={"flex"} justifyContent={"left"} mt={2}>
+						<Typography>Please enter your name to get started:</Typography>
+					</Grid>
+					<Grid xs={8} display={"flex"} justifyContent={"left"}>
+						<ControlledInput<LoginSchema>
+							control={control}
+							defaultValue=""
+							name="userName"
+							inputProps={{
+								label: "name",
+								autoFocus: true,
+								autoComplete: "firstName",
+							}}
 						/>
-					</Icon>
-				</Grid>
-			</Grid>
-			<Grid xs={6} sx={{ height: "100%" }}>
-				<Icon sx={{ width: "100%", height: "auto" }}>
-					<img
-						src={SCPLogo}
-						alt="Logo"
-						style={{ width: "100%", height: "auto", marginLeft: -200 }}
-					/>
-				</Icon>{" "}
-			</Grid>
+						{errors.userName && (
+							<ErrorMessage message={errors.userName.message ?? ""} />
+						)}
+					</Grid>
 
-			{/* extra <div> is required to prevent forwardRef error */}
-			<div></div>
-		</StartupLayout>
+					<Grid xs={8} display={"flex"} justifyContent={"center"}>
+						<CLButton fullWidth type="submit">
+							Sign in
+						</CLButton>
+					</Grid>
+					<Grid xs={12} display={"flex"} justifyContent={"center"} mt={10}>
+						<Icon sx={{ width: "100%", height: "auto" }}>
+							<img
+								src={SCPLogo}
+								alt="Logo"
+								style={{ width: "100%", height: "auto", marginLeft: -200 }}
+							/>
+						</Icon>
+					</Grid>
+				</Grid>
+				{/* extra <div> is required to prevent forwardRef error */}
+				<div></div>
+			</StartupLayout>
 	);
 };
