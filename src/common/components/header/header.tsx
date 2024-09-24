@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import '../../../theme/topbar.css';
 
-const TopBar = () => {
+export const TopBar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
