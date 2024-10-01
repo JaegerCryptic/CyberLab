@@ -1,45 +1,37 @@
-import { useEffect } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { useQueryClient } from "@tanstack/react-query";
-import { Icon, Typography } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2/Grid2";
-import { z } from "zod";
-import { Route } from 'react-router-dom';
-import Dashboard from '../../features/dashboard/dashboard.tsx'
-import { StartupLayout } from "./StartupLayout";
-import { CLButton } from "../../common/components/buttons/CLButton";
-import { ControlledInput } from "../../common/components/input/ControlledInput";
-import { ErrorMessage } from "../../common/components/ErrorMessage";
-import { REQUIRED_FIELD_MESSAGE } from "../../constants/validation";
-import SCPLogo from "../../images/scp_logo.png";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useEffect } from "react"
+import { useForm, SubmitHandler } from "react-hook-form"
+import { useQueryClient } from "@tanstack/react-query"
+import { Icon, Typography } from "@mui/material"
+import Grid from "@mui/material/Unstable_Grid2/Grid2"
+import { z } from "zod"
+
+import { StartupLayout } from "./StartupLayout"
+import { CLButton } from "../../common/components/buttons/CLButton"
+import { ControlledInput } from "../../common/components/input/ControlledInput"
+import { ErrorMessage } from "../../common/components/ErrorMessage"
+import { REQUIRED_FIELD_MESSAGE } from "../../constants/validation"
+import SCPLogo from "../../images/scp_logo.png"
 
 const LoginSchema = z
 	.object({
 		userName: z.string({ required_error: REQUIRED_FIELD_MESSAGE }),
 	})
-	.strict();
+	.strict()
 
-type LoginSchema = z.infer<typeof LoginSchema>;
+type LoginSchema = z.infer<typeof LoginSchema>
 
-type ButtonBehaviour = "HYPERLINK" | "BUTTON";
+type ButtonBehaviour = "HYPERLINK" | "BUTTON"
 interface Props {
-	buttonBehaviour: ButtonBehaviour;
-	buttonUpdate?: () => void;
+	buttonBehaviour: ButtonBehaviour
+	buttonUpdate?: () => void
 }
 
-
-
 export const SignIn = ({}: Props) => {
-	const queryClient = useQueryClient();
-	const navigate = useNavigate();
-	const GoToDashboard = () => {
-	  navigate('/dashboard'); // navigate to the dashboard route
-	}
+	const queryClient = useQueryClient()
 
 	useEffect(() => {
-		queryClient.clear();
-	}, [queryClient]);
+		queryClient.clear()
+	}, [queryClient])
 
 	const {
 		control,
@@ -47,37 +39,29 @@ export const SignIn = ({}: Props) => {
 		formState: { errors },
 	} = useForm<LoginSchema>({
 		mode: "onSubmit",
-		
-	});
+	})
 
-	// const MustardJar = () => {
-
-	// 	};
-
-	const handleOnSubmit: SubmitHandler<LoginSchema> = (data) => {};
-	
+	const handleOnSubmit: SubmitHandler<LoginSchema> = (data) => {}
 
 	return (
-		<StartupLayout title="Welcome to the SCP Field Agent Certification course.">
-			{/* <Route path='/dashboard' Component={Dashboard} /> */}
+		<StartupLayout title='Welcome to the SCP Field Agent Certification course'>
 			<Grid
 				container
-				direction="column"
+				direction='column'
 				spacing={2}
-				display="flex"
-				alignItems="left"
-				component="form"
+				display='flex'
+				alignItems='left'
+				component='form'
 				onSubmit={handleSubmit(handleOnSubmit)}
 			>
-				
 				<Grid xs={8} display={"flex"} justifyContent={"left"} mt={2}>
 					<Typography>Please enter your name to get started:</Typography>
 				</Grid>
 				<Grid xs={8} display={"flex"} justifyContent={"left"}>
 					<ControlledInput<LoginSchema>
 						control={control}
-						defaultValue=""
-						name="userName"
+						defaultValue=''
+						name='userName'
 						inputProps={{
 							label: "name",
 							autoFocus: true,
@@ -90,9 +74,7 @@ export const SignIn = ({}: Props) => {
 				</Grid>
 
 				<Grid xs={8} display={"flex"} justifyContent={"center"}>
-					{/* TODO: Change the navigate to dashboard to the actual destination (if it is changed in the future) */}
-					{/* TODO: Figure out what the fuck im doing, theres aslo a null error for this onclick but it should work. */}
-					<CLButton fullWidth type="submit" onClick={GoToDashboard}>
+					<CLButton fullWidth type='submit'>
 						Sign in
 					</CLButton>
 				</Grid>
@@ -100,24 +82,14 @@ export const SignIn = ({}: Props) => {
 					<Icon sx={{ width: "100%", height: "auto" }}>
 						<img
 							src={SCPLogo}
-							alt="Logo"
+							alt='Logo'
 							style={{ width: "100%", height: "auto", marginLeft: -200 }}
 						/>
 					</Icon>
 				</Grid>
 			</Grid>
-			<Grid xs={6} sx={{ height: "100%" }}>
-				<Icon sx={{ width: "100%", height: "auto" }}>
-					<img
-						src={SCPLogo}
-						alt="Logo"
-						style={{ width: "100%", height: "auto", marginLeft: -200 }}
-					/>
-				</Icon>{" "}
-			</Grid>
-
 			{/* extra <div> is required to prevent forwardRef error */}
 			<div></div>
 		</StartupLayout>
-	);
-};
+	)
+}
