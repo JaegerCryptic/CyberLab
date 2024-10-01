@@ -112,7 +112,7 @@ const PasswordChecker: React.FC = () => {
           component="div"
           fontWeight="bold"
           gutterBottom
-          color="black"  // Black text
+           sx={{ color: 'black' }}
         >
           Password Strength Checker
         </Typography>
