@@ -33,4 +33,3 @@ export const RuleList = (props: RuleListProps)  => {
   );
 };
 
-export default RuleList;
