@@ -127,4 +127,3 @@ const PasswordChecker: React.FC = () => {
   );
 };
 
-export default PasswordChecker;
