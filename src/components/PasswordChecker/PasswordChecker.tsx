@@ -17,14 +17,14 @@ const PasswordChecker: React.FC = () => {
       return;
     }
 
-    const length = password.length;
-    let characterSetSize = 0;
-
-    if (/[a-z]/.test(password)) characterSetSize += 26;
-    if (/[A-Z]/.test(password)) characterSetSize += 26;
-    if (/\d/.test(password)) characterSetSize += 10;
-    if (/[\W_]/.test(password)) characterSetSize += 32;
-
+	const getCharacterSetSize = (password: string): number => {
+		let size = 0
+		if (/[a-z]/.test(password)) size += 26
+		if (/[A-Z]/.test(password)) size += 26
+		if (/\d/.test(password)) size += 10
+		if (/[\W_]/.test(password)) size += 32
+		return size
+	}
     const guessesPerSecond = 1e9;
     const totalGuesses = Math.pow(characterSetSize, length);
     let timeToCrackInSeconds = totalGuesses / guessesPerSecond;
