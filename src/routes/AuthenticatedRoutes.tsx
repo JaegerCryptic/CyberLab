@@ -6,9 +6,9 @@ import {
 } from "react-router-dom"
 import { ReactNode, useEffect } from "react"
 
-import { DASHBOARD_ROUTE } from "./DashboardRoutes"
 import { AuthenticatedRoutesWrapper } from "../common/components/routing/AuthenticatedRoutesWrapper"
 import { putError } from "../api/secure_core/errors/errors.put"
+import { DASHBOARD_ROUTES } from "./DashboardRoutes"
 
 // The ErrorBoundary element is a wrapper for all routes that require a jwt.
 // It catches the error stack and sends it to the server to be converted
@@ -48,6 +48,6 @@ const ErrorBoundary = (): ReactNode => {
 // The AuthenticatedRoutes element is a wrapper for all routes that require a jwt.
 export const AUTHENTICATED_ROUTES: RouteObject = {
 	element: <AuthenticatedRoutesWrapper />,
-	children: [DASHBOARD_ROUTE],
+	children: [DASHBOARD_ROUTES],
 	errorElement: <ErrorBoundary />,
 }

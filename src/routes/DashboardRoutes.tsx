@@ -1,33 +1,15 @@
 import { RouteObject } from "react-router-dom"
 
-export const WORKSPACES_ROUTES: RouteObject = {
-	path: WORSPACES_ROUTE_PATH,
-	children: [
-		{
-			index: true,
-			element: <WorkspacesDashboard />,
-		},
-	],
-}
+import { DASHBOARD_ROUTE_PATH } from "./constants"
+import { UserWorkspaceRoutesWrapper } from "../common/components/routing/UserWorkspaceRoutesWrapper"
 
-export const WORKSPACE_ROUTES: RouteObject = {
-	path: WORKSPACE_ROUTE_PATH,
-	element: <WorkspaceRouteWrapper />,
+export const DASHBOARD_ROUTES: RouteObject = {
+	path: DASHBOARD_ROUTE_PATH,
+	element: <UserWorkspaceRoutesWrapper />,
 	children: [
 		{
 			index: true,
-			element: <Workspace />,
+			element: <div>Dashboard</div>, //TODO replace with actual dashboard
 		},
-		{
-			path: WORKSPACE_ROUTE_PATHS.settings,
-			element: <WorkspaceSettings />,
-		},
-		{ path: WORKSPACE_ROUTE_PATHS["bulk-edit"], element: <BulkEditScreen /> },
-		{
-			path: WORKSPACE_ROUTE_PATHS.tools,
-			element: <WorkspaceTools />,
-		},
-		CLIENT_ROUTES,
-		RESOURCE_ROUTES,
 	],
 }
