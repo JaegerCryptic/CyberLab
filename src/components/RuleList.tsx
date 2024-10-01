@@ -17,7 +17,8 @@ interface RuleListProps {
   rules: Rule[];
 }
 
-const RuleList: React.FC<RuleListProps> = ({ rules }) => {
+export const RuleList = (props: RuleListProps)  => {
+  const { rules } = props
   return (
     <List>
       {rules.map((rule, index) => (
