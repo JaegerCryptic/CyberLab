@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-const PasswordChecker: React.FC = () => {
+export const PasswordChecker = () => {
   const [password, setPassword] = useState<string>('');
   const [timeToCrack, setTimeToCrack] = useState<string>('0 seconds');
   const [bgColor, setBgColor] = useState<string>('blue');
