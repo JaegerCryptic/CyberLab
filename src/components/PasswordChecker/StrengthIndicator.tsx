@@ -5,7 +5,8 @@ interface StrengthIndicatorProps {
   strength: string;
 }
 
-const StrengthIndicator: React.FC<StrengthIndicatorProps> = ({ strength }) => {
+const StrengthIndicator = (props: StrengthIndicatorProps) => {
+ const { strength} = props
   return (
     <Typography
       variant="h6"  // Larger text size
