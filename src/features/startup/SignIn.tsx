@@ -4,7 +4,8 @@ import { useQueryClient } from "@tanstack/react-query"
 import { Icon, Typography } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2/Grid2"
 import { z } from "zod"
-import { useCookies } from "react-cookie" // Import useCookies
+import { useCookies } from "react-cookie"
+import { useNavigate } from "react-router-dom"
 
 import { StartupLayout } from "./StartupLayout"
 import { CLButton } from "../../common/components/buttons/CLButton"
@@ -30,6 +31,7 @@ interface Props {
 export const SignIn = ({}: Props) => {
 	const queryClient = useQueryClient()
 	const [, setCookie] = useCookies(["userName"])
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		queryClient.clear()
@@ -45,6 +47,7 @@ export const SignIn = ({}: Props) => {
 
 	const handleOnSubmit: SubmitHandler<LoginSchema> = (data) => {
 		setCookie("userName", data.userName, { path: "/", maxAge: 86400 }) // Cookie expires in 1 day
+		navigate("/dashboard")
 	}
 
 	return (
