@@ -13,11 +13,11 @@ export const AuthenticatedRoutesWrapper = () => {
 	const userName = cookies.userName
 	const location = useLocation()
 
-	if (!userName) {
+	if (!userName && location.pathname !== WELCOME_ROUTE_PATH) {
 		return <Navigate to={WELCOME_ROUTE_PATH} replace />
 	}
 
-	if (location.pathname === WELCOME_ROUTE_PATH) {
+	if (userName && location.pathname === WELCOME_ROUTE_PATH) {
 		return <Navigate to={DASHBOARD_ROUTE_PATH} replace />
 	}
 
