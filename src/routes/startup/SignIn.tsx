@@ -1,9 +1,9 @@
 import { RouteObject } from "react-router-dom"
 
 import { SignIn } from "../../features/startup/SignIn"
-import { WELCOME_PATH } from "./startupPaths"
+import { WELCOME_ROUTE_PATH } from "./startupPaths"
 
 export const SIGNIN_ROUTE: RouteObject = {
-	path: WELCOME_PATH,
+	path: WELCOME_ROUTE_PATH,
 	element: <SignIn buttonBehaviour='HYPERLINK' />,
 }
