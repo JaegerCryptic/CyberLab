@@ -30,7 +30,7 @@ interface Props {
 
 export const SignIn = ({}: Props) => {
 	const queryClient = useQueryClient()
-	const [, setCookie] = useCookies(["userName"])
+	const [cookies, setCookie] = useCookies(["userName"])
 	const navigate = useNavigate()
 
 	useEffect(() => {
@@ -43,6 +43,9 @@ export const SignIn = ({}: Props) => {
 		formState: { errors },
 	} = useForm<LoginSchema>({
 		mode: "onSubmit",
+		defaultValues: {
+			userName: cookies.userName || "",
+		},
 	})
 
 	const handleOnSubmit: SubmitHandler<LoginSchema> = (data) => {
