@@ -4,6 +4,7 @@ import { useQueryClient } from "@tanstack/react-query"
 import { Icon, Typography } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2/Grid2"
 import { z } from "zod"
+import { useCookies } from "react-cookie" // Import useCookies
 
 import { StartupLayout } from "./StartupLayout"
 import { CLButton } from "../../common/components/buttons/CLButton"
@@ -28,6 +29,7 @@ interface Props {
 
 export const SignIn = ({}: Props) => {
 	const queryClient = useQueryClient()
+	const [, setCookie] = useCookies(["userName"])
 
 	useEffect(() => {
 		queryClient.clear()
@@ -41,7 +43,9 @@ export const SignIn = ({}: Props) => {
 		mode: "onSubmit",
 	})
 
-	const handleOnSubmit: SubmitHandler<LoginSchema> = (data) => {}
+	const handleOnSubmit: SubmitHandler<LoginSchema> = (data) => {
+		setCookie("userName", data.userName, { path: "/", maxAge: 86400 }) // Cookie expires in 1 day
+	}
 
 	return (
 		<StartupLayout title='Welcome to the SCP Field Agent Certification course'>
