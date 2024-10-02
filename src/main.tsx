@@ -7,6 +7,7 @@ import { GlobalStyles, ThemeProvider } from "@mui/material"
 import CssBaseline from "@mui/material/CssBaseline"
 import { LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3"
+import { CookiesProvider } from "react-cookie"
 
 import { ROOT_ROUTE } from "./routes/Root"
 import { darkTheme } from "./theme/style"
@@ -30,21 +31,23 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>
-		<LocalizationProvider dateAdapter={AdapterDateFns}>
-			<CssBaseline enableColorScheme />
-			<GlobalStyles
-				styles={{
-					body: {
-						backgroundColor: "#121C21",
-					},
-				}}
-			/>
-			<ThemeProvider theme={darkTheme}>
-				<Notifier />
-				<QueryClientProvider client={queryClient}>
-					<RouterProvider router={router} />
-				</QueryClientProvider>
-			</ThemeProvider>
-		</LocalizationProvider>
+		<CookiesProvider>
+			<LocalizationProvider dateAdapter={AdapterDateFns}>
+				<CssBaseline enableColorScheme />
+				<GlobalStyles
+					styles={{
+						body: {
+							backgroundColor: "#121C21",
+						},
+					}}
+				/>
+				<ThemeProvider theme={darkTheme}>
+					<Notifier />
+					<QueryClientProvider client={queryClient}>
+						<RouterProvider router={router} />
+					</QueryClientProvider>
+				</ThemeProvider>
+			</LocalizationProvider>
+		</CookiesProvider>
 	</React.StrictMode>
 )
