@@ -15,7 +15,6 @@ import { AUTHENTICATED_ROUTES } from "./routes/AuthenticatedRoutes"
 import { STARTUP_ROUTE } from "./routes/startup/Startup"
 import { appTheme } from "./theme/style"
 import Notifier from "./features/Notifications/Notifier"
-import { HOME_ROUTES } from "./routes/HomeRoutes"
 
 const router = createBrowserRouter([
 	ROOT_ROUTE,
