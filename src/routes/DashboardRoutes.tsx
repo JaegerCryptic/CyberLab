@@ -2,6 +2,7 @@ import { RouteObject } from "react-router-dom"
 
 import { DASHBOARD_ROUTE_PATH } from "./constants"
 import { UserWorkspaceRoutesWrapper } from "../common/components/routing/UserWorkspaceRoutesWrapper"
+import Dashboard from "../features/dashboard/dashboard"
 
 export const DASHBOARD_ROUTES: RouteObject = {
 	path: DASHBOARD_ROUTE_PATH,
@@ -9,7 +10,7 @@ export const DASHBOARD_ROUTES: RouteObject = {
 	children: [
 		{
 			index: true,
-			element: <div>Dashboard</div>, //TODO replace with actual dashboard
+			element: <Dashboard />,
 		},
 	],
 }
