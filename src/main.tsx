@@ -15,22 +15,15 @@ import { AUTHENTICATED_ROUTES } from "./routes/AuthenticatedRoutes"
 import { STARTUP_ROUTE } from "./routes/startup/Startup"
 import { appTheme } from "./theme/style"
 import Notifier from "./features/Notifications/Notifier"
+import { HOME_ROUTES } from "./routes/HomeRoutes"
 
 const router = createBrowserRouter([
-	ROOT_ROUTE,
-	AUTHENTICATED_ROUTES,
-	STARTUP_ROUTE,
 	ROOT_ROUTE,
 	AUTHENTICATED_ROUTES,
 	STARTUP_ROUTE,
 ])
 
 const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			staleTime: 5 * 60 * 1000, // 5 minutes
-		},
-	},
 	defaultOptions: {
 		queries: {
 			staleTime: 5 * 60 * 1000, // 5 minutes
@@ -60,4 +53,3 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 		</CookiesProvider>
 	</React.StrictMode>
 )
-
