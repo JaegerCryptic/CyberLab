@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars, faChevronDown } from "@fortawesome/free-solid-svg-icons"
-import "../../../theme/sidebar.css"
 
 // sidebar time
 export const Sidebar = () => {

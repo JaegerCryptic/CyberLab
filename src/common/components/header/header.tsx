@@ -1,7 +1,5 @@
 import { useState } from "react"
 
-import "../../../theme/topbar.css"
-
 export const TopBar = () => {
 	const [dropdownOpen, setDropdownOpen] = useState(false)
 
