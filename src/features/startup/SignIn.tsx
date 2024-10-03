@@ -13,6 +13,7 @@ import { ControlledInput } from "../../common/components/input/ControlledInput"
 import { ErrorMessage } from "../../common/components/ErrorMessage"
 import { REQUIRED_FIELD_MESSAGE } from "../../constants/validation"
 import SCPLogo from "../../images/scp_logo.png"
+import SCPLogoWSlogan from "../../images/scp_logo_w_slogan.png" // Import the new image
 
 const LoginSchema = z
 	.object({
@@ -97,7 +98,18 @@ export const SignIn = ({}: Props) => {
 								width: "88.5%",
 								height: "100%",
 								marginLeft: -350,
-								backgroundColor: "transparent",
+							}}
+						/>
+					</Icon>
+				</Grid>
+				<Grid xs={12} display={"flex"} justifyContent={"flex-end"} mt={2}>
+					<Icon sx={{ width: "100%", height: "auto" }}>
+						<img
+							src={SCPLogoWSlogan}
+							alt='SCP Logo with slogan'
+							style={{
+								width: "100%",
+								height: "auto",
 							}}
 						/>
 					</Icon>
