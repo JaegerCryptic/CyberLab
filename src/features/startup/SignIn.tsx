@@ -20,11 +20,16 @@ const LoginSchema = z
 		userName: z.string({ required_error: REQUIRED_FIELD_MESSAGE }),
 	})
 	.strict()
+	.strict()
 
+type LoginSchema = z.infer<typeof LoginSchema>
 type LoginSchema = z.infer<typeof LoginSchema>
 
 type ButtonBehaviour = "HYPERLINK" | "BUTTON"
+type ButtonBehaviour = "HYPERLINK" | "BUTTON"
 interface Props {
+	buttonBehaviour: ButtonBehaviour
+	buttonUpdate?: () => void
 	buttonBehaviour: ButtonBehaviour
 	buttonUpdate?: () => void
 }
