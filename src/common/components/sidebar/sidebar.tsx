@@ -1,8 +1,14 @@
 import { useState } from "react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faBars, faChevronDown } from "@fortawesome/free-solid-svg-icons"
+import {
+	Drawer,
+	List,
+	ListItem,
+	ListItemText,
+	IconButton,
+	Collapse,
+} from "@mui/material"
+import { ExpandLess, ExpandMore } from "@mui/icons-material"
 
-// sidebar time
 export const Sidebar = () => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
@@ -15,32 +21,45 @@ export const Sidebar = () => {
 		setIsDropdownOpen(!isDropdownOpen)
 	}
 
-	// collapsable sidebar for the game selection options
 	return (
-		<div className={`sidebar ${isOpen ? "open" : ""}`}>
-			<div className='burger' onClick={toggleSidebar}>
-				<FontAwesomeIcon icon={faBars} />
-			</div>
-			<nav>
-				<ul>
-					<li onClick={toggleDropdown}>
-						<span>Classified Material</span>
-						<FontAwesomeIcon icon={faChevronDown} />
-					</li>
-					{isDropdownOpen && (
-						<ul className='dropdown'>
-							<li>Password Cracker</li>
-							<li>Phishing Simulator</li>
-							<li>Thing 1</li>
-							<li>Thing 2</li>
-							<li>Thing 3</li>
-							<li>Thing 4</li>
-						</ul>
-					)}
-					<li>Menu Item 2</li>
-					<li>Menu Item 3</li>
-				</ul>
-			</nav>
+		<div>
+			<IconButton onClick={toggleSidebar}></IconButton>
+			<Drawer anchor='left' open={isOpen} onClose={toggleSidebar}>
+				<List>
+					<ListItem button onClick={toggleDropdown}>
+						<ListItemText primary='Classified Material' />
+						{isDropdownOpen ? <ExpandLess /> : <ExpandMore />}
+					</ListItem>
+					<Collapse in={isDropdownOpen} timeout='auto' unmountOnExit>
+						<List component='div' disablePadding>
+							<ListItem button>
+								<ListItemText primary='Password Cracker' />
+							</ListItem>
+							<ListItem button>
+								<ListItemText primary='Phishing Simulator' />
+							</ListItem>
+							<ListItem button>
+								<ListItemText primary='Thing 1' />
+							</ListItem>
+							<ListItem button>
+								<ListItemText primary='Thing 2' />
+							</ListItem>
+							<ListItem button>
+								<ListItemText primary='Thing 3' />
+							</ListItem>
+							<ListItem button>
+								<ListItemText primary='Thing 4' />
+							</ListItem>
+						</List>
+					</Collapse>
+					<ListItem button>
+						<ListItemText primary='Menu Item 2' />
+					</ListItem>
+					<ListItem button>
+						<ListItemText primary='Menu Item 3' />
+					</ListItem>
+				</List>
+			</Drawer>
 		</div>
 	)
 }
