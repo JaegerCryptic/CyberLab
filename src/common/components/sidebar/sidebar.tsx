@@ -6,8 +6,9 @@ import {
 	ListItemText,
 	IconButton,
 	Collapse,
+	ButtonBase,
 } from "@mui/material"
-import { ExpandLess, ExpandMore } from "@mui/icons-material"
+import { ExpandLess, ExpandMore, Menu as MenuIcon } from "@mui/icons-material"
 
 export const Sidebar = () => {
 	const [isOpen, setIsOpen] = useState(false)
@@ -23,40 +24,60 @@ export const Sidebar = () => {
 
 	return (
 		<div>
-			<IconButton onClick={toggleSidebar}></IconButton>
+			<IconButton onClick={toggleSidebar}>
+				<MenuIcon />
+			</IconButton>
 			<Drawer anchor='left' open={isOpen} onClose={toggleSidebar}>
 				<List>
-					<ListItem button onClick={toggleDropdown}>
-						<ListItemText primary='Classified Material' />
-						{isDropdownOpen ? <ExpandLess /> : <ExpandMore />}
+					<ListItem>
+						<ButtonBase onClick={toggleDropdown} style={{ width: "100%" }}>
+							<ListItemText primary='Classified Material' />
+							{isDropdownOpen ? <ExpandLess /> : <ExpandMore />}
+						</ButtonBase>
 					</ListItem>
 					<Collapse in={isDropdownOpen} timeout='auto' unmountOnExit>
 						<List component='div' disablePadding>
-							<ListItem button>
-								<ListItemText primary='Password Cracker' />
+							<ListItem>
+								<ButtonBase style={{ width: "100%" }}>
+									<ListItemText primary='Password Cracker' />
+								</ButtonBase>
 							</ListItem>
-							<ListItem button>
-								<ListItemText primary='Phishing Simulator' />
+							<ListItem>
+								<ButtonBase style={{ width: "100%" }}>
+									<ListItemText primary='Phishing Simulator' />
+								</ButtonBase>
 							</ListItem>
-							<ListItem button>
-								<ListItemText primary='Thing 1' />
+							<ListItem>
+								<ButtonBase style={{ width: "100%" }}>
+									<ListItemText primary='Thing 1' />
+								</ButtonBase>
 							</ListItem>
-							<ListItem button>
-								<ListItemText primary='Thing 2' />
+							<ListItem>
+								<ButtonBase style={{ width: "100%" }}>
+									<ListItemText primary='Thing 2' />
+								</ButtonBase>
 							</ListItem>
-							<ListItem button>
-								<ListItemText primary='Thing 3' />
+							<ListItem>
+								<ButtonBase style={{ width: "100%" }}>
+									<ListItemText primary='Thing 3' />
+								</ButtonBase>
 							</ListItem>
-							<ListItem button>
-								<ListItemText primary='Thing 4' />
+							<ListItem>
+								<ButtonBase style={{ width: "100%" }}>
+									<ListItemText primary='Thing 4' />
+								</ButtonBase>
 							</ListItem>
 						</List>
 					</Collapse>
-					<ListItem button>
-						<ListItemText primary='Menu Item 2' />
+					<ListItem>
+						<ButtonBase style={{ width: "100%" }}>
+							<ListItemText primary='Menu Item 2' />
+						</ButtonBase>
 					</ListItem>
-					<ListItem button>
-						<ListItemText primary='Menu Item 3' />
+					<ListItem>
+						<ButtonBase style={{ width: "100%" }}>
+							<ListItemText primary='Menu Item 3' />
+						</ButtonBase>
 					</ListItem>
 				</List>
 			</Drawer>
