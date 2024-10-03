@@ -108,7 +108,7 @@ export const SignIn = ({}: Props) => {
 							src={SCPLogo}
 							alt='Logo'
 							style={{
-								width: "84%",
+								width: "83.5%",
 								height: "100%",
 								marginLeft: -350,
 							}}
