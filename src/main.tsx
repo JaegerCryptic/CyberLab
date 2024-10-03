@@ -13,6 +13,7 @@ import { ROOT_ROUTE } from "./routes/Root"
 import { darkTheme } from "./theme/style"
 import { AUTHENTICATED_ROUTES } from "./routes/AuthenticatedRoutes"
 import { STARTUP_ROUTE } from "./routes/startup/Startup"
+import { appTheme } from "./theme/style"
 import Notifier from "./features/Notifications/Notifier"
 
 const router = createBrowserRouter([
@@ -37,7 +38,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 				<GlobalStyles
 					styles={{
 						body: {
-							backgroundColor: "#121C21",
+							backgroundColor: appTheme.colors.background,
 						},
 					}}
 				/>
