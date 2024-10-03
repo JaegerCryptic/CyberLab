@@ -1,18 +1,20 @@
-import { createTheme } from '@mui/material/styles'
+import { createTheme } from '@mui/material/styles';
 
-const PRIMARY_COLOUR = '#7D0B02'
-const ACCENT_COLOUR = '#5E0C05'
-const SECONDARY_COLOUR = '#243B47'
-const SECONDARY_ACCENT_COLOUR = '#580602'
-const TERTIARY_COLOUR = '#6E0703'
-const TERTIARY_ACCENT_COLOUR = '#9A1D1D'
-const BACKGROUND_COLOUR = '#121C21'
-const BACKGROUND_ACCENT_COLOUR = '#580602'
-const TEXT_COLOUR = '#D8D4CF'
-const TEXT_ACCENT_COLOUR = '#E8E6E3'
-const WHITE_COLOUR = '#FFFFFF'
-const HIGHLIGHT_COLOUR = '#94B5C7'
+// Define color constants
+const PRIMARY_COLOUR = '#7D0B02';
+const ACCENT_COLOUR = '#5E0C05';
+const SECONDARY_COLOUR = '#243B47';
+const SECONDARY_ACCENT_COLOUR = '#580602';
+const TERTIARY_COLOUR = '#6E0703';
+const TERTIARY_ACCENT_COLOUR = '#9A1D1D';
+const BACKGROUND_COLOUR = '#121C21';
+const BACKGROUND_ACCENT_COLOUR = '#580602';
+const TEXT_COLOUR = '#D8D4CF';
+const TEXT_ACCENT_COLOUR = '#E8E6E3';
+const WHITE_COLOUR = '#FFFFFF';
+const HIGHLIGHT_COLOUR = '#94B5C7';
 
+// Colors object
 const appColors = {
   primary: PRIMARY_COLOUR,
   accent: ACCENT_COLOUR,
@@ -29,9 +31,10 @@ const appColors = {
   selectHighlight: '#FF0000',
   error: '#BA1A1A', 
   warning: '#FF9A01', 
-  success: '#3FD79C', 
-}
+  success: '#3FD79C', // Main success color (green)
+};
 
+// Font sizes
 const appFontSizes = {
   heading1: 36, 
   heading2: 24, 
@@ -42,26 +45,30 @@ const appFontSizes = {
   aboutSpc: 18, 
   fieldAgent: 18,
   classifiedTabs: 18, 
-}
+};
 
+// Font families
 const appFontFamilies = {
   primary: 'Space Grotesk, sans-serif',
   secondary: 'Space Grotesk, sans-serif',
-}
+};
 
+// Main theme object for app
 export const appTheme = {
   colors: appColors,
   fontSize: appFontSizes,
   fontFamily: appFontFamilies,
-}
+};
 
+// Custom typography styles
 export const h1Style = {
   fontSize: appFontSizes.heading1,
   fontWeight: 700,
   fontFamily: appFontFamilies.secondary,
   color: appColors.text,
-}
+};
 
+// Additional typography styles
 export const customTypography = {
   topWebsite: {
     fontSize: appFontSizes.topWebsite,
@@ -83,8 +90,9 @@ export const customTypography = {
     fontWeight: 400,
     color: appTheme.colors.white,
   },
-}
+};
 
+// Main MUI theme configuration using createTheme
 export const darkTheme = createTheme({
   palette: {
     mode: 'dark',
@@ -102,7 +110,11 @@ export const darkTheme = createTheme({
     },
     error: { main: appTheme.colors.error },
     warning: { main: appTheme.colors.warning },
-    success: { main: appTheme.colors.success },
+    success: { 
+      main: appTheme.colors.success, // Keep the main success color
+      light: '#a8d5a5', // Softer green for light success states
+      dark: '#388e3c', // Darker green for contrast
+    },
   },
   typography: {
     fontSize: appFontSizes.bodyText,
@@ -148,4 +160,4 @@ export const darkTheme = createTheme({
       textTransform: 'none',
     },
   },
-})
+});
