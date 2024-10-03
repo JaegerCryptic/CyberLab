@@ -102,7 +102,7 @@ export const SignIn = ({}: Props) => {
 						Sign in
 					</CLButton>
 				</Grid>
-				<Grid xs={6} display={"flex"} justifyContent={"center"} mt={5}>
+				<Grid xs={6} display={"block"} justifyContent={"left"} mt={5}>
 					<Icon sx={{ width: "100%", height: "100%" }}>
 						<img
 							src={SCPLogo}

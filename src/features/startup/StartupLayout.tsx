@@ -19,6 +19,7 @@ export const StartupLayout = ({ children, title }: Props) => {
 	return (
 		<Container
 			component='main'
+			maxWidth='lg'
 			sx={{
 				marginTop: theme.spacing(4),
 				marginLeft: 4,
