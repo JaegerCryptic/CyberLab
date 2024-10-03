@@ -34,6 +34,8 @@ export const SignIn = ({}: Props) => {
 	const [cookies, setCookie] = useCookies(["userName"])
 	const navigate = useNavigate()
 
+	const maxWidth = "750px"
+
 	useEffect(() => {
 		queryClient.clear()
 	}, [queryClient])
@@ -64,11 +66,17 @@ export const SignIn = ({}: Props) => {
 				alignItems='left'
 				component='form'
 				onSubmit={handleSubmit(handleOnSubmit)}
+				width={"100vw"}
 			>
-				<Grid xs={8} display={"flex"} justifyContent={"left"} mt={2}>
+				<Grid xs={6} display={"flex"} justifyContent={"left"} mt={2}>
 					<Typography>Please enter your name to get started:</Typography>
 				</Grid>
-				<Grid xs={8} display={"flex"} justifyContent={"left"}>
+				<Grid
+					xs={6}
+					display={"flex"}
+					justifyContent={"left"}
+					maxWidth={maxWidth}
+				>
 					<ControlledInput<LoginSchema>
 						control={control}
 						defaultValue=''
@@ -84,32 +92,25 @@ export const SignIn = ({}: Props) => {
 					)}
 				</Grid>
 
-				<Grid xs={8} display={"flex"} justifyContent={"center"}>
+				<Grid
+					xs={6}
+					display={"flex"}
+					justifyContent={"center"}
+					maxWidth={maxWidth}
+				>
 					<CLButton fullWidth type='submit'>
 						Sign in
 					</CLButton>
 				</Grid>
-				<Grid xs={12} display={"flex"} justifyContent={"center"} mt={10}>
+				<Grid xs={6} display={"flex"} justifyContent={"center"} mt={5}>
 					<Icon sx={{ width: "100%", height: "100%" }}>
 						<img
 							src={SCPLogo}
 							alt='Logo'
 							style={{
-								width: "88.5%",
+								width: "84%",
 								height: "100%",
 								marginLeft: -350,
-							}}
-						/>
-					</Icon>
-				</Grid>
-				<Grid xs={12} display={"flex"} justifyContent={"flex-end"} mt={2}>
-					<Icon sx={{ width: "100%", height: "auto" }}>
-						<img
-							src={SCPLogoWSlogan}
-							alt='SCP Logo with slogan'
-							style={{
-								width: "100%",
-								height: "auto",
 							}}
 						/>
 					</Icon>
