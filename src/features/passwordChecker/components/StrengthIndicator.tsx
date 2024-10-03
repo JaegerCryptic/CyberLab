@@ -5,13 +5,9 @@ interface StrengthIndicatorProps {
   strength: string;
 }
 
-const StrengthIndicator = (props: StrengthIndicatorProps) => {
- const { strength} = props
+const StrengthIndicator: React.FC<StrengthIndicatorProps> = ({ strength }) => {
   return (
-    <Typography
-      variant="h6"  // Larger text size
-      style={{ color: '#4a4a4a', marginTop: '1rem' }}  // Darker gray text
-    >
+    <Typography variant="h6" style={{ color: '#4a4a4a', marginTop: '1rem' }}>
       Estimated time to crack: {strength}
     </Typography>
   );

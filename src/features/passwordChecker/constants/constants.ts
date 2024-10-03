@@ -1,0 +1,20 @@
+export const timeUnits = [
+    { unit: 'nanoseconds', value: 1e-9 },
+    { unit: 'microseconds', value: 1e-6 },
+    { unit: 'milliseconds', value: 1e-3 },
+    { unit: 'seconds', value: 1 },
+    { unit: 'minutes', value: 60 },
+    { unit: 'hours', value: 60 * 60 },
+    { unit: 'days', value: 60 * 60 * 24 },
+    { unit: 'weeks', value: 60 * 60 * 24 * 7 },
+    { unit: 'months', value: 60 * 60 * 24 * 30 },
+    { unit: 'years', value: 60 * 60 * 24 * 365 },
+    { unit: 'million years', value: 60 * 60 * 24 * 365 * 1e6 },
+    { unit: 'billion years', value: 60 * 60 * 24 * 365 * 1e9 },
+    { unit: 'trillion years', value: 60 * 60 * 24 * 365 * 1e12 },
+    { unit: 'quadrillion years', value: 60 * 60 * 24 * 365 * 1e15 },
+    { unit: 'quintillion years', value: 60 * 60 * 24 * 365 * 1e18 },
+    { unit: 'sextillion years', value: 60 * 60 * 24 * 365 * 1e21 },
+    { unit: 'septillion years', value: 60 * 60 * 24 * 365 * 1e24 },
+  ];
+  

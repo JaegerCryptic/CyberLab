@@ -6,19 +6,16 @@ import ListItemText from '@mui/material/ListItemText';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 
-// Define the type for a single rule
 interface Rule {
   text: string;
   met: boolean;
 }
 
-// Define the props for RuleList component
 interface RuleListProps {
   rules: Rule[];
 }
 
-export const RuleList = (props: RuleListProps)  => {
-  const { rules } = props
+const RuleList: React.FC<RuleListProps> = ({ rules }) => {
   return (
     <List>
       {rules.map((rule, index) => (
@@ -33,3 +30,4 @@ export const RuleList = (props: RuleListProps)  => {
   );
 };
 
+export default RuleList;
