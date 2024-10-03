@@ -2,7 +2,7 @@ import { Sidebar } from "../../common/components/sidebar/sidebar.tsx"
 import { TopBar } from "../../common/components/header/header.tsx"
 import React from "react"
 
-const Dashboard: React.FC = () => {
+export const Dashboard: React.FC = () => {
 	return (
 		<div className='dashboard'>
 			<TopBar />
@@ -16,5 +16,3 @@ const Dashboard: React.FC = () => {
 		</div>
 	)
 }
-
-export default Dashboard
