@@ -115,6 +115,25 @@ export const SignIn = ({}: Props) => {
 						/>
 					</Icon>
 				</Grid>
+				<div
+					style={{
+						position: "absolute",
+						top: 0,
+						left: 1200,
+						height: "100%",
+						display: "flex",
+						alignItems: "center",
+					}}
+				>
+					<img
+						src={SCPLogoWSlogan}
+						alt='SCP Logo with slogan'
+						style={{
+							width: "45vw",
+							height: "auto",
+						}}
+					/>
+				</div>
 			</Grid>
 			{/* extra <div> is required to prevent forwardRef error */}
 			<div></div>
