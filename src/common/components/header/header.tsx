@@ -7,6 +7,7 @@ import {
 	Menu,
 	MenuItem,
 } from "@mui/material"
+import { Sidebar } from "../sidebar/sidebar"
 
 export const TopBar = () => {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -22,6 +23,9 @@ export const TopBar = () => {
 	return (
 		<AppBar position='static'>
 			<Toolbar>
+				<div className='dashboard-content'>
+					<Sidebar />
+				</div>
 				<Typography variant='h6' sx={{ flexGrow: 1 }}>
 					Dashboard
 				</Typography>
