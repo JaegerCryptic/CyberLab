@@ -7,12 +7,16 @@ interface GameContextType {
 
 const GameContext = createContext<GameContextType | undefined>(undefined)
 
-export const GameProvider = (children: ReactNode) => {
+interface GameProviderProps {
+	children: ReactNode
+}
+
+export const GameProvider = (props: GameProviderProps) => {
 	const [selectedGame, setSelectedGame] = useState<string>("")
 
 	return (
 		<GameContext.Provider value={{ selectedGame, setSelectedGame }}>
-			{children}
+			{props.children}
 		</GameContext.Provider>
 	)
 }
