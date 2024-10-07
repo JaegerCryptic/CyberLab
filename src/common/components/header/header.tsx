@@ -1,12 +1,5 @@
 import { useState } from "react"
-import {
-	AppBar,
-	Toolbar,
-	Typography,
-	Button,
-	Menu,
-	MenuItem,
-} from "@mui/material"
+import { AppBar, Toolbar, Typography, Button, Menu } from "@mui/material"
 import { Sidebar } from "../sidebar/sidebar"
 
 export const TopBar = () => {
@@ -23,9 +16,7 @@ export const TopBar = () => {
 	return (
 		<AppBar position='static'>
 			<Toolbar>
-				<div className='dashboard-content'>
-					<Sidebar />
-				</div>
+				<Sidebar />
 				<Typography variant='h6' sx={{ flexGrow: 1 }}>
 					Dashboard
 				</Typography>
@@ -36,11 +27,7 @@ export const TopBar = () => {
 					anchorEl={anchorEl}
 					open={Boolean(anchorEl)}
 					onClose={handleClose}
-				>
-					<MenuItem onClick={handleClose}>SCP Foundation 1</MenuItem>
-					<MenuItem onClick={handleClose}>SCP Foundation 2</MenuItem>
-					<MenuItem onClick={handleClose}>SCP Foundation 3</MenuItem>
-				</Menu>
+				/>
 			</Toolbar>
 		</AppBar>
 	)

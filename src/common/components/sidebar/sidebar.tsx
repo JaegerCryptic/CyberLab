@@ -15,6 +15,7 @@ import { useGame } from "../../../routes/GameContext"
 export const Sidebar = () => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+	const [isPasswordCheckerOpen, setIsPasswordCheckerOpen] = useState(false)
 	const { setSelectedGame } = useGame()
 
 	const toggleSidebar = () => {
@@ -25,13 +26,17 @@ export const Sidebar = () => {
 		setIsDropdownOpen(!isDropdownOpen)
 	}
 
+	const togglePasswordChecker = () => {
+		setIsPasswordCheckerOpen(!isPasswordCheckerOpen)
+	}
+
 	const handleGameClick = (game: string) => {
 		setSelectedGame(game)
-		setIsOpen(false) // Close the sidebar after selecting a game
+		setIsOpen(false)
 	}
 
 	return (
-		<div>
+		<>
 			<IconButton onClick={toggleSidebar}>
 				<MenuIcon />
 			</IconButton>
@@ -48,11 +53,32 @@ export const Sidebar = () => {
 							<ListItem>
 								<ButtonBase
 									style={{ width: "100%" }}
-									onClick={() => handleGameClick("Password Cracker")}
+									onClick={togglePasswordChecker}
 								>
-									<ListItemText primary='Password Cracker' />
+									<ListItemText primary='Password Checker' />
+									{isPasswordCheckerOpen ? <ExpandLess /> : <ExpandMore />}
 								</ButtonBase>
 							</ListItem>
+							<Collapse in={isPasswordCheckerOpen} timeout='auto' unmountOnExit>
+								<List component='div' disablePadding>
+									<ListItem>
+										<ButtonBase
+											style={{ width: "100%" }}
+											onClick={() => handleGameClick("Password Game")}
+										>
+											<ListItemText primary='Password Game' />
+										</ButtonBase>
+									</ListItem>
+									<ListItem>
+										<ButtonBase
+											style={{ width: "100%" }}
+											onClick={() => handleGameClick("Password Checker")}
+										>
+											<ListItemText primary='Password Checker' />
+										</ButtonBase>
+									</ListItem>
+								</List>
+							</Collapse>
 							<ListItem>
 								<ButtonBase
 									style={{ width: "100%" }}
@@ -113,6 +139,6 @@ export const Sidebar = () => {
 					</ListItem>
 				</List>
 			</Drawer>
-		</div>
+		</>
 	)
 }
