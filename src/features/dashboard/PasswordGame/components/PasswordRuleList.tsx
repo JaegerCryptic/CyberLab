@@ -1,12 +1,13 @@
 import React from "react"
-import List from "@mui/material/List"
-import ListItem from "@mui/material/ListItem"
-import Box from "@mui/material/Box"
-import Typography from "@mui/material/Typography"
-import ListItemIcon from "@mui/material/ListItemIcon"
-import CheckIcon from "@mui/icons-material/Check"
-import CloseIcon from "@mui/icons-material/Close"
-import { Fade } from "@mui/material"
+import {
+	Fade,
+	List,
+	ListItem,
+	ListItemIcon,
+	Typography,
+	Box,
+} from "@mui/material"
+import { Check as CheckIcon, Close as CloseIcon } from "@mui/icons-material"
 
 import { Rule } from "../constants"
 import { appTheme } from "../../../../theme/style"
