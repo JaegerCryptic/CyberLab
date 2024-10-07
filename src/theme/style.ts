@@ -17,6 +17,10 @@ const buttonSuccess = { main: '#3FD79C',
   light: '#a8d5a5', 
   dark: '#388e3c', }
 
+  const buttonError = { main: '#BA1A1A', 
+    light: '#ffb3b3', 
+    dark: '#8B0000', }
+
 
 const appColors = {
   primary: PRIMARY_COLOUR,
@@ -32,7 +36,7 @@ const appColors = {
   white: WHITE_COLOUR,
   highlight: HIGHLIGHT_COLOUR,
   selectHighlight: '#FF0000',
-  error: '#BA1A1A', 
+  error: buttonError, 
   warning: '#FF9A01', 
   success: buttonSuccess, 
 }
@@ -106,7 +110,7 @@ export const darkTheme = createTheme({
     secondary: {
       main: appTheme.colors.secondary,
     },
-    error: { main: appTheme.colors.error },
+    error: { main: appTheme.colors.error.main },
     warning: { main: appTheme.colors.warning },
     success: { main: appTheme.colors.success.main },
   },

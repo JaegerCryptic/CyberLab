@@ -1,5 +1,6 @@
 import { TopBar } from "../../common/components/header/header"
 import { useGame } from "../../routes/GameContext"
+import { PasswordChecker } from "./PasswordGame/PasswordChecker"
 import { PasswordGame } from "./PasswordGame/PasswordGame"
 
 export const Dashboard = () => {
@@ -13,6 +14,8 @@ export const Dashboard = () => {
 					<div className='content'>
 						{selectedGame === "Password Game" ? (
 							<PasswordGame />
+						) : selectedGame === "Password Checker" ? ( // Add condition for Password Checker
+							<PasswordChecker />
 						) : (
 							<h1>{selectedGame} Content</h1>
 						)}
