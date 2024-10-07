@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import CssBaseline from "@mui/material/CssBaseline"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import React from "react"
 import ReactDOM from "react-dom/client"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { GlobalStyles, ThemeProvider } from "@mui/material"
-import CssBaseline from "@mui/material/CssBaseline"
 import { LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3"
 import { CookiesProvider } from "react-cookie"
