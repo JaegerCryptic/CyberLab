@@ -1,5 +1,5 @@
 import { TopBar } from "../../common/components/header/header"
-import { useGame } from "../context/GameContext"
+import { useGame } from "../../routes/GameContext"
 
 export const Dashboard = () => {
 	const { selectedGame } = useGame()
