@@ -1,26 +1,43 @@
 import { useState } from "react"
+import {
+	AppBar,
+	Toolbar,
+	Typography,
+	Button,
+	Menu,
+	MenuItem,
+} from "@mui/material"
 
 export const TopBar = () => {
-	const [dropdownOpen, setDropdownOpen] = useState(false)
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
-	const toggleDropdown = () => {
-		setDropdownOpen(!dropdownOpen)
+	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+		setAnchorEl(event.currentTarget)
 	}
 
-	// normal ass topbar that has a dropdown option
+	const handleClose = () => {
+		setAnchorEl(null)
+	}
+
 	return (
-		<div className='topbar'>
-			<h2>Dashboard</h2>
-			<div className='dropdown'>
-				<button onClick={toggleDropdown}>SCP Foundation</button>
-				{dropdownOpen && (
-					<div className='dropdown-menu'>
-						<p>SCP Foundation 1</p>
-						<p>SCP Foundation 2</p>
-						<p>SCP Foundation 3</p>
-					</div>
-				)}
-			</div>
-		</div>
+		<AppBar position='static'>
+			<Toolbar>
+				<Typography variant='h6' sx={{ flexGrow: 1 }}>
+					Dashboard
+				</Typography>
+				<Button color='inherit' onClick={handleClick}>
+					SCP Foundation
+				</Button>
+				<Menu
+					anchorEl={anchorEl}
+					open={Boolean(anchorEl)}
+					onClose={handleClose}
+				>
+					<MenuItem onClick={handleClose}>SCP Foundation 1</MenuItem>
+					<MenuItem onClick={handleClose}>SCP Foundation 2</MenuItem>
+					<MenuItem onClick={handleClose}>SCP Foundation 3</MenuItem>
+				</Menu>
+			</Toolbar>
+		</AppBar>
 	)
 }

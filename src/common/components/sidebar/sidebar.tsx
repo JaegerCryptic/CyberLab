@@ -1,12 +1,24 @@
 import { useState } from "react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faBars, faChevronDown } from "@fortawesome/free-solid-svg-icons"
+import {
+	Drawer,
+	List,
+	ListItem,
+	ListItemText,
+	IconButton,
+	Collapse,
+	ButtonBase,
+} from "@mui/material"
+import { ExpandLess, ExpandMore, Menu as MenuIcon } from "@mui/icons-material"
 
-// sidebar time
 export const Sidebar = () => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+	const [isOpen, setIsOpen] = useState(false)
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
+	const toggleSidebar = () => {
+		setIsOpen(!isOpen)
+	}
 	const toggleSidebar = () => {
 		setIsOpen(!isOpen)
 	}
@@ -14,33 +26,69 @@ export const Sidebar = () => {
 	const toggleDropdown = () => {
 		setIsDropdownOpen(!isDropdownOpen)
 	}
+	const toggleDropdown = () => {
+		setIsDropdownOpen(!isDropdownOpen)
+	}
 
-	// collapsable sidebar for the game selection options
 	return (
-		<div className={`sidebar ${isOpen ? "open" : ""}`}>
-			<div className='burger' onClick={toggleSidebar}>
-				<FontAwesomeIcon icon={faBars} />
-			</div>
-			<nav>
-				<ul>
-					<li onClick={toggleDropdown}>
-						<span>Classified Material</span>
-						<FontAwesomeIcon icon={faChevronDown} />
-					</li>
-					{isDropdownOpen && (
-						<ul className='dropdown'>
-							<li>Password Cracker</li>
-							<li>Phishing Simulator</li>
-							<li>Thing 1</li>
-							<li>Thing 2</li>
-							<li>Thing 3</li>
-							<li>Thing 4</li>
-						</ul>
-					)}
-					<li>Menu Item 2</li>
-					<li>Menu Item 3</li>
-				</ul>
-			</nav>
+		<div>
+			<IconButton onClick={toggleSidebar}>
+				<MenuIcon />
+			</IconButton>
+			<Drawer anchor='left' open={isOpen} onClose={toggleSidebar}>
+				<List>
+					<ListItem>
+						<ButtonBase onClick={toggleDropdown} style={{ width: "100%" }}>
+							<ListItemText primary='Classified Material' />
+							{isDropdownOpen ? <ExpandLess /> : <ExpandMore />}
+						</ButtonBase>
+					</ListItem>
+					<Collapse in={isDropdownOpen} timeout='auto' unmountOnExit>
+						<List component='div' disablePadding>
+							<ListItem>
+								<ButtonBase style={{ width: "100%" }}>
+									<ListItemText primary='Password Cracker' />
+								</ButtonBase>
+							</ListItem>
+							<ListItem>
+								<ButtonBase style={{ width: "100%" }}>
+									<ListItemText primary='Phishing Simulator' />
+								</ButtonBase>
+							</ListItem>
+							<ListItem>
+								<ButtonBase style={{ width: "100%" }}>
+									<ListItemText primary='Thing 1' />
+								</ButtonBase>
+							</ListItem>
+							<ListItem>
+								<ButtonBase style={{ width: "100%" }}>
+									<ListItemText primary='Thing 2' />
+								</ButtonBase>
+							</ListItem>
+							<ListItem>
+								<ButtonBase style={{ width: "100%" }}>
+									<ListItemText primary='Thing 3' />
+								</ButtonBase>
+							</ListItem>
+							<ListItem>
+								<ButtonBase style={{ width: "100%" }}>
+									<ListItemText primary='Thing 4' />
+								</ButtonBase>
+							</ListItem>
+						</List>
+					</Collapse>
+					<ListItem>
+						<ButtonBase style={{ width: "100%" }}>
+							<ListItemText primary='Menu Item 2' />
+						</ButtonBase>
+					</ListItem>
+					<ListItem>
+						<ButtonBase style={{ width: "100%" }}>
+							<ListItemText primary='Menu Item 3' />
+						</ButtonBase>
+					</ListItem>
+				</List>
+			</Drawer>
 		</div>
 	)
 }

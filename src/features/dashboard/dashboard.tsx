@@ -1,8 +1,7 @@
 import { Sidebar } from "../../common/components/sidebar/sidebar.tsx"
 import { TopBar } from "../../common/components/header/header.tsx"
-import React from "react"
 
-export const Dashboard: React.FC = () => {
+export const Dashboard = () => {
 	return (
 		<div className='dashboard'>
 			<TopBar />
