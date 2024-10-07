@@ -14,7 +14,7 @@ export const Dashboard = () => {
 					<div className='content'>
 						{selectedGame === "Password Game" ? (
 							<PasswordGame />
-						) : selectedGame === "Password Checker" ? ( // Add condition for Password Checker
+						) : selectedGame === "Password Checker" ? (
 							<PasswordChecker />
 						) : (
 							<h1>{selectedGame} Content</h1>

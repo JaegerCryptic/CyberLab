@@ -34,7 +34,7 @@ const RuleList: React.FC<RuleListProps> = ({ rules }) => {
 
 				const bgColor = rule.met
 					? appTheme.colors.success.dark
-					: appTheme.colors.error
+					: appTheme.colors.error.dark
 
 				return (
 					<Fade in={true} timeout={1200} key={rule.id}>
@@ -62,7 +62,7 @@ const RuleList: React.FC<RuleListProps> = ({ rules }) => {
 										</ListItemIcon>
 										<Typography
 											variant='h6'
-											sx={{ color: appTheme.colors.primary }}
+											sx={{ color: appTheme.colors.text }}
 										>
 											{`Rule ${rule.id}`}
 										</Typography>
@@ -72,7 +72,7 @@ const RuleList: React.FC<RuleListProps> = ({ rules }) => {
 									<Typography
 										variant='body1'
 										sx={{
-											color: appTheme.colors.primary,
+											color: appTheme.colors.text,
 											mt: "8px",
 										}}
 									>
