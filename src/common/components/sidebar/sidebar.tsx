@@ -55,7 +55,7 @@ export const Sidebar = () => {
 									style={{ width: "100%" }}
 									onClick={togglePasswordChecker}
 								>
-									<ListItemText primary='Password Checker' />
+									<ListItemText primary='Password Activities' />
 									{isPasswordCheckerOpen ? <ExpandLess /> : <ExpandMore />}
 								</ButtonBase>
 							</ListItem>
