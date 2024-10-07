@@ -2,7 +2,7 @@ import { useState } from "react"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 
-import { appTheme, h1Style } from "../../../theme/style"
+import { appTheme } from "../../../theme/style"
 import { checkRules, initialRules } from "./constants"
 import PasswordInput from "./components/PasswordInput"
 import RuleList from "./components/PasswordRuleList"
@@ -39,7 +39,8 @@ export const PasswordGame = () => {
 			}}
 		>
 			<Typography
-				sx={{ ...h1Style, mb: "32px", mt: "160px" }}
+				variant='h1'
+				sx={{ mb: "32px", mt: "160px" }}
 				textAlign='center'
 			>
 				The Password Game
