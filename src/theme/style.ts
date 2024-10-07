@@ -13,6 +13,11 @@ const TEXT_ACCENT_COLOUR = '#E8E6E3'
 const WHITE_COLOUR = '#FFFFFF'
 const HIGHLIGHT_COLOUR = '#94B5C7'
 
+const buttonSuccess = { main: '#3FD79C', 
+  light: '#a8d5a5', 
+  dark: '#388e3c', }
+
+
 const appColors = {
   primary: PRIMARY_COLOUR,
   accent: ACCENT_COLOUR,
@@ -29,8 +34,9 @@ const appColors = {
   selectHighlight: '#FF0000',
   error: '#BA1A1A', 
   warning: '#FF9A01', 
-  success: '#3FD79C', 
+  success: buttonSuccess, 
 }
+
 
 const appFontSizes = {
   heading1: 36, 
@@ -102,7 +108,7 @@ export const darkTheme = createTheme({
     },
     error: { main: appTheme.colors.error },
     warning: { main: appTheme.colors.warning },
-    success: { main: appTheme.colors.success },
+    success: { main: appTheme.colors.success.main },
   },
   typography: {
     fontSize: appFontSizes.bodyText,

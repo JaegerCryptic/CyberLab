@@ -7,47 +7,46 @@ import ListItemIcon from "@mui/material/ListItemIcon"
 import CheckIcon from "@mui/icons-material/Check"
 import CloseIcon from "@mui/icons-material/Close"
 import { Fade } from "@mui/material"
-import { useTheme } from "@mui/material/styles"
+
 import { Rule } from "../constants"
+import { appTheme } from "../../../../theme/style"
 
 interface RuleListProps {
 	rules: Rule[]
 }
 
 const RuleList: React.FC<RuleListProps> = ({ rules }) => {
-	const theme = useTheme() // Access the theme
-
-	// Sort rules: incomplete rules first (red), completed rules later (green)
 	const sortedRules = [...rules].sort((a, b) => Number(a.met) - Number(b.met))
+	const PADDING = "16px"
 
 	return (
 		<List
 			sx={{
 				width: "100%",
-				maxWidth: "calc(100% - 20px)", // Adjust width
-				ml: theme.spacing(-3), // Adjust left margin based on theme spacing
-				paddingLeft: 0, // Remove default padding
+				maxWidth: "calc(100% - 20px)",
+				ml: "-24px",
+				paddingLeft: 0,
 			}}
 		>
 			{sortedRules.map((rule) => {
-				if (!rule.revealed) return null // Only render revealed rules
+				if (!rule.revealed) return null
 
-				// Use the darker green for met rules and red for unmet rules
 				const bgColor = rule.met
-					? theme.palette.success.dark
-					: theme.palette.error.light
+					? appTheme.colors.success.dark
+					: appTheme.colors.error
 
 				return (
 					<Fade in={true} timeout={1200} key={rule.id}>
 						<Box sx={{ width: "100%" }}>
-							<ListItem sx={{ mb: theme.spacing(2), padding: 0 }}>
+							<ListItem sx={{ mb: PADDING, padding: 0 }}>
 								<Box
 									sx={{
-										backgroundColor: bgColor, // Use dark green or red depending on the rule's status
-										padding: theme.spacing(2),
-										borderRadius: theme.shape.borderRadius, // Rounded corners from theme
+										backgroundColor: bgColor,
+										padding: PADDING,
+										borderRadius: "4px",
 										width: "100%",
-										boxShadow: theme.shadows[2], // Use theme shadow
+										boxShadow:
+											"0px 1px 3px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)",
 										transition: "background-color 0.3s",
 									}}
 								>
@@ -62,7 +61,7 @@ const RuleList: React.FC<RuleListProps> = ({ rules }) => {
 										</ListItemIcon>
 										<Typography
 											variant='h6'
-											sx={{ color: theme.palette.text.primary }}
+											sx={{ color: appTheme.colors.primary }}
 										>
 											{`Rule ${rule.id}`}
 										</Typography>
@@ -72,8 +71,8 @@ const RuleList: React.FC<RuleListProps> = ({ rules }) => {
 									<Typography
 										variant='body1'
 										sx={{
-											color: theme.palette.text.primary,
-											mt: theme.spacing(1),
+											color: appTheme.colors.primary,
+											mt: "8px",
 										}}
 									>
 										{rule.text}

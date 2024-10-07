@@ -2,7 +2,8 @@ import React from "react"
 import TextField from "@mui/material/TextField"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
-import { useTheme } from "@mui/material/styles" // Import theme
+
+import { appTheme } from "../../../../theme/style"
 
 interface PasswordInputProps {
 	password: string
@@ -13,53 +14,50 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
 	password,
 	setPassword,
 }) => {
-	const theme = useTheme() // Access the theme
-
+	const SPACING = "16px"
 	return (
 		<Box
 			sx={{
 				width: "100%",
-				mb: theme.spacing(2),
+				mb: SPACING,
 				display: "flex",
 				alignItems: "center",
 			}}
 		>
-			{/* TextField for the password input with multi-line behavior */}
 			<TextField
 				fullWidth
 				label='Please choose a password'
 				variant='outlined'
-				type='text' // Display the password in plain text
+				type='text'
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
-				multiline // Enables multiline/textarea behavior
-				minRows={1} // Minimum of 1 row, will expand as more characters are typed
-				maxRows={4} // Limit the number of rows to 4, or adjust as needed
+				multiline
+				minRows={1}
+				maxRows={4}
 				sx={{
 					flexGrow: 1,
 					"& .MuiOutlinedInput-root": {
 						"& fieldset": {
-							borderColor: theme.palette.text.primary, // Use theme text color
-							borderWidth: 2, // Keep the border slightly thicker
+							borderColor: appTheme.colors.primary,
+							borderWidth: 2,
 						},
 						"&:hover fieldset": {
-							borderColor: theme.palette.text.primary, // Keep border color from theme on hover
+							borderColor: appTheme.colors.primary,
 						},
 						"&.Mui-focused fieldset": {
-							borderColor: theme.palette.text.primary, // Keep border color from theme when focused
+							borderColor: appTheme.colors.primary,
 						},
 					},
-					"& .MuiInputLabel-root": { color: theme.palette.text.primary }, // Use theme color for label
-					"& .MuiOutlinedInput-input": { color: theme.palette.text.primary }, // Use theme color for input text
+					"& .MuiInputLabel-root": { color: appTheme.colors.primary },
+					"& .MuiOutlinedInput-input": { color: appTheme.colors.primary },
 				}}
 			/>
 
-			{/* Character Counter (outside the input box, aligned right) */}
 			<Typography
 				variant='body1'
 				sx={{
-					ml: theme.spacing(2), // Add some spacing between the text field and counter using theme spacing
-					color: theme.palette.text.primary, // Use theme color for counter text
+					ml: SPACING,
+					color: appTheme.colors.primary,
 					whiteSpace: "nowrap",
 				}}
 			>
