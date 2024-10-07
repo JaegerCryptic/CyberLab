@@ -12,6 +12,8 @@ export const PasswordGame = () => {
 	const [rules, setRules] = useState(initialRules)
 	const [hasStartedTyping, setHasStartedTyping] = useState(false)
 
+	const PADDING = "32px"
+
 	const handlePasswordChange = (newPassword: string): void => {
 		setPassword(newPassword)
 
@@ -32,7 +34,7 @@ export const PasswordGame = () => {
 				display: "flex",
 				flexDirection: "column",
 				alignItems: "center",
-				padding: "32px",
+				padding: PADDING,
 				overflowY: "auto",
 			}}
 		>
@@ -50,7 +52,7 @@ export const PasswordGame = () => {
 					display: "flex",
 					justifyContent: "center",
 					alignItems: "center",
-					mb: "32px",
+					mb: PADDING,
 					mt: "48px",
 				}}
 			>
