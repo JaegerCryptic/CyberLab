@@ -13,19 +13,11 @@ import { ExpandLess, ExpandMore, Menu as MenuIcon } from "@mui/icons-material"
 export const Sidebar = () => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-	const [isOpen, setIsOpen] = useState(false)
-	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
 	const toggleSidebar = () => {
 		setIsOpen(!isOpen)
 	}
-	const toggleSidebar = () => {
-		setIsOpen(!isOpen)
-	}
 
-	const toggleDropdown = () => {
-		setIsDropdownOpen(!isDropdownOpen)
-	}
 	const toggleDropdown = () => {
 		setIsDropdownOpen(!isDropdownOpen)
 	}
