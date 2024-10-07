@@ -23,9 +23,13 @@ const LoginSchema = z
 	.strict()
 
 type LoginSchema = z.infer<typeof LoginSchema>
+type LoginSchema = z.infer<typeof LoginSchema>
 
 type ButtonBehaviour = "HYPERLINK" | "BUTTON"
+type ButtonBehaviour = "HYPERLINK" | "BUTTON"
 interface Props {
+	buttonBehaviour: ButtonBehaviour
+	buttonUpdate?: () => void
 	buttonBehaviour: ButtonBehaviour
 	buttonUpdate?: () => void
 }
