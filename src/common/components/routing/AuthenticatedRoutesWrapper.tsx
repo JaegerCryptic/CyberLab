@@ -1,22 +1,25 @@
-import { Navigate } from 'react-router-dom'
+import { Navigate, useLocation } from "react-router-dom"
+import { useCookies } from "react-cookie"
 
-import { getAccessTokenId } from '../../utils/tokens'
-import { WORKSPACES_ROUTE_PATH } from '../../../routes/startup/startupPaths'
-import { AuthenticatedUserWrapper } from './AuthenticatedUserWrapper'
-import AuthenticationModal from '../modals/AuthenticationModal'
+import { AuthenticatedUserWrapper } from "./AuthenticatedUserWrapper"
+import AuthenticationModal from "../modals/AuthenticationModal"
+import { getRedirectPath } from "./helpers"
 
 export const AuthenticatedRoutesWrapper = () => {
-  const token = getAccessTokenId()
+	const [cookies] = useCookies(["userName"])
+	const userName = cookies.userName
+	const location = useLocation()
 
-  // Can navigate to external
-  if (!token) {
-    return <Navigate to={WORKSPACES_ROUTE_PATH} replace />
-  }
+	const redirectPath = getRedirectPath(userName, location.pathname)
 
-  return (
-    <>
-      <AuthenticationModal />
-      <AuthenticatedUserWrapper userId={token} />
-    </>
-  )
+	if (redirectPath) {
+		return <Navigate to={redirectPath} replace />
+	}
+
+	return (
+		<>
+			<AuthenticationModal />
+			<AuthenticatedUserWrapper userId={userName} />
+		</>
+	)
 }

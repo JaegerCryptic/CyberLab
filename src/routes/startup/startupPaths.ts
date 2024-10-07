@@ -1,2 +1,2 @@
-export const WELCOME_PATH = 'welcome'
-export const WORKSPACES_ROUTE_PATH = '/workspaces'
+export const WELCOME_ROUTE_PATH = 'welcome'
+export const DASHBOARD_ROUTE_PATH = '/dashboard'

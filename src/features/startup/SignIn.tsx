@@ -4,6 +4,8 @@ import { useQueryClient } from "@tanstack/react-query"
 import { Icon, Typography } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2/Grid2"
 import { z } from "zod"
+import { useCookies } from "react-cookie"
+import { useNavigate } from "react-router-dom"
 
 import { StartupLayout } from "./StartupLayout"
 import { CLButton } from "../../common/components/buttons/CLButton"
@@ -11,23 +13,33 @@ import { ControlledInput } from "../../common/components/input/ControlledInput"
 import { ErrorMessage } from "../../common/components/ErrorMessage"
 import { REQUIRED_FIELD_MESSAGE } from "../../constants/validation"
 import SCPLogo from "../../images/scp_logo.png"
+import SCPLogoWSlogan from "../../images/scp_logo_w_slogan.png" // Import the new image
 
 const LoginSchema = z
 	.object({
 		userName: z.string({ required_error: REQUIRED_FIELD_MESSAGE }),
 	})
 	.strict()
+	.strict()
 
+type LoginSchema = z.infer<typeof LoginSchema>
 type LoginSchema = z.infer<typeof LoginSchema>
 
 type ButtonBehaviour = "HYPERLINK" | "BUTTON"
+type ButtonBehaviour = "HYPERLINK" | "BUTTON"
 interface Props {
+	buttonBehaviour: ButtonBehaviour
+	buttonUpdate?: () => void
 	buttonBehaviour: ButtonBehaviour
 	buttonUpdate?: () => void
 }
 
 export const SignIn = ({}: Props) => {
 	const queryClient = useQueryClient()
+	const [cookies, setCookie] = useCookies(["userName"])
+	const navigate = useNavigate()
+
+	const maxWidth = "750px"
 
 	useEffect(() => {
 		queryClient.clear()
@@ -39,9 +51,15 @@ export const SignIn = ({}: Props) => {
 		formState: { errors },
 	} = useForm<LoginSchema>({
 		mode: "onSubmit",
+		defaultValues: {
+			userName: cookies.userName || "",
+		},
 	})
 
-	const handleOnSubmit: SubmitHandler<LoginSchema> = (data) => {}
+	const handleOnSubmit: SubmitHandler<LoginSchema> = (data) => {
+		setCookie("userName", data.userName, { path: "/", maxAge: 86400 }) // Cookie expires in 1 day
+		navigate("/dashboard")
+	}
 
 	return (
 		<StartupLayout title='Welcome to the SCP Field Agent Certification course'>
@@ -53,11 +71,17 @@ export const SignIn = ({}: Props) => {
 				alignItems='left'
 				component='form'
 				onSubmit={handleSubmit(handleOnSubmit)}
+				width={"100vw"}
 			>
-				<Grid xs={8} display={"flex"} justifyContent={"left"} mt={2}>
+				<Grid xs={6} display={"flex"} justifyContent={"left"} mt={2}>
 					<Typography>Please enter your name to get started:</Typography>
 				</Grid>
-				<Grid xs={8} display={"flex"} justifyContent={"left"}>
+				<Grid
+					xs={6}
+					display={"flex"}
+					justifyContent={"left"}
+					maxWidth={maxWidth}
+				>
 					<ControlledInput<LoginSchema>
 						control={control}
 						defaultValue=''
@@ -73,20 +97,48 @@ export const SignIn = ({}: Props) => {
 					)}
 				</Grid>
 
-				<Grid xs={8} display={"flex"} justifyContent={"center"}>
+				<Grid
+					xs={6}
+					display={"flex"}
+					justifyContent={"center"}
+					maxWidth={maxWidth}
+				>
 					<CLButton fullWidth type='submit'>
 						Sign in
 					</CLButton>
 				</Grid>
-				<Grid xs={12} display={"flex"} justifyContent={"center"} mt={10}>
-					<Icon sx={{ width: "100%", height: "auto" }}>
+				<Grid xs={6} display={"block"} justifyContent={"left"} mt={5}>
+					<Icon sx={{ width: "100%", height: "100%" }}>
 						<img
 							src={SCPLogo}
 							alt='Logo'
-							style={{ width: "100%", height: "auto", marginLeft: -200 }}
+							style={{
+								width: "83.5%",
+								height: "100%",
+								marginLeft: -350,
+							}}
 						/>
 					</Icon>
 				</Grid>
+				<div
+					style={{
+						position: "absolute",
+						top: 0,
+						left: 1200,
+						height: "100%",
+						display: "flex",
+						alignItems: "center",
+					}}
+				>
+					<img
+						src={SCPLogoWSlogan}
+						alt='SCP Logo with slogan'
+						style={{
+							width: "45vw",
+							height: "auto",
+						}}
+					/>
+				</div>
 			</Grid>
 			{/* extra <div> is required to prevent forwardRef error */}
 			<div></div>
