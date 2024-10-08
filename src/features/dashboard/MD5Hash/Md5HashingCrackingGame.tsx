@@ -1,8 +1,10 @@
 import { useState } from "react"
-import { Box, Container, Typography, TextField, Button } from "@mui/material"
+import { Box, Container, Typography } from "@mui/material"
 import CryptoJS from "crypto-js"
 
 import { appTheme } from "../../../theme/style"
+import { CLTextInput } from "../../../common/components/input/CLTextInput"
+import { CLButton } from "../../../common/components/buttons/CLButton"
 
 export const Md5HashingCrackingGame = () => {
 	const [password, setPassword] = useState<string>("")
@@ -54,32 +56,32 @@ export const Md5HashingCrackingGame = () => {
 					MD5 Hashing Cracking
 				</Typography>
 
-				<TextField
+				<CLTextInput
 					label='Password'
-					variant='outlined'
 					fullWidth
 					margin='normal'
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
+					sx={{ borderRadius: "8px" }}
 				/>
 
-				<TextField
+				<CLTextInput
 					label='Salt'
-					variant='outlined'
 					fullWidth
 					margin='normal'
 					value={salt}
 					onChange={(e) => setSalt(e.target.value)}
+					sx={{ borderRadius: "8px" }}
 				/>
 
-				<Button
+				<CLButton
 					variant='contained'
 					color='primary'
 					onClick={handleHashPassword}
-					sx={{ marginTop: "16px" }}
+					sx={{ marginTop: "16px", borderRadius: "8px" }}
 				>
 					Hash Password
-				</Button>
+				</CLButton>
 
 				{hashedPassword && (
 					<Typography
