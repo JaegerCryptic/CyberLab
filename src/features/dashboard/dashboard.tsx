@@ -1,10 +1,14 @@
+import { useCookies } from "react-cookie"
+
 import { TopBar } from "../../common/components/header/header"
 import { useGame } from "../../routes/GameContext"
 import { PasswordChecker } from "./PasswordGame/PasswordChecker"
 import { PasswordGame } from "./PasswordGame/PasswordGame"
+import { Md5HashingCrackingGame } from "./MD5Hash/Md5HashingCrackingGame"
 
 export const Dashboard = () => {
 	const { selectedGame } = useGame()
+	const [cookies] = useCookies(["userName"])
 
 	return (
 		<div className='dashboard'>
@@ -14,15 +18,17 @@ export const Dashboard = () => {
 					<div className='content'>
 						{selectedGame === "Password Game" ? (
 							<PasswordGame />
-						) : selectedGame === "Password Checker" ? ( // Add condition for Password Checker
+						) : selectedGame === "Password Checker" ? (
 							<PasswordChecker />
+						) : selectedGame === "MD5 Hashing Cracking" ? (
+							<Md5HashingCrackingGame />
 						) : (
 							<h1>{selectedGame} Content</h1>
 						)}
 					</div>
 				) : (
 					<div className='content'>
-						<h1>Welcome to the Dashboard</h1>
+						<h1>Welcome {cookies.userName}</h1>
 					</div>
 				)}
 			</div>

@@ -87,6 +87,14 @@ export const Sidebar = () => {
 									<ListItemText primary='Phishing Simulator' />
 								</ButtonBase>
 							</ListItem>
+							<ListItem>
+								<ButtonBase
+									style={{ width: "100%" }}
+									onClick={() => handleGameClick("MD5 Hashing Cracking")}
+								>
+									<ListItemText primary='MD5 Hashing' />
+								</ButtonBase>
+							</ListItem>
 						</List>
 					</Collapse>
 				</List>
