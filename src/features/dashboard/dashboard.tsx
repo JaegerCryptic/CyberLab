@@ -5,6 +5,7 @@ import { useGame } from "../../routes/GameContext"
 import { PasswordChecker } from "./PasswordGame/PasswordChecker"
 import { PasswordGame } from "./PasswordGame/PasswordGame"
 import { Md5HashingCrackingGame } from "./MD5Hash/Md5HashingCrackingGame"
+import { InformationHunterGame } from "./InformationHunter/InformationHunterGame"
 
 export const Dashboard = () => {
 	const { selectedGame } = useGame()
@@ -22,6 +23,8 @@ export const Dashboard = () => {
 							<PasswordChecker />
 						) : selectedGame === "MD5 Hashing Cracking" ? (
 							<Md5HashingCrackingGame />
+						) : selectedGame === "Information Hunter" ? (
+							<InformationHunterGame />
 						) : (
 							<h1>{selectedGame} Content</h1>
 						)}
