@@ -6,6 +6,7 @@ import { PasswordChecker } from "./PasswordGame/PasswordChecker"
 import { PasswordGame } from "./PasswordGame/PasswordGame"
 import { Md5HashingCrackingGame } from "./MD5Hash/Md5HashingCrackingGame"
 import { InformationHunterGame } from "./InformationHunter/InformationHunterGame"
+import { Typography } from "@mui/material"
 
 export const Dashboard = () => {
 	const { selectedGame } = useGame()
@@ -30,9 +31,7 @@ export const Dashboard = () => {
 						)}
 					</div>
 				) : (
-					<div className='content'>
-						<h1>Welcome {cookies.userName}</h1>
-					</div>
+						 <Typography variant="h1">Welcome {cookies.userName}</Typography>
 				)}
 			</div>
 		</div>
