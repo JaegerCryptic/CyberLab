@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from "react";
 import {
 	Drawer,
 	List,
@@ -7,66 +7,70 @@ import {
 	IconButton,
 	Collapse,
 	ButtonBase,
-} from "@mui/material"
-import { ExpandLess, ExpandMore, Menu as MenuIcon } from "@mui/icons-material"
+} from "@mui/material";
+import { ExpandLess, ExpandMore, Menu as MenuIcon } from "@mui/icons-material";
 
-import { useGame } from "../../../routes/GameContext"
+import { useGame } from "../../../routes/GameContext";
 
 export const Sidebar = () => {
-	const [isOpen, setIsOpen] = useState(false)
-	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-	const [isPasswordCheckerOpen, setIsPasswordCheckerOpen] = useState(false)
-	const { setSelectedGame } = useGame()
+	const [isOpen, setIsOpen] = useState(false);
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+	const [isPasswordCheckerOpen, setIsPasswordCheckerOpen] = useState(false);
+	const { setSelectedGame } = useGame();
 
 	const toggleSidebar = () => {
-		setIsOpen(!isOpen)
-	}
+		setIsOpen(!isOpen);
+	};
 
 	const toggleDropdown = () => {
-		setIsDropdownOpen(!isDropdownOpen)
-	}
+		setIsDropdownOpen(!isDropdownOpen);
+	};
 
 	const togglePasswordChecker = () => {
-		setIsPasswordCheckerOpen(!isPasswordCheckerOpen)
-	}
+		setIsPasswordCheckerOpen(!isPasswordCheckerOpen);
+	};
 
 	const handleGameClick = (game: string) => {
-		setSelectedGame(game)
-		setIsOpen(false)
-	}
+		setSelectedGame(game);
+		setIsOpen(false);
+	};
 
 	return (
 		<>
 			<IconButton onClick={toggleSidebar}>
 				<MenuIcon />
 			</IconButton>
-			<Drawer anchor='left' open={isOpen} onClose={toggleSidebar}>
+			<Drawer anchor="left" open={isOpen} onClose={toggleSidebar}>
 				<List>
 					<ListItem>
 						<ButtonBase onClick={toggleDropdown} style={{ width: "100%" }}>
-							<ListItemText primary='Classified Material' />
+							<ListItemText primary="Classified Material" />
 							{isDropdownOpen ? <ExpandLess /> : <ExpandMore />}
 						</ButtonBase>
 					</ListItem>
-					<Collapse in={isDropdownOpen} timeout='auto' unmountOnExit>
-						<List component='div' disablePadding>
+					<Collapse in={isDropdownOpen} timeout="auto" unmountOnExit>
+						<List component="div" disablePadding>
 							<ListItem>
 								<ButtonBase
 									style={{ width: "100%" }}
 									onClick={togglePasswordChecker}
 								>
-									<ListItemText primary='Password Activities' />
+									<ListItemText primary="Password Activities" />
 									{isPasswordCheckerOpen ? <ExpandLess /> : <ExpandMore />}
 								</ButtonBase>
 							</ListItem>
-							<Collapse in={isPasswordCheckerOpen} timeout='auto' unmountOnExit>
-								<List component='div' disablePadding>
+							<Collapse
+								in={isPasswordCheckerOpen}
+								timeout="auto"
+								unmountOnExit
+							>
+								<List component="div" disablePadding>
 									<ListItem>
 										<ButtonBase
 											style={{ width: "100%" }}
 											onClick={() => handleGameClick("Password Game")}
 										>
-											<ListItemText primary='Password Game' />
+											<ListItemText primary="Password Game" />
 										</ButtonBase>
 									</ListItem>
 									<ListItem>
@@ -74,7 +78,7 @@ export const Sidebar = () => {
 											style={{ width: "100%" }}
 											onClick={() => handleGameClick("Password Checker")}
 										>
-											<ListItemText primary='Password Checker' />
+											<ListItemText primary="Password Checker" />
 										</ButtonBase>
 									</ListItem>
 								</List>
@@ -84,7 +88,7 @@ export const Sidebar = () => {
 									style={{ width: "100%" }}
 									onClick={() => handleGameClick("Phishing Simulator")}
 								>
-									<ListItemText primary='Phishing Simulator' />
+									<ListItemText primary="Phishing Simulator" />
 								</ButtonBase>
 							</ListItem>
 							<ListItem>
@@ -92,7 +96,7 @@ export const Sidebar = () => {
 									style={{ width: "100%" }}
 									onClick={() => handleGameClick("MD5 Hashing Cracking")}
 								>
-									<ListItemText primary='MD5 Hashing' />
+									<ListItemText primary="MD5 Hashing" />
 								</ButtonBase>
 							</ListItem>
 							<ListItem>
@@ -100,7 +104,16 @@ export const Sidebar = () => {
 									style={{ width: "100%" }}
 									onClick={() => handleGameClick("Information Hunter")}
 								>
-									<ListItemText primary='Information Hunting' />
+									<ListItemText primary="Information Hunting" />
+								</ButtonBase>
+							</ListItem>
+							{/* Add the Word Search item */}
+							<ListItem>
+								<ButtonBase
+									style={{ width: "100%" }}
+									onClick={() => handleGameClick("Word Search")}
+								>
+									<ListItemText primary="Word Search" />
 								</ButtonBase>
 							</ListItem>
 						</List>
@@ -108,5 +121,5 @@ export const Sidebar = () => {
 				</List>
 			</Drawer>
 		</>
-	)
-}
+	);
+};
