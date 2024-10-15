@@ -1,43 +1,43 @@
 {
-    "name": "cyberlab",
-    "private": true,
-    "version": "0.0.0",
-    "type": "module",
-    "scripts": {
-        "dev": "vite --open",
-        "test": "vitest",
-        "build": "tsc && vite build",
-        "preview": "vite preview",
-        "eslint": "eslint --ext .jsx --ext .js --ext .tsx --ext .ts --max-warnings 1 src/"
-    },
-    "dependencies": {
-        "@mui/icons-material": "^5.15.13",
-        "@mui/material": "^5.15.13",
-        "@mui/x-date-pickers": "^6.19.7",
-        "@tanstack/react-query": "^5.28.4",
-        "axios": "^1.6.8",
-        "crypto-js": "^4.2.0",
-        "date-fns": "^3.5.0",
-        "jwt-decode": "^4.0.0",
-        "react": "^18.2.0",
-        "react-cookie": "^7.2.0",
-        "react-dom": "^18.2.0",
-        "react-hook-form": "^7.51.1",
-        "react-idle-timer": "^5.7.2",
-        "react-router-dom": "^6.22.3",
-        "vite-plugin-svgr": "^4.2.0",
-        "zod": "^3.22.4",
-        "zustand": "^4.5.2"
-    },
-    "devDependencies": {
-        "@types/crypto-js": "^4.2.2",
-        "@types/react": "^18.2.66",
-        "@types/react-dom": "^18.2.22",
-        "@vitejs/plugin-react": "^4.2.1",
-        "eslint": "^8.57.0",
-        "jsdom": "^24.0.0",
-        "typescript": "^5.4.2",
-        "vite": "^5.1.6",
-        "vitest": "^1.4.0"
-    }
+  "name": "cyberlab",
+  "private": true,
+  "version": "0.8",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --open",
+    "test": "vitest",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "eslint": "eslint --ext .jsx --ext .js --ext .tsx --ext .ts --max-warnings 1 src/"
+  },
+  "dependencies": {
+    "@mui/icons-material": "^5.15.13",
+    "@mui/material": "^5.15.13",
+    "@mui/x-date-pickers": "^6.19.7",
+    "@tanstack/react-query": "^5.28.4",
+    "axios": "^1.6.8",
+    "crypto-js": "^4.2.0",
+    "date-fns": "^3.5.0",
+    "jwt-decode": "^4.0.0",
+    "react": "^18.2.0",
+    "react-cookie": "^7.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.1",
+    "react-idle-timer": "^5.7.2",
+    "react-router-dom": "^6.22.3",
+    "vite-plugin-svgr": "^4.2.0",
+    "zod": "^3.22.4",
+    "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
+    "jsdom": "^24.0.0",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.6",
+    "vitest": "^1.4.0"
+  }
 }
