@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { AppBar, Toolbar, Typography, Button, Menu } from '@mui/material'
+import { AppBar, Toolbar, Typography, Button, Menu, Box } from '@mui/material'
 
 import { appTheme } from '../../../theme/style'
+import SCPLogo from '../../../images/scp_logo.png'
 
 export const TopBar = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -25,9 +26,10 @@ export const TopBar = () => {
       }}
     >
       <Toolbar>
-        <Typography variant='h6' sx={{ flexGrow: 1 }}>
-          Dashboard
-        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
+          <img src={SCPLogo} style={{ marginRight: 0, height: '20px' }} />
+          <Typography variant='inherit'>SCP Foundation</Typography>
+        </Box>
         <Button color='inherit' onClick={handleClick}>
           About SCP Foundation
         </Button>

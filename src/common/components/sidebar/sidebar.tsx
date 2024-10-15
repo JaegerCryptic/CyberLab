@@ -1,8 +1,10 @@
-import { List, Box } from '@mui/material'
+import { List, Box, Typography } from '@mui/material'
+import { useCookies } from 'react-cookie'
 
 import { useGame } from '../../../routes/GameContext'
 import { appTheme } from '../../../theme/style'
 import { CLCollapsibleListItem } from '../lists/CLCollapsibleListItem'
+import SCPLogo from '../../../images/scp_logo.png'
 import { useCollapsibleState } from '../lists/hooks/useCollapsibleState'
 
 export const Sidebar = () => {
@@ -20,6 +22,7 @@ export const Sidebar = () => {
   }
 
   const HEADERHEIGHT = '65px'
+  const [cookies] = useCookies(['userName'])
 
   return (
     <Box
@@ -31,10 +34,17 @@ export const Sidebar = () => {
         boxShadow: 0,
         position: 'fixed',
         top: 0,
-        left: 0,
+        left: 20,
         zIndex: 1200,
       }}
     >
+      <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, mt: 2 }}>
+        <img src={SCPLogo} style={{ marginRight: 0, height: '65px' }} />
+        <Typography variant='button' color={appTheme.colors.highlight}>
+          Welcome agent {cookies.userName} to the SCP Foundation Field agent
+          Training modules
+        </Typography>
+      </Box>
       <List>
         <CLCollapsibleListItem
           text='Classified 1D-9F'
