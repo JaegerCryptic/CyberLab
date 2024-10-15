@@ -20,8 +20,8 @@ export const TopBar = () => {
       sx={{
         boxShadow: 'none',
         borderBottom: '1px solid #F5F5DC',
-        backgroundColor: appTheme.colors.backgroundDark,
-        backgroundImage: appTheme.colors.backgroundGradient,
+        backgroundColor: appTheme.colors.background,
+        backgroundImage: 'inherit',
       }}
     >
       <Toolbar>
@@ -29,7 +29,7 @@ export const TopBar = () => {
           Dashboard
         </Typography>
         <Button color='inherit' onClick={handleClick}>
-          SCP Foundation
+          About SCP Foundation
         </Button>
         <Menu
           anchorEl={anchorEl}

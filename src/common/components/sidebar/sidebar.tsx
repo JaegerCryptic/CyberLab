@@ -4,8 +4,8 @@ import {
   ListItem,
   ListItemText,
   Collapse,
-  ButtonBase,
   Box,
+  IconButton,
 } from '@mui/material'
 import { ExpandLess, ExpandMore } from '@mui/icons-material'
 
@@ -37,8 +37,7 @@ export const Sidebar = () => {
       sx={{
         width: 250,
         height: '100vh',
-        backgroundColor: appTheme.colors.backgroundDark,
-        backgroundImage: appTheme.colors.backgroundGradient,
+        backgroundColor: appTheme.colors.background,
         boxShadow: 0,
         position: 'fixed',
         top: 0,
@@ -47,66 +46,116 @@ export const Sidebar = () => {
       }}
     >
       <List>
-        <ListItem>
-          <ButtonBase onClick={toggleDropdown} style={{ width: '100%' }}>
-            <ListItemText primary='Classified Material' />
-            {isDropdownOpen ? <ExpandLess /> : <ExpandMore />}
-          </ButtonBase>
+        <ListItem
+          button
+          onClick={toggleDropdown}
+          sx={{
+            '&:hover': {
+              backgroundColor: appTheme.colors.secondary,
+            },
+            display: 'flex',
+            justifyContent: 'flex-start',
+          }}
+        >
+          <IconButton>
+            {isDropdownOpen ? (
+              <ExpandLess sx={{ color: appTheme.colors.text }} />
+            ) : (
+              <ExpandMore sx={{ color: appTheme.colors.text }} />
+            )}
+          </IconButton>
+          <ListItemText primary='Classified Material' />
         </ListItem>
         <Collapse in={isDropdownOpen} timeout='auto' unmountOnExit>
           <List component='div' disablePadding>
-            <ListItem>
-              <ButtonBase
-                style={{ width: '100%' }}
-                onClick={togglePasswordChecker}
-              >
-                <ListItemText primary='Password Activities' />
-                {isPasswordCheckerOpen ? <ExpandLess /> : <ExpandMore />}
-              </ButtonBase>
+            <ListItem
+              button
+              onClick={togglePasswordChecker}
+              sx={{
+                '&:hover': {
+                  backgroundColor: appTheme.colors.secondary,
+                },
+                display: 'flex',
+                justifyContent: 'flex-start',
+              }}
+            >
+              <IconButton>
+                {isPasswordCheckerOpen ? (
+                  <ExpandLess sx={{ color: appTheme.colors.text }} />
+                ) : (
+                  <ExpandMore sx={{ color: appTheme.colors.text }} />
+                )}
+              </IconButton>
+              <ListItemText primary='Password Activities' />
             </ListItem>
             <Collapse in={isPasswordCheckerOpen} timeout='auto' unmountOnExit>
               <List component='div' disablePadding>
-                <ListItem>
-                  <ButtonBase
-                    style={{ width: '100%' }}
-                    onClick={() => handleGameClick('Password Game')}
-                  >
-                    <ListItemText primary='Password Game' />
-                  </ButtonBase>
+                <ListItem
+                  button
+                  onClick={() => handleGameClick('Password Game')}
+                  sx={{
+                    '&:hover': {
+                      backgroundColor: appTheme.colors.secondary,
+                    },
+                    display: 'flex',
+                    justifyContent: 'flex-start',
+                  }}
+                >
+                  <ListItemText primary='Password Game' />
                 </ListItem>
-                <ListItem>
-                  <ButtonBase
-                    style={{ width: '100%' }}
-                    onClick={() => handleGameClick('Password Checker')}
-                  >
-                    <ListItemText primary='Password Checker' />
-                  </ButtonBase>
+                <ListItem
+                  button
+                  onClick={() => handleGameClick('Password Checker')}
+                  sx={{
+                    '&:hover': {
+                      backgroundColor: appTheme.colors.secondary,
+                    },
+                    display: 'flex',
+                    justifyContent: 'flex-start',
+                  }}
+                >
+                  <ListItemText primary='Password Checker' />
                 </ListItem>
               </List>
             </Collapse>
-            <ListItem>
-              <ButtonBase
-                style={{ width: '100%' }}
-                onClick={() => handleGameClick('Phishing Simulator')}
-              >
-                <ListItemText primary='Phishing Simulator' />
-              </ButtonBase>
+            <ListItem
+              button
+              onClick={() => handleGameClick('Phishing Simulator')}
+              sx={{
+                '&:hover': {
+                  backgroundColor: appTheme.colors.secondary,
+                },
+                display: 'flex',
+                justifyContent: 'flex-start',
+              }}
+            >
+              <ListItemText primary='Phishing Simulator' />
             </ListItem>
-            <ListItem>
-              <ButtonBase
-                style={{ width: '100%' }}
-                onClick={() => handleGameClick('MD5 Hashing Cracking')}
-              >
-                <ListItemText primary='MD5 Hashing' />
-              </ButtonBase>
+            <ListItem
+              button
+              onClick={() => handleGameClick('MD5 Hashing Cracking')}
+              sx={{
+                '&:hover': {
+                  backgroundColor: appTheme.colors.secondary,
+                },
+                display: 'flex',
+                justifyContent: 'flex-start',
+              }}
+            >
+              <ListItemText primary='MD5 Hashing' />
             </ListItem>
-            <ListItem>
-              <ButtonBase
-                style={{ width: '100%' }}
-                onClick={() => handleGameClick('Information Hunter')}
-              >
-                <ListItemText primary='Information Hunting' />
-              </ButtonBase>
+            <ListItem
+              button
+              onClick={() => handleGameClick('Information Hunter')}
+              sx={{
+                '&:hover': {
+                  backgroundColor: appTheme.colors.secondary,
+                },
+                display: 'flex',
+                justifyContent: 'flex-start',
+              }}
+            >
+              <ListItemText primary='Information Hunting' />
             </ListItem>
           </List>
         </Collapse>

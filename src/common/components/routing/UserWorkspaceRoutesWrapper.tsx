@@ -11,8 +11,7 @@ export const UserWorkspaceRoutesWrapper = () => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: appTheme.colors.backgroundDark,
-        backgroundImage: appTheme.colors.backgroundGradient,
+        backgroundColor: appTheme.colors.background,
       }}
     >
       <Outlet />

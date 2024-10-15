@@ -12,9 +12,6 @@ const TEXT_COLOUR = '#D8D4CF'
 const TEXT_ACCENT_COLOUR = '#E8E6E3'
 const WHITE_COLOUR = '#FFFFFF'
 const HIGHLIGHT_COLOUR = '#94B5C7'
-const BACKGROUND_DARK_COLOUR = '#121212'
-const BACKGROUND_GRADIENT =
-  'linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06))'
 
 const buttonSuccess = { main: '#3FD79C', light: '#a8d5a5', dark: '#388e3c' }
 
@@ -29,8 +26,6 @@ const appColors = {
   tertiaryAccent: TERTIARY_ACCENT_COLOUR,
   background: BACKGROUND_COLOUR,
   backgroundAccent: BACKGROUND_ACCENT_COLOUR,
-  backgroundDark: BACKGROUND_DARK_COLOUR,
-  backgroundGradient: BACKGROUND_GRADIENT,
   text: TEXT_COLOUR,
   textAccent: TEXT_ACCENT_COLOUR,
   white: WHITE_COLOUR,
