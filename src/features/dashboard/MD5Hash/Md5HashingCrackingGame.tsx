@@ -62,7 +62,7 @@ export const Md5HashingCrackingGame = () => {
     <Container
       sx={{
         width: '100vw',
-        height: '100vh',
+        height: '50vh',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

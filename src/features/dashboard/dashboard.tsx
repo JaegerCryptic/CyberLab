@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useCookies } from 'react-cookie'
 import { Typography, Box } from '@mui/material'
 
 import { TopBar } from '../../common/components/header/header'
@@ -12,12 +11,12 @@ import { GamePopup } from './GamePopup'
 import { gameDescriptions } from './constants'
 import { Sidebar } from '../../common/components/sidebar/sidebar'
 import { PhishingSimulatorGame } from './PhisingSimulator/PhisingSimulatorGame'
+import { appTheme } from '../../theme/style'
 
 export const Dashboard = () => {
   const { selectedGame } = useGame() as {
     selectedGame: keyof typeof gameDescriptions
   }
-  const [cookies] = useCookies(['userName'])
   const [popupOpen, setPopupOpen] = useState(true)
   const [previousGame, setPreviousGame] = useState<string | null>(null)
 
@@ -36,7 +35,7 @@ export const Dashboard = () => {
     <div className='dashboard'>
       <TopBar />
       <Sidebar />
-      <Box sx={{ marginLeft: 250, padding: 2 }}>
+      <Box sx={{ padding: 2 }}>
         <div className='dashboard-content'>
           {selectedGame ? (
             <div className='content'>
@@ -61,7 +60,9 @@ export const Dashboard = () => {
               )}
             </div>
           ) : (
-            <Typography variant='h1'>Welcome {cookies.userName}</Typography>
+            <Typography color={appTheme.colors.error.main} variant='h1'>
+              An error occurred. Please try again.
+            </Typography>
           )}
         </div>
       </Box>

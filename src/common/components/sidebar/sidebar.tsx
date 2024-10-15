@@ -18,6 +18,8 @@ export const Sidebar = () => {
   const { setSelectedGame } = useGame()
 
   const handleGameClick = (game: string) => {
+    console.log(game)
+
     setSelectedGame(game)
   }
 
