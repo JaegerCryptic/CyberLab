@@ -1,22 +1,19 @@
-import { useState } from 'react'
 import { List, Box } from '@mui/material'
 
 import { useGame } from '../../../routes/GameContext'
 import { appTheme } from '../../../theme/style'
-import { CLCollapsibleListItem } from '../CLCollapsibleListItem'
+import { CLCollapsibleListItem } from '../lists/CLCollapsibleListItem'
+import { useCollapsibleState } from '../lists/hooks/useCollapsibleState'
 
 export const Sidebar = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const [isPasswordCheckerOpen, setIsPasswordCheckerOpen] = useState(false)
+  const [isDropdownOpen1D9F, toggleDropdown1D9F] = useCollapsibleState()
+  const [isDropdownOpen2T7M, toggleDropdown2T7M] = useCollapsibleState()
+  const [isDropdownOpen3F5O, toggleDropdown3F5O] = useCollapsibleState()
+  const [isDropdownOpen4U9Z, toggleDropdown4U9Z] = useCollapsibleState()
+
+  const [isPasswordCheckerOpen, togglePasswordChecker] = useCollapsibleState()
+
   const { setSelectedGame } = useGame()
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen)
-  }
-
-  const togglePasswordChecker = () => {
-    setIsPasswordCheckerOpen(!isPasswordCheckerOpen)
-  }
 
   const handleGameClick = (game: string) => {
     setSelectedGame(game)
@@ -28,7 +25,7 @@ export const Sidebar = () => {
     <Box
       mt={HEADERHEIGHT}
       sx={{
-        width: 250,
+        width: 310,
         height: '100vh',
         backgroundColor: appTheme.colors.background,
         boxShadow: 0,
@@ -40,9 +37,9 @@ export const Sidebar = () => {
     >
       <List>
         <CLCollapsibleListItem
-          text='Classified Material'
-          isOpen={isDropdownOpen}
-          onClick={toggleDropdown}
+          text='Classified 1D-9F'
+          isOpen={isDropdownOpen1D9F}
+          onClick={toggleDropdown1D9F}
         >
           <CLCollapsibleListItem
             text='Password Activities'
@@ -62,18 +59,39 @@ export const Sidebar = () => {
               isCollapsible={false}
             />
           </CLCollapsibleListItem>
+        </CLCollapsibleListItem>
+
+        <CLCollapsibleListItem
+          text='Classified 2T-7M'
+          isOpen={isDropdownOpen2T7M}
+          onClick={toggleDropdown2T7M}
+        >
           <CLCollapsibleListItem
             text='Phishing Simulator'
             isOpen={false}
             onClick={() => handleGameClick('Phishing Simulator')}
             isCollapsible={false}
           />
+        </CLCollapsibleListItem>
+
+        <CLCollapsibleListItem
+          text='Classified 3F-5O'
+          isOpen={isDropdownOpen3F5O}
+          onClick={toggleDropdown3F5O}
+        >
           <CLCollapsibleListItem
             text='MD5 Hashing'
             isOpen={false}
             onClick={() => handleGameClick('MD5 Hashing Cracking')}
             isCollapsible={false}
           />
+        </CLCollapsibleListItem>
+
+        <CLCollapsibleListItem
+          text='Classified 4U-9Z'
+          isOpen={isDropdownOpen4U9Z}
+          onClick={toggleDropdown4U9Z}
+        >
           <CLCollapsibleListItem
             text='Information Hunting'
             isOpen={false}

@@ -7,7 +7,7 @@ import {
   List,
 } from '@mui/material'
 
-import { appTheme } from '../../theme/style'
+import { appTheme } from '../../../theme/style'
 
 export const CLCollapsibleListItem = ({
   text,
@@ -31,6 +31,7 @@ export const CLCollapsibleListItem = ({
         },
         display: 'flex',
         justifyContent: 'flex-start',
+        pl: isCollapsible ? 2 : 8,
       }}
     >
       {isCollapsible && (
@@ -46,7 +47,7 @@ export const CLCollapsibleListItem = ({
     </ListItemButton>
     {isCollapsible && (
       <Collapse in={isOpen} timeout='auto' unmountOnExit>
-        <List component='div' disablePadding>
+        <List component='div' disablePadding sx={{ pl: 2 }}>
           {children}
         </List>
       </Collapse>
