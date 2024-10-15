@@ -11,6 +11,7 @@
     "eslint": "eslint --ext .jsx --ext .js --ext .tsx --ext .ts --max-warnings 1 src/"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@mui/icons-material": "^5.15.13",
     "@mui/material": "^5.15.13",
     "@mui/x-date-pickers": "^6.19.7",
@@ -19,6 +20,7 @@
     "crypto-js": "^4.2.0",
     "date-fns": "^3.5.0",
     "jwt-decode": "^4.0.0",
+    "obscenity": "^0.4.0",
     "react": "^18.2.0",
     "react-cookie": "^7.2.0",
     "react-dom": "^18.2.0",
