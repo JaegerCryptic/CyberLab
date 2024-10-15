@@ -13,14 +13,9 @@ const TEXT_ACCENT_COLOUR = '#E8E6E3'
 const WHITE_COLOUR = '#FFFFFF'
 const HIGHLIGHT_COLOUR = '#94B5C7'
 
-const buttonSuccess = { main: '#3FD79C', 
-  light: '#a8d5a5', 
-  dark: '#388e3c', }
+const buttonSuccess = { main: '#3FD79C', light: '#a8d5a5', dark: '#388e3c' }
 
-  const buttonError = { main: '#BA1A1A', 
-    light: '#ffb3b3', 
-    dark: '#8B0000', }
-
+const buttonError = { main: '#BA1A1A', light: '#ffb3b3', dark: '#8B0000' }
 
 const appColors = {
   primary: PRIMARY_COLOUR,
@@ -36,22 +31,21 @@ const appColors = {
   white: WHITE_COLOUR,
   highlight: HIGHLIGHT_COLOUR,
   selectHighlight: '#FF0000',
-  error: buttonError, 
-  warning: '#FF9A01', 
-  success: buttonSuccess, 
+  error: buttonError,
+  warning: '#FF9A01',
+  success: buttonSuccess,
 }
 
-
 const appFontSizes = {
-  heading1: 36, 
-  heading2: 24, 
+  heading1: 36,
+  heading2: 24,
   bodyText: 18,
-  buttonText: 14, 
-  captionText: 12, 
-  topWebsite: 22, 
-  aboutSpc: 18, 
+  buttonText: 14,
+  captionText: 12,
+  topWebsite: 22,
+  aboutSpc: 18,
   fieldAgent: 18,
-  classifiedTabs: 18, 
+  classifiedTabs: 18,
 }
 
 const appFontFamilies = {
