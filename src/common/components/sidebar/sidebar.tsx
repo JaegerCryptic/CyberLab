@@ -1,26 +1,21 @@
 import { useState } from 'react'
 import {
-  Drawer,
   List,
   ListItem,
   ListItemText,
-  IconButton,
   Collapse,
   ButtonBase,
+  Box,
 } from '@mui/material'
-import { ExpandLess, ExpandMore, Menu as MenuIcon } from '@mui/icons-material'
+import { ExpandLess, ExpandMore } from '@mui/icons-material'
 
 import { useGame } from '../../../routes/GameContext'
+import { appTheme } from '../../../theme/style'
 
 export const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isPasswordCheckerOpen, setIsPasswordCheckerOpen] = useState(false)
   const { setSelectedGame } = useGame()
-
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen)
-  }
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen)
@@ -32,89 +27,90 @@ export const Sidebar = () => {
 
   const handleGameClick = (game: string) => {
     setSelectedGame(game)
-    setIsOpen(false)
   }
 
+  const HEADERHEIGHT = '65px'
+
   return (
-    <>
-      <IconButton onClick={toggleSidebar}>
-        <MenuIcon />
-      </IconButton>
-      <Drawer anchor='left' open={isOpen} onClose={toggleSidebar}>
-        <List>
-          <ListItem>
-            <ButtonBase onClick={toggleDropdown} style={{ width: '100%' }}>
-              <ListItemText primary='Classified Material' />
-              {isDropdownOpen ? <ExpandLess /> : <ExpandMore />}
-            </ButtonBase>
-          </ListItem>
-          <Collapse in={isDropdownOpen} timeout='auto' unmountOnExit>
-            <List component='div' disablePadding>
-              <ListItem>
-                <ButtonBase
-                  style={{ width: '100%' }}
-                  onClick={togglePasswordChecker}
-                >
-                  <ListItemText primary='Password Activities' />
-                  {isPasswordCheckerOpen ? <ExpandLess /> : <ExpandMore />}
-                </ButtonBase>
-              </ListItem>
-              <Collapse in={isPasswordCheckerOpen} timeout='auto' unmountOnExit>
-                <List component='div' disablePadding>
-                  <ListItem>
-                    <ButtonBase
-                      style={{ width: '100%' }}
-                      onClick={() => handleGameClick('Password Game')}
-                    >
-                      <ListItemText primary='Password Game' />
-                    </ButtonBase>
-                  </ListItem>
-                  <ListItem>
-                    <ButtonBase
-                      style={{ width: '100%' }}
-                      onClick={() => handleGameClick('Password Checker')}
-                    >
-                      <ListItemText primary='Password Checker' />
-                    </ButtonBase>
-                  </ListItem>
-                </List>
-              </Collapse>
-              <ListItem>
-                <ButtonBase
-                  style={{ width: '100%' }}
-                  onClick={() => handleGameClick('Phishing Simulator')}
-                >
-                  <ListItemText primary='Phishing Simulator' />
-                </ButtonBase>
-              </ListItem>
-              <ListItem>
-                <ButtonBase
-                  style={{ width: '100%' }}
-                  onClick={() => handleGameClick('MD5 Hashing Cracking')}
-                >
-                  <ListItemText primary='MD5 Hashing' />
-                </ButtonBase>
-              </ListItem>
-              <ListItem>
-                <ButtonBase
-                  style={{ width: '100%' }}
-                  onClick={() => handleGameClick('Information Hunter')}
-                >
-                  <ListItemText primary='Information Hunting' />
-                </ButtonBase>
-              </ListItem>
-              <ListItem>
-                <ButtonBase
-                  style={{ width: '100%' }}
-                  onClick={() => handleGameClick('Phising Simulator')}
-                >
-                  <ListItemText primary='Phising Simulator' />
-                </ButtonBase>
-              </ListItem>
-            </List>
-          </Collapse>
-        </List>
-      </Drawer>
-    </>
+    <Box
+      mt={HEADERHEIGHT}
+      sx={{
+        width: 250,
+        height: '100vh',
+        backgroundColor: appTheme.colors.backgroundDark,
+        backgroundImage: appTheme.colors.backgroundGradient,
+        boxShadow: 0,
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        zIndex: 1200,
+      }}
+    >
+      <List>
+        <ListItem>
+          <ButtonBase onClick={toggleDropdown} style={{ width: '100%' }}>
+            <ListItemText primary='Classified Material' />
+            {isDropdownOpen ? <ExpandLess /> : <ExpandMore />}
+          </ButtonBase>
+        </ListItem>
+        <Collapse in={isDropdownOpen} timeout='auto' unmountOnExit>
+          <List component='div' disablePadding>
+            <ListItem>
+              <ButtonBase
+                style={{ width: '100%' }}
+                onClick={togglePasswordChecker}
+              >
+                <ListItemText primary='Password Activities' />
+                {isPasswordCheckerOpen ? <ExpandLess /> : <ExpandMore />}
+              </ButtonBase>
+            </ListItem>
+            <Collapse in={isPasswordCheckerOpen} timeout='auto' unmountOnExit>
+              <List component='div' disablePadding>
+                <ListItem>
+                  <ButtonBase
+                    style={{ width: '100%' }}
+                    onClick={() => handleGameClick('Password Game')}
+                  >
+                    <ListItemText primary='Password Game' />
+                  </ButtonBase>
+                </ListItem>
+                <ListItem>
+                  <ButtonBase
+                    style={{ width: '100%' }}
+                    onClick={() => handleGameClick('Password Checker')}
+                  >
+                    <ListItemText primary='Password Checker' />
+                  </ButtonBase>
+                </ListItem>
+              </List>
+            </Collapse>
+            <ListItem>
+              <ButtonBase
+                style={{ width: '100%' }}
+                onClick={() => handleGameClick('Phishing Simulator')}
+              >
+                <ListItemText primary='Phishing Simulator' />
+              </ButtonBase>
+            </ListItem>
+            <ListItem>
+              <ButtonBase
+                style={{ width: '100%' }}
+                onClick={() => handleGameClick('MD5 Hashing Cracking')}
+              >
+                <ListItemText primary='MD5 Hashing' />
+              </ButtonBase>
+            </ListItem>
+            <ListItem>
+              <ButtonBase
+                style={{ width: '100%' }}
+                onClick={() => handleGameClick('Information Hunter')}
+              >
+                <ListItemText primary='Information Hunting' />
+              </ButtonBase>
+            </ListItem>
+          </List>
+        </Collapse>
+      </List>
+    </Box>
   )
 }

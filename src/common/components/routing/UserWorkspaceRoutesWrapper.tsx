@@ -1,14 +1,21 @@
-import { Outlet } from "react-router-dom"
-import { Box } from "@mui/material"
+import { Outlet } from 'react-router-dom'
+import { Box } from '@mui/material'
+
+import { appTheme } from '../../../theme/style'
 
 export const UserWorkspaceRoutesWrapper = () => {
-	return (
-		<Box
-			overflow={"hidden"}
-			height={"100vh"}
-			sx={{ display: "flex", flexDirection: "column" }}
-		>
-			<Outlet />
-		</Box>
-	)
+  return (
+    <Box
+      overflow={'hidden'}
+      height={'100vh'}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: appTheme.colors.backgroundDark,
+        backgroundImage: appTheme.colors.backgroundGradient,
+      }}
+    >
+      <Outlet />
+    </Box>
+  )
 }
