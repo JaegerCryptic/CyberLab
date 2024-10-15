@@ -38,7 +38,7 @@ export const initialRules: Rule[] = [
   { id: 30, text: 'Your password must include the abbreviation of any Australian state or territory', met: false, revealed: false },
   { id: 31, text: 'Your password must include a leap year.', met: false, revealed: false },
   { id: 32, text: '🥚 ← This is my chicken Paul. Please put him in your password and keep him safe.', met: false, revealed: false },
-  { id: 33, text: 'Oh no! Your password is on fire. Delete the fire emojis to pass.', met: false, revealed: false },
+  { id: 33, text: 'Oh no! Bombs have been placed around Paul! Delete all the bomb emojis to save Paul before they explode.', met: false, revealed: false },
   { id: 34, text: 'Your password must include the length of your password.', met: false, revealed: false },
   { id: 35, text: 'The length of your password must be a prime number.', met: false, revealed: false },
 ];
@@ -269,19 +269,17 @@ export const checkRules = (password: string, rules: Rule[]): Rule[] => {
     updatedRules[31].revealed = updatedRules[30].met || updatedRules[31].revealed;
   }
 
-  // Rule 33: Oh no! They are trying to bomb Paul. Delete the bombs before they explode!
+  // Rule 33: Oh no! They are trying to bomb Paul. Delete all bombs to save him!
   if (updatedRules[31].revealed) {
-    const bombEmoji = '💣';
-
-    // Check if bombs exist in the password
-    const bombCount = (password.match(new RegExp(bombEmoji, 'g')) || []).length;
-
-    // Check if there are still bombs in the password
-    updatedRules[32].met = bombCount === 0;
-
-    // Rule should be revealed only if the previous rule is met
+    // The rule is not met if there are bombs in the password
+    if (password.includes('💣')) {
+      updatedRules[32].met = false;  // Rule is not met if bombs are present
+    } else {
+      updatedRules[32].met = !password.includes('💣');  // Rule is met if all bombs have been removed
+    }
     updatedRules[32].revealed = updatedRules[31].met || updatedRules[32].revealed;
   }
+
 
 
   // Rule 34: Your password must include the length of your password

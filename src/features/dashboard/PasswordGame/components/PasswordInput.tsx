@@ -10,11 +10,17 @@ interface PasswordInputProps {
   setPassword: (newPassword: string) => void;
 }
 
+// Function to count the actual length of the password, treating emojis and special characters as single units
+const getActualLength = (password: string): number => {
+  return [...password].length; // Spread operator converts emojis and special characters into single units
+};
+
 const PasswordInput: React.FC<PasswordInputProps> = ({
   password,
   setPassword,
 }) => {
   const SPACING = "16px";
+  
   return (
     <Box
       sx={{
@@ -63,7 +69,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
           whiteSpace: "nowrap",
         }}
       >
-        {password.length}
+        {getActualLength(password)}
       </Typography>
     </Box>
   );

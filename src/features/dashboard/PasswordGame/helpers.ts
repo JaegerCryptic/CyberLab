@@ -65,5 +65,9 @@ export const explodePassword = (password: string): string => {
   return "💥💥💥".repeat(Math.floor(password.length / 3)); // Replace password with explosions
 };
 
+export const getActualLength = (password: string): number => {
+  // Spread operator converts emojis and special characters into single units
+  return [...password].length;
+};
 
 

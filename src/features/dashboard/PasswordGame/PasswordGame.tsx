@@ -13,7 +13,10 @@ export const PasswordGame = () => {
   const [hasStartedTyping, setHasStartedTyping] = useState(false);
   const [bombTimer, setBombTimer] = useState<number | null>(null);
   const [bombsAdded, setBombsAdded] = useState(false);
-  const [allBombsRemoved, setAllBombsRemoved] = useState(false); // New state to track bomb removal
+  const [allBombsRemoved, setAllBombsRemoved] = useState(false);
+  const [bombsExploded, setBombsExploded] = useState(false); // Track if bombs exploded
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false); // Track message display
+  const [showFailMessage, setShowFailMessage] = useState(false); // Track fail message display
 
   const PADDING = "32px";
 
@@ -24,40 +27,49 @@ export const PasswordGame = () => {
       setHasStartedTyping(true);
     }
 
-    const updatedRules = checkRules(newPassword, rules);
-    setRules(updatedRules);
-
     // Check if all bombs have been deleted
-    if (bombsAdded && !newPassword.includes('💣')) {
+    if (bombsAdded && !newPassword.includes('💣') && !bombsExploded) {
       setAllBombsRemoved(true);
       setBombTimer(null); // Stop the timer once all bombs are removed
+      setShowSuccessMessage(true); // Show the success message when all bombs are removed
+      setTimeout(() => setShowSuccessMessage(false), 5000); // Hide the message after 5 seconds
     }
+
+    const updatedRules = checkRules(newPassword, rules);
+    setRules(updatedRules);
   };
 
-  // Function to add bombs to the password randomly without replacing any characters
+  // Function to add bombs more evenly, avoiding special characters, other emojis, or existing bombs
   const addBombsToPassword = (password: string, numberOfBombs: number) => {
     const bombEmoji = '💣';
-    let updatedPassword = password;
+    let updatedPassword = [...password]; // Convert to array to work with individual characters
+    let insertCount = 0;
+    const positions = new Set<number>();
 
-    // Only allow bombs in alphabetic and numeric positions
-    const validIndices = [...password].map((char, index) => {
-      return /[a-zA-Z0-9]/.test(char) ? index : -1; // Only index letters and numbers
-    }).filter(index => index !== -1); // Remove invalid positions
+    // Helper function to check if a position is valid for bomb insertion
+    const isValidPosition = (char: string, pos: number) => {
+      const before = password[pos - 1] || '';
+      const after = password[pos + 1] || '';
+      return (
+        /[a-zA-Z0-9]/.test(char) && // Only insert bombs between alphanumeric characters
+        !/[💣()🥚]/.test(before) && // Avoid bombs next to special characters like parentheses or emojis
+        !/[💣()🥚]/.test(after)
+      );
+    };
 
-    // Insert bombs in valid positions without breaking the characters
-    for (let i = 0; i < numberOfBombs && validIndices.length > 0; i++) {
-      const randomIndex = Math.floor(Math.random() * validIndices.length);
-      const bombPosition = validIndices[randomIndex];
-      validIndices.splice(randomIndex, 1); // Remove used position
+    // Randomly select positions to insert bombs, ensuring they are spread out and valid
+    while (insertCount < numberOfBombs) {
+      const randomPosition = Math.floor(Math.random() * updatedPassword.length);
 
-      updatedPassword = [
-        updatedPassword.slice(0, bombPosition + i),
-        bombEmoji,
-        updatedPassword.slice(bombPosition + i)
-      ].join('');
+      // Only insert bombs if the position is valid
+      if (!positions.has(randomPosition) && isValidPosition(updatedPassword[randomPosition], randomPosition)) {
+        positions.add(randomPosition);
+        updatedPassword.splice(randomPosition + insertCount, 0, bombEmoji); // Insert bomb into valid position
+        insertCount++;
+      }
     }
 
-    return updatedPassword;
+    return updatedPassword.join(''); // Join array back to string
   };
 
   // Function to replace the entire password with explosion emojis
@@ -67,9 +79,9 @@ export const PasswordGame = () => {
   };
 
   useEffect(() => {
-    // Rule 33: When this rule is revealed, add bombs and start a timer
+    // Rule 33: Add bombs and start a timer when this rule is revealed
     if (rules[32].revealed && !bombsAdded) {
-      setPassword((prevPassword) => addBombsToPassword(prevPassword, 15)); // Add 15 bombs randomly
+      setPassword((prevPassword) => addBombsToPassword(prevPassword, 15)); // Add 15 bombs
       setBombTimer(10); // Set timer to 10 seconds
       setBombsAdded(true); // Ensure bombs are only added once
     }
@@ -88,6 +100,9 @@ export const PasswordGame = () => {
     // If the timer reaches 0, replace password with explosion emojis
     if (bombTimer === 0) {
       setPassword(explodePassword(password)); // Replace current characters with 💥
+      setBombsExploded(true); // Mark that the bombs have exploded
+      setShowFailMessage(true); // Show failure message
+      setTimeout(() => setShowFailMessage(false), 5000); // Hide failure message after 5 seconds
     }
   }, [bombTimer, password, allBombsRemoved]);
 
@@ -121,12 +136,21 @@ export const PasswordGame = () => {
         </Typography>
       )}
 
-      {allBombsRemoved && (
+      {showSuccessMessage && (
         <Typography
           variant="h6"
           sx={{ color: appTheme.colors.success.main }}
         >
           You saved Paul by deleting all the bombs! 🎉
+        </Typography>
+      )}
+
+      {showFailMessage && (
+        <Typography
+          variant="h6"
+          sx={{ color: appTheme.colors.error.main }}
+        >
+          You failed to save Paul. The bombs exploded! 💥💥💥
         </Typography>
       )}
 
