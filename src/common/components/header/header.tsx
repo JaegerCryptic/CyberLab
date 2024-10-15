@@ -67,7 +67,7 @@ export const TopBar = () => {
           </ClickAwayListener>
           <img
             src={SCPLogoAlt}
-            style={{ marginLeft: '8px', height: '40px', width: '60px' }}
+            style={{ marginLeft: '8px', height: '50px', width: '100px' }}
           />
         </Box>
         <Menu
