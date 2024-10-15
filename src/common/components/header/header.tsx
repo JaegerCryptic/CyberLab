@@ -15,10 +15,10 @@ import SCPLogo from '../../../images/scp_logo.png'
 import SCPLogoAlt from '../../../images/scp_logo_alt.png'
 
 export const TopBar = () => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const [anchorEl] = useState<null | HTMLElement>(null)
   const [tooltipOpen, setTooltipOpen] = useState(false)
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = () => {
     setTooltipOpen(true)
   }
 
