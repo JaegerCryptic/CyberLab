@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useCookies } from 'react-cookie'
 import { Typography } from '@mui/material'
 
@@ -9,8 +9,8 @@ import { PasswordGame } from './PasswordGame/PasswordGame'
 import { Md5HashingCrackingGame } from './MD5Hash/Md5HashingCrackingGame'
 import { InformationHunterGame } from './InformationHunter/InformationHunterGame'
 import { GamePopup } from './GamePopup'
-import { PhishingSimulatorGame } from './PhisingSimulator/PhisingSimulatorGame'
 import { gameDescriptions } from './constants'
+import { PhishingSimulatorGame } from './PhisingSimulator/PhisingSimulatorGame'
 
 export const Dashboard = () => {
   const { selectedGame } = useGame() as {
@@ -18,10 +18,18 @@ export const Dashboard = () => {
   }
   const [cookies] = useCookies(['userName'])
   const [popupOpen, setPopupOpen] = useState(true)
+  const [previousGame, setPreviousGame] = useState<string | null>(null)
 
   const handleClosePopup = () => {
     setPopupOpen(false)
   }
+
+  useEffect(() => {
+    if (selectedGame && selectedGame !== previousGame) {
+      setPopupOpen(true)
+      setPreviousGame(selectedGame)
+    }
+  }, [selectedGame, previousGame])
 
   return (
     <div className='dashboard'>
