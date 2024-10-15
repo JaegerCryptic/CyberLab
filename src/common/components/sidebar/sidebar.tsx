@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import {
   List,
-  ListItem,
   ListItemText,
   Collapse,
   Box,
   IconButton,
+  ListItemButton,
 } from '@mui/material'
 import { ExpandLess, ExpandMore } from '@mui/icons-material'
 
@@ -46,8 +46,7 @@ export const Sidebar = () => {
       }}
     >
       <List>
-        <ListItem
-          button
+        <ListItemButton
           onClick={toggleDropdown}
           sx={{
             '&:hover': {
@@ -65,11 +64,10 @@ export const Sidebar = () => {
             )}
           </IconButton>
           <ListItemText primary='Classified Material' />
-        </ListItem>
+        </ListItemButton>
         <Collapse in={isDropdownOpen} timeout='auto' unmountOnExit>
           <List component='div' disablePadding>
-            <ListItem
-              button
+            <ListItemButton
               onClick={togglePasswordChecker}
               sx={{
                 '&:hover': {
@@ -87,11 +85,10 @@ export const Sidebar = () => {
                 )}
               </IconButton>
               <ListItemText primary='Password Activities' />
-            </ListItem>
+            </ListItemButton>
             <Collapse in={isPasswordCheckerOpen} timeout='auto' unmountOnExit>
               <List component='div' disablePadding>
-                <ListItem
-                  button
+                <ListItemButton
                   onClick={() => handleGameClick('Password Game')}
                   sx={{
                     '&:hover': {
@@ -102,9 +99,8 @@ export const Sidebar = () => {
                   }}
                 >
                   <ListItemText primary='Password Game' />
-                </ListItem>
-                <ListItem
-                  button
+                </ListItemButton>
+                <ListItemButton
                   onClick={() => handleGameClick('Password Checker')}
                   sx={{
                     '&:hover': {
@@ -115,11 +111,10 @@ export const Sidebar = () => {
                   }}
                 >
                   <ListItemText primary='Password Checker' />
-                </ListItem>
+                </ListItemButton>
               </List>
             </Collapse>
-            <ListItem
-              button
+            <ListItemButton
               onClick={() => handleGameClick('Phishing Simulator')}
               sx={{
                 '&:hover': {
@@ -130,9 +125,8 @@ export const Sidebar = () => {
               }}
             >
               <ListItemText primary='Phishing Simulator' />
-            </ListItem>
-            <ListItem
-              button
+            </ListItemButton>
+            <ListItemButton
               onClick={() => handleGameClick('MD5 Hashing Cracking')}
               sx={{
                 '&:hover': {
@@ -143,9 +137,8 @@ export const Sidebar = () => {
               }}
             >
               <ListItemText primary='MD5 Hashing' />
-            </ListItem>
-            <ListItem
-              button
+            </ListItemButton>
+            <ListItemButton
               onClick={() => handleGameClick('Information Hunter')}
               sx={{
                 '&:hover': {
@@ -156,7 +149,7 @@ export const Sidebar = () => {
               }}
             >
               <ListItemText primary='Information Hunting' />
-            </ListItem>
+            </ListItemButton>
           </List>
         </Collapse>
       </List>
