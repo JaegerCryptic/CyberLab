@@ -1,4 +1,5 @@
 import { useCookies } from 'react-cookie'
+import { Typography } from '@mui/material'
 
 import { TopBar } from '../../common/components/header/header'
 import { useGame } from '../../routes/GameContext'
@@ -6,7 +7,7 @@ import { PasswordChecker } from './PasswordGame/PasswordChecker'
 import { PasswordGame } from './PasswordGame/PasswordGame'
 import { Md5HashingCrackingGame } from './MD5Hash/Md5HashingCrackingGame'
 import { InformationHunterGame } from './InformationHunter/InformationHunterGame'
-import { Typography } from '@mui/material'
+import { PhishingSimulatorGame } from './PhisingSimulator/PhisingSimulatorGame'
 
 export const Dashboard = () => {
   const { selectedGame } = useGame()
@@ -26,6 +27,8 @@ export const Dashboard = () => {
               <Md5HashingCrackingGame />
             ) : selectedGame === 'Information Hunter' ? (
               <InformationHunterGame />
+            ) : selectedGame === 'Phishing Simulator' ? (
+              <PhishingSimulatorGame />
             ) : (
               <h1>{selectedGame} Content</h1>
             )}
