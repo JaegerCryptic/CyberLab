@@ -1,49 +1,14 @@
 import { useState } from 'react'
-import { Box, Container, Typography, Button } from '@mui/material'
+import { Box, Container, Typography, Button, Paper } from '@mui/material'
 
 import { appTheme } from '../../../theme/style'
-
-const emailPairs = [
-  {
-    legitimate:
-      'Dear user, your account has been updated successfully. If you did not make this change, please contact support.',
-    phishing:
-      'Dear user, your account has been compromised. Click here to reset your password immediately.',
-    reason:
-      'The phishing email creates a sense of urgency and asks you to click a link.',
-  },
-  {
-    legitimate:
-      'Your package has been shipped and will arrive in 3-5 business days. Track your package here.',
-    phishing:
-      'Your package delivery failed. Click here to reschedule delivery.',
-    reason:
-      'The phishing email uses a fake delivery failure to get you to click a link.',
-  },
-  // Add more email pairs with increasing difficulty
-]
+import { emailPairs } from './constants'
+import { handleSelection } from './helpers'
 
 export const PhishingSimulatorGame = () => {
   const [currentPairIndex, setCurrentPairIndex] = useState(0)
   const [score, setScore] = useState(0)
   const [feedback, setFeedback] = useState<string | null>(null)
-
-  const handleSelection = (isPhishing: boolean) => {
-    const currentPair = emailPairs[currentPairIndex]
-    const isCorrect = isPhishing ? currentPair.phishing : currentPair.legitimate
-
-    if (isCorrect) {
-      setScore(score + 1)
-      setFeedback(`Correct! ${currentPair.reason}`)
-    } else {
-      setFeedback(`Incorrect. ${currentPair.reason}`)
-    }
-
-    setTimeout(() => {
-      setFeedback(null)
-      setCurrentPairIndex(currentPairIndex + 1)
-    }, 3000)
-  }
 
   if (currentPairIndex >= emailPairs.length) {
     return (
@@ -140,30 +105,64 @@ export const PhishingSimulatorGame = () => {
             marginBottom: '24px',
           }}
         >
-          <Box sx={{ width: '45%', textAlign: 'left' }}>
+          <Paper sx={{ width: '45%', padding: '16px', textAlign: 'left' }}>
+            <Typography variant='subtitle2' component='div' gutterBottom>
+              From: {currentPair.legitimate.sender}
+            </Typography>
+            <Typography variant='subtitle2' component='div' gutterBottom>
+              Subject: {currentPair.legitimate.subject}
+            </Typography>
+            <Typography variant='subtitle2' component='div' gutterBottom>
+              Date: {currentPair.legitimate.timestamp}
+            </Typography>
             <Typography variant='body1' component='div' gutterBottom>
-              {currentPair.legitimate}
+              {currentPair.legitimate.body}
             </Typography>
             <Button
               variant='contained'
               color='primary'
-              onClick={() => handleSelection(false)}
+              onClick={() =>
+                handleSelection(
+                  false,
+                  currentPairIndex,
+                  setScore,
+                  setFeedback,
+                  setCurrentPairIndex
+                )
+              }
             >
               Legitimate
             </Button>
-          </Box>
-          <Box sx={{ width: '45%', textAlign: 'left' }}>
+          </Paper>
+          <Paper sx={{ width: '45%', padding: '16px', textAlign: 'left' }}>
+            <Typography variant='subtitle2' component='div' gutterBottom>
+              From: {currentPair.phishing.sender}
+            </Typography>
+            <Typography variant='subtitle2' component='div' gutterBottom>
+              Subject: {currentPair.phishing.subject}
+            </Typography>
+            <Typography variant='subtitle2' component='div' gutterBottom>
+              Date: {currentPair.phishing.timestamp}
+            </Typography>
             <Typography variant='body1' component='div' gutterBottom>
-              {currentPair.phishing}
+              {currentPair.phishing.body}
             </Typography>
             <Button
               variant='contained'
               color='primary'
-              onClick={() => handleSelection(true)}
+              onClick={() =>
+                handleSelection(
+                  true,
+                  currentPairIndex,
+                  setScore,
+                  setFeedback,
+                  setCurrentPairIndex
+                )
+              }
             >
               Phishing
             </Button>
-          </Box>
+          </Paper>
         </Box>
 
         {feedback && (
