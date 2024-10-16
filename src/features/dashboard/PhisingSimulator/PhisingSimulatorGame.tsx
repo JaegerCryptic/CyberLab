@@ -56,7 +56,7 @@ export const PhishingSimulatorGame = () => {
             gutterBottom
             sx={{ color: appTheme.colors.text }}
           >
-            Phishing Simulator
+            Phishing Challenge
           </Typography>
           <Typography variant='body1' component='div' gutterBottom>
             Game Over! Your score: {score}
@@ -106,7 +106,6 @@ export const PhishingSimulatorGame = () => {
         >
           Phishing Simulator
         </Typography>
-
         <Box
           sx={{
             display: 'flex',
@@ -119,12 +118,25 @@ export const PhishingSimulatorGame = () => {
             Step {currentPairIndex + 1} / {totalQuestions}
           </Typography>
           <Box sx={{ width: '80%' }}>
-            <LinearProgress variant='determinate' value={progress} />
+            <LinearProgress
+              variant='determinate'
+              value={progress}
+              sx={{
+                '& .MuiLinearProgress-bar': {
+                  backgroundColor: appTheme.colors.secondary,
+                },
+                backgroundColor: appTheme.colors.highlight,
+              }}
+            />
           </Box>
         </Box>
+        <Typography variant='body1' component='div'>
+          Click on the text box that is the most suspicious
+        </Typography>
 
         <Box
           sx={{
+            mt: 4,
             display: 'flex',
             justifyContent: 'space-between',
             marginBottom: '24px',
@@ -136,6 +148,8 @@ export const PhishingSimulatorGame = () => {
               padding: '16px',
               textAlign: 'left',
               cursor: 'pointer',
+              backgroundColor: appTheme.colors.text,
+              borderRadius: '24px',
             }}
             onClick={() =>
               handleSelection(
@@ -147,16 +161,36 @@ export const PhishingSimulatorGame = () => {
               )
             }
           >
-            <Typography variant='subtitle2' component='div' gutterBottom>
+            <Typography
+              color={'black'}
+              variant='subtitle2'
+              component='div'
+              gutterBottom
+            >
               From: {currentPair.legitimate.sender}
             </Typography>
-            <Typography variant='subtitle2' component='div' gutterBottom>
+            <Typography
+              color={'black'}
+              variant='subtitle2'
+              component='div'
+              gutterBottom
+            >
               Subject: {currentPair.legitimate.subject}
             </Typography>
-            <Typography variant='subtitle2' component='div' gutterBottom>
+            <Typography
+              color={'black'}
+              variant='subtitle2'
+              component='div'
+              gutterBottom
+            >
               Date: {currentPair.legitimate.timestamp}
             </Typography>
-            <Typography variant='body1' component='div' gutterBottom>
+            <Typography
+              color={'black'}
+              variant='body1'
+              component='div'
+              gutterBottom
+            >
               {currentPair.legitimate.body}
             </Typography>
           </Paper>
@@ -166,6 +200,8 @@ export const PhishingSimulatorGame = () => {
               padding: '16px',
               textAlign: 'left',
               cursor: 'pointer',
+              backgroundColor: appTheme.colors.text,
+              borderRadius: '24px',
             }}
             onClick={() =>
               handleSelection(
@@ -177,16 +213,36 @@ export const PhishingSimulatorGame = () => {
               )
             }
           >
-            <Typography variant='subtitle2' component='div' gutterBottom>
+            <Typography
+              color={'black'}
+              variant='subtitle2'
+              component='div'
+              gutterBottom
+            >
               From: {currentPair.phishing.sender}
             </Typography>
-            <Typography variant='subtitle2' component='div' gutterBottom>
+            <Typography
+              color={'black'}
+              variant='subtitle2'
+              component='div'
+              gutterBottom
+            >
               Subject: {currentPair.phishing.subject}
             </Typography>
-            <Typography variant='subtitle2' component='div' gutterBottom>
+            <Typography
+              color={'black'}
+              variant='subtitle2'
+              component='div'
+              gutterBottom
+            >
               Date: {currentPair.phishing.timestamp}
             </Typography>
-            <Typography variant='body1' component='div' gutterBottom>
+            <Typography
+              color={'black'}
+              variant='body1'
+              component='div'
+              gutterBottom
+            >
               {currentPair.phishing.body}
             </Typography>
           </Paper>
@@ -197,7 +253,7 @@ export const PhishingSimulatorGame = () => {
             variant='body1'
             component='div'
             gutterBottom
-            sx={{ color: appTheme.colors.error.dark }}
+            sx={{ color: appTheme.colors.text }}
           >
             {feedback}
           </Typography>
