@@ -280,27 +280,32 @@ export const checkRules = (password: string, rules: Rule[]): Rule[] => {
     updatedRules[32].revealed = updatedRules[31].met || updatedRules[32].revealed;
   }
 
+  // Add the getActualLength function here
+  const getActualLength = (password: string) => {
+    return [...password].length; // Spread operator to correctly count emojis as 1 character
+  };
 
+// Rule 34: Your password must include the length of your password
+if (updatedRules[32].revealed && updatedRules[32].met) { // Ensure Rule 32 is met
+  const actualLength = getActualLength(password);
+  updatedRules[33].met = password.includes(actualLength.toString());
+  updatedRules[33].revealed = updatedRules[32].met || updatedRules[33].revealed;
+}
 
-  // Rule 34: Your password must include the length of your password
-  if (updatedRules[32].revealed) {
-    updatedRules[33].met = password.includes(password.length.toString());
-    updatedRules[33].revealed = updatedRules[32].met || updatedRules[33].revealed;
-  }
+// Rule 35: The length of your password must be a prime number
+if (updatedRules[33].revealed && updatedRules[33].met) { // Ensure Rule 34 is met before revealing Rule 35
+  const actualLength = getActualLength(password);
+  const isPrime = (num: number) => {
+    if (num < 2) return false;
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+      if (num % i === 0) return false;
+    }
+    return true;
+  };
+  updatedRules[34].met = isPrime(actualLength);
+  updatedRules[34].revealed = updatedRules[33].met || updatedRules[34].revealed;
+}
 
-  // Rule 35: The length of your password must be a prime number
-  if (updatedRules[33].revealed) {
-    const isPrime = (num: number) => {
-      if (num < 2) return false;
-      for (let i = 2; i <= Math.sqrt(num); i++) {
-        if (num % i === 0) return false;
-      }
-      return true;
-    };
-    updatedRules[34].met = isPrime(password.length);
-    updatedRules[34].revealed = updatedRules[33].met || updatedRules[34].revealed;
-  }
-  
   return updatedRules;
 };
 
