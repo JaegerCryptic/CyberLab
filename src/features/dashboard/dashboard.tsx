@@ -56,13 +56,24 @@ export const Dashboard = () => {
               ) : selectedGame === 'Phishing Simulator' ? (
                 <PhishingSimulatorGame />
               ) : (
-                <h1>{selectedGame} Content</h1>
+                <Typography color={appTheme.colors.error.main} variant='h1'>
+                  An error occurred. Please try again.
+                </Typography>
               )}
             </div>
           ) : (
-            <Typography color={appTheme.colors.error.main} variant='h1'>
-              An error occurred. Please try again.
-            </Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100vh',
+              }}
+            >
+              <Typography variant='button' color={appTheme.colors.highlight}>
+                Select your module to get started.
+              </Typography>
+            </Box>
           )}
         </div>
       </Box>
