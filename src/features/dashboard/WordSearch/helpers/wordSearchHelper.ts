@@ -1,19 +1,21 @@
-export const generateGrid = (words: string[]): string[][] => {
+export const generateGrid = (words: string[], increaseOverlap = true): { grid: string[][], wordCells: number[][] } => {
   const gridSize = 10;
   const grid = Array.from({ length: gridSize }, () =>
     Array.from({ length: gridSize }, () => "")
   );
+  const wordCells: number[][] = []; // Track the coordinates of placed words
 
-  // Try to place words in the grid randomly (horizontal, vertical, and diagonal directions)
+  // Try to place words in the grid with increased overlap and random directions (including backwards)
   words.forEach((word) => {
     let placed = false;
     while (!placed) {
       const direction = Math.floor(Math.random() * 8); // 0-7 (8 possible directions)
+      const isBackward = Math.random() > 0.5; // 50% chance to place the word backwards
       const row = Math.floor(Math.random() * gridSize);
       const col = Math.floor(Math.random() * gridSize);
 
-      if (canPlaceWord(grid, word, row, col, direction)) {
-        placeWord(grid, word, row, col, direction);
+      if (canPlaceWord(grid, word, row, col, direction, increaseOverlap, isBackward)) {
+        placeWord(grid, word, row, col, direction, wordCells, isBackward);
         placed = true;
       }
     }
@@ -28,22 +30,26 @@ export const generateGrid = (words: string[]): string[][] => {
     }
   }
 
-  return grid;
+  return { grid, wordCells }; // Return both the grid and the placed word cells
 };
 
-// Check if a word can be placed in the given direction
+// Check if a word can be placed in the given direction with optional overlap and backwards placement
 const canPlaceWord = (
   grid: string[][],
   word: string,
   row: number,
   col: number,
-  direction: number
+  direction: number,
+  increaseOverlap: boolean,
+  isBackward: boolean
 ) => {
   const gridSize = grid.length;
   const dx = [0, 1, 1, 1, 0, -1, -1, -1]; // Direction modifiers for x (cols)
   const dy = [-1, -1, 0, 1, 1, 1, 0, -1]; // Direction modifiers for y (rows)
 
-  for (let i = 0; i < word.length; i++) {
+  const wordToPlace = isBackward ? word.split("").reverse().join("") : word; // Reverse the word if placing backwards
+
+  for (let i = 0; i < wordToPlace.length; i++) {
     const newRow = row + i * dy[direction];
     const newCol = col + i * dx[direction];
 
@@ -52,30 +58,40 @@ const canPlaceWord = (
       newRow >= gridSize ||
       newCol < 0 ||
       newCol >= gridSize ||
-      (grid[newRow][newCol] !== "" && grid[newRow][newCol] !== word[i].toUpperCase())
+      (!increaseOverlap && grid[newRow][newCol] !== "" && grid[newRow][newCol] !== wordToPlace[i].toUpperCase())
     ) {
       return false;
+    }
+
+    // If increasing overlap, allow placing a letter even if it already exists at that position
+    if (increaseOverlap && grid[newRow][newCol] !== "" && grid[newRow][newCol] !== wordToPlace[i].toUpperCase()) {
+      return false; // Still block if the letter conflicts with a non-matching character
     }
   }
 
   return true;
 };
 
-// Place the word in the given direction
+// Place the word in the given direction and track the cells it occupies, support backwards placement
 const placeWord = (
   grid: string[][],
   word: string,
   row: number,
   col: number,
-  direction: number
+  direction: number,
+  wordCells: number[][],
+  isBackward: boolean
 ) => {
   const dx = [0, 1, 1, 1, 0, -1, -1, -1];
   const dy = [-1, -1, 0, 1, 1, 1, 0, -1];
 
-  for (let i = 0; i < word.length; i++) {
+  const wordToPlace = isBackward ? word.split("").reverse().join("") : word; // Reverse the word if placing backwards
+
+  for (let i = 0; i < wordToPlace.length; i++) {
     const newRow = row + i * dy[direction];
     const newCol = col + i * dx[direction];
-    grid[newRow][newCol] = word[i].toUpperCase();
+    grid[newRow][newCol] = wordToPlace[i].toUpperCase();
+    wordCells.push([newRow, newCol]); // Track the position of each letter
   }
 };
 

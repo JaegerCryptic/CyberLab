@@ -88,7 +88,7 @@ export const PasswordGame = () => {
     const isValidPosition = (char: string, pos: number) => {
       const before = password[pos - 1] || "";
       const after = password[pos + 1] || "";
-      return /[a-zA-Z0-9]/.test(char) && !/[💣()🥚]/.test(before) && !/[💣()🥚]/.test(after);
+      return /[a-zA-Z0-9]/.test(char) && !/[💣()🐔]/.test(before) && !/[💣()🐔]/.test(after);
     };
 
     while (insertCount < numberOfBombs) {
