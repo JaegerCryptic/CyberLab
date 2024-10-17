@@ -12,6 +12,7 @@ import { gameDescriptions } from './constants'
 import { Sidebar } from '../../common/components/sidebar/sidebar'
 import { PhishingSimulatorGame } from './PhisingSimulator/PhisingSimulatorGame'
 import { appTheme } from '../../theme/style'
+import { WordSearch } from './WordSearch/WordSearch'
 
 export const Dashboard = () => {
   const { selectedGame } = useGame() as {
@@ -55,6 +56,8 @@ export const Dashboard = () => {
                 <InformationHunterGame />
               ) : selectedGame === 'Phishing Simulator' ? (
                 <PhishingSimulatorGame />
+              ) : selectedGame === 'Word Search' ? (
+                <WordSearch />
               ) : (
                 <Typography color={appTheme.colors.error.main} variant='h1'>
                   An error occurred. Please try again.

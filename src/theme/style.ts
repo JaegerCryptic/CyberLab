@@ -153,3 +153,17 @@ export const darkTheme = createTheme({
     },
   },
 })
+
+// Modal styling
+export const modalStyle = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: appTheme.colors.backgroundAccent,
+  border: `2px solid ${appTheme.colors.secondary}`,
+  boxShadow: 24,
+  p: 4,
+  color: appTheme.colors.text,
+}
