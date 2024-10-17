@@ -1,70 +1,53 @@
-import React from 'react'
 import TextField from '@mui/material/TextField'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
 
 import { appTheme } from '../../../../theme/style'
 
 interface PasswordInputProps {
-  password: string
-  setPassword: (newPassword: string) => void
+	password: string
+	setPassword: (newPassword: string) => void
 }
 
-const PasswordInput: React.FC<PasswordInputProps> = ({
-  password,
-  setPassword,
-}) => {
-  const SPACING = '16px'
-  return (
-    <Box
-      sx={{
-        width: '100%',
-        mb: SPACING,
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
-      <TextField
-        fullWidth
-        label='Please choose a password'
-        variant='outlined'
-        type='text'
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        multiline
-        minRows={1}
-        maxRows={4}
-        sx={{
-          flexGrow: 1,
-          '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-              borderColor: appTheme.colors.primary,
-              borderWidth: 2,
-            },
-            '&:hover fieldset': {
-              borderColor: appTheme.colors.primary,
-            },
-            '&.Mui-focused fieldset': {
-              borderColor: appTheme.colors.primary,
-            },
-          },
-          '& .MuiInputLabel-root': { color: appTheme.colors.primary },
-          '& .MuiOutlinedInput-input': { color: appTheme.colors.primary },
-        }}
-      />
-
-      <Typography
-        variant='body1'
-        sx={{
-          ml: SPACING,
-          color: appTheme.colors.primary,
-          whiteSpace: 'nowrap',
-        }}
-      >
-        {password.length}
-      </Typography>
-    </Box>
-  )
+export const PasswordInput = (props: PasswordInputProps) => {
+	const { password, setPassword } = props
+	return (
+		<TextField
+			fullWidth
+			label='Enter Password'
+			variant='outlined'
+			type='text'
+			value={password}
+			onChange={(e) => setPassword(e.target.value)}
+			InputLabelProps={{
+				shrink: password.length > 0 ? true : undefined,
+				style: { color: appTheme.colors.textAccent },
+			}}
+			inputProps={{
+				style: {
+					color: appTheme.colors.text,
+				},
+			}}
+			sx={{
+				'& .MuiOutlinedInput-root': {
+					'& fieldset': {
+						borderColor: '#4A4A4A',
+						borderWidth: '2px',
+					},
+					'&:hover fieldset': {
+						borderColor: '#606060',
+						borderWidth: '2px',
+					},
+					'&.Mui-focused fieldset': {
+						borderColor: '#4A4A4A',
+						borderWidth: '2px',
+					},
+				},
+				'& .MuiInputLabel-root': {
+					color: appTheme.colors.textAccent,
+				},
+				'& .MuiOutlinedInput-input': {
+					color: appTheme.colors.text,
+				},
+			}}
+		/>
+	)
 }
-
-export default PasswordInput
