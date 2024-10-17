@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 import { addBombsToPassword, explodePassword } from '../helpers'
 import { initialRules, checkRules } from '../constants'
 
@@ -16,7 +16,7 @@ export const usePasswordGame = () => {
 	const [isCongratsModalOpen, setIsCongratsModalOpen] = useState(false)
 	const [successMessageShown, setSuccessMessageShown] = useState(false)
 
-	const resetGame = () => {
+	const resetGame = useCallback(() => {
 		setPassword('')
 		setRules(initialRules)
 		setHasStartedTyping(false)
@@ -29,7 +29,37 @@ export const usePasswordGame = () => {
 		setShowFailMessage(false)
 		setIsCongratsModalOpen(false)
 		setSuccessMessageShown(false)
-	}
+	}, [])
+
+	const startBombTimer = useCallback(() => {
+		if (bombTimer !== null && bombTimer > 0 && !allBombsRemoved) {
+			const timer = setTimeout(() => {
+				setBombTimer((prev) => (prev !== null ? prev - 1 : null))
+			}, 1000)
+
+			return () => clearTimeout(timer)
+		}
+
+		if (bombTimer === 0 && !explosionOccurred) {
+			setPassword(explodePassword(password))
+			setBombsExploded(true)
+			setExplosionOccurred(true)
+			setShowFailMessage(true)
+			setTimeout(() => setShowFailMessage(false), 5000)
+		}
+	}, [bombTimer, password, allBombsRemoved, explosionOccurred])
+
+	const addBombs = useCallback(() => {
+		if (rules[31].met && !bombsAdded) {
+			const newPassword = addBombsToPassword(password, 15)
+			setPassword(newPassword)
+			setBombTimer(10)
+			setBombsAdded(true)
+
+			const updatedRules = checkRules(newPassword, rules)
+			setRules(updatedRules)
+		}
+	}, [rules, bombsAdded, password])
 
 	const handlePasswordChange = (newPassword: string): void => {
 		try {
@@ -60,55 +90,14 @@ export const usePasswordGame = () => {
 				if (allMet) {
 					setIsCongratsModalOpen(true)
 				}
+
+				addBombs()
+				startBombTimer()
 			}
 		} catch (error) {
 			console.error('Error handling password change:', error)
 		}
 	}
-
-	useEffect(() => {
-		try {
-			if (rules[31].met && !bombsAdded) {
-				const newPassword = addBombsToPassword(password, 15)
-				setPassword(newPassword)
-				setBombTimer(10)
-				setBombsAdded(true)
-
-				const updatedRules = checkRules(newPassword, rules)
-				setRules(updatedRules)
-			}
-		} catch (error) {
-			console.error('Error adding bombs to password:', error)
-		}
-	}, [rules, bombsAdded, password])
-
-	useEffect(() => {
-		try {
-			if (bombTimer !== null && bombTimer > 0 && !allBombsRemoved) {
-				const timer = setTimeout(() => {
-					setBombTimer(bombTimer - 1)
-				}, 1000)
-
-				return () => clearTimeout(timer)
-			}
-
-			if (bombTimer === 0 && !explosionOccurred) {
-				setPassword(explodePassword(password))
-				setBombsExploded(true)
-				setExplosionOccurred(true)
-				setShowFailMessage(true)
-				setTimeout(() => setShowFailMessage(false), 5000)
-			}
-		} catch (error) {
-			console.error('Error handling bomb timer:', error)
-		}
-	}, [bombTimer, password, allBombsRemoved, explosionOccurred])
-
-	useEffect(() => {
-		return () => {
-			resetGame()
-		}
-	}, [])
 
 	return {
 		password,
