@@ -1,552 +1,602 @@
 export interface Rule {
-  id: number;
-  text: string;
-  met: boolean;
-  revealed: boolean;
+  id: number
+  text: string
+  met: boolean
+  revealed: boolean
 }
 
 export const initialRules: Rule[] = [
   {
     id: 1,
-    text: "Your password must be at least 5 characters long.",
+    text: 'Your password must be at least 5 characters.',
     met: false,
     revealed: false,
   },
   {
     id: 2,
-    text: "Your password must include a number.",
+    text: 'Your password must include a number.',
     met: false,
     revealed: false,
   },
   {
     id: 3,
-    text: "Your password must include an uppercase letter.",
+    text: 'Your password must include an uppercase letter.',
     met: false,
     revealed: false,
   },
   {
     id: 4,
-    text: "Your password must include a special character.",
+    text: 'Your password must include a special character.',
     met: false,
     revealed: false,
   },
   {
     id: 5,
-    text: "Your password must include a month of the year.",
+    text: 'Your password must include a Roman numeral.',
     met: false,
     revealed: false,
   },
   {
     id: 6,
-    text: "The digits in your password must add up to 25.",
+    text: 'The digits in your password must add up to 25.',
     met: false,
     revealed: false,
   },
   {
     id: 7,
-    text: 'Your password must include the word "password".',
+    text: 'Your password must include a month of the year.',
     met: false,
     revealed: false,
   },
   {
     id: 8,
-    text: "Your password must include a sequence of 3 repeated characters.",
+    text: 'Your password must include a Roman numeral.',
     met: false,
     revealed: false,
   },
   {
     id: 9,
-    text: "Your password must include a day of the week.",
+    text: 'Your password must include the word "griffith".',
     met: false,
     revealed: false,
   },
   {
     id: 10,
-    text: "Your password must include a Roman numeral.",
+    text: 'Your password must include a sequence of 3 repeated characters.',
     met: false,
     revealed: false,
   },
   {
     id: 11,
-    text: "Your password must include a palindrome.",
+    text: 'Your password must include the first three letters of any day of the week.',
     met: false,
     revealed: false,
   },
   {
     id: 12,
-    text: "Your password must include a prime number.",
+    text: 'Your password must not include any space characters.',
     met: false,
     revealed: false,
   },
   {
     id: 13,
-    text: "Your password must include a hexadecimal number.",
+    text: 'Your password must include two consecutive uppercase letters.',
     met: false,
     revealed: false,
   },
   {
     id: 14,
-    text: "Your password must include a binary number.",
+    text: 'Your password must include two consecutive numbers.',
     met: false,
     revealed: false,
   },
   {
     id: 15,
-    text: "Your password must include a punctuation mark.",
+    text: 'Your password must contain more than 3 different special characters.',
     met: false,
     revealed: false,
   },
   {
     id: 16,
-    text: "Your password must include a color name.",
+    text: 'Your password must start with an uppercase letter.',
     met: false,
     revealed: false,
   },
   {
     id: 17,
-    text: "Your password must include a fruit name.",
+    text: 'Your password must contain a palindrome (no spaces).',
     met: false,
     revealed: false,
   },
   {
     id: 18,
-    text: "Your password must include a country name.",
+    text: 'Your password must contain at least 3 vowels (a, e, i, o, u).',
     met: false,
     revealed: false,
   },
   {
     id: 19,
-    text: "Your password must include a famous landmark.",
+    text: "Your password must include the word '2FA' as a reminder to enable two-factor authentication.",
     met: false,
     revealed: false,
   },
   {
     id: 20,
-    text: "Your password must include a chemical element.",
+    text: 'Your password must contain at least one even number',
     met: false,
     revealed: false,
   },
   {
     id: 21,
-    text: "Your password must include a constellation name.",
+    text: 'Your password must contain at least one prime number.',
     met: false,
     revealed: false,
   },
   {
     id: 22,
-    text: "Your password must include a Greek letter.",
+    text: 'Your password must end with a number.',
     met: false,
     revealed: false,
   },
   {
     id: 23,
-    text: "Your password must include a mathematical symbol.",
+    text: 'Your password must include a punctuation mark.',
     met: false,
     revealed: false,
   },
   {
     id: 24,
-    text: "Your password must include a programming language name.",
+    text: 'Your password must include both parentheses.',
     met: false,
     revealed: false,
   },
   {
     id: 25,
-    text: "Your password must include a famous scientist's name.",
+    text: 'Your password must include one character that appears exactly 3 times.',
     met: false,
     revealed: false,
   },
   {
     id: 26,
-    text: "Your password must include a popular hash algorithm.",
+    text: 'Your password must have exactly 6 vowels.',
     met: false,
     revealed: false,
   },
-];
+  {
+    id: 27,
+    text: 'Your password must contain a number greater than 500.',
+    met: false,
+    revealed: false,
+  },
+  {
+    id: 28,
+    text: 'Your password must contain no consecutive lowercase letters.',
+    met: false,
+    revealed: false,
+  },
+  {
+    id: 29,
+    text: 'Your password must include the name of a common password-cracking algorithm (Ask teacher if unsure).',
+    met: false,
+    revealed: false,
+  },
+  {
+    id: 30,
+    text: 'Your password must include the abbreviation of any Australian state or territory',
+    met: false,
+    revealed: false,
+  },
+  {
+    id: 31,
+    text: 'Your password must include a leap year.',
+    met: false,
+    revealed: false,
+  },
+  {
+    id: 32,
+    text: '🐔← This is my chicken Paul. Please put him in your password and keep him safe.',
+    met: false,
+    revealed: false,
+  },
+  {
+    id: 33,
+    text: 'Oh no! Bombs have been placed around Paul! Delete all the bomb emojis to save Paul before they explode.',
+    met: false,
+    revealed: false,
+  },
+  {
+    id: 34,
+    text: 'Your password must include the length of your password.',
+    met: false,
+    revealed: false,
+  },
+  {
+    id: 35,
+    text: 'The length of your password must be a prime number.',
+    met: false,
+    revealed: false,
+  },
+]
 
 export const checkRules = (password: string, rules: Rule[]): Rule[] => {
-  let updatedRules = [...rules];
+  let updatedRules = [...rules]
 
   // Rule 1: Password must be at least 5 characters long
-  updatedRules[0].met = password.length >= 5;
-  updatedRules[0].revealed = updatedRules[0].revealed || password.length > 0;
+  updatedRules[0].met = password.length >= 5
+  updatedRules[0].revealed = updatedRules[0].revealed || password.length > 0
 
-  // Sequential unlocking logic: Only reveal the next rule if the previous one is met
+  // Rule 2: Password must include a number
   if (updatedRules[0].revealed) {
-    // Rule 2: Password must include a number
-    updatedRules[1].met = /\d/.test(password);
-    updatedRules[1].revealed = updatedRules[0].met || updatedRules[1].revealed;
-  } else {
-    updatedRules[1].met = false;
+    updatedRules[1].met = /\d/.test(password)
+    updatedRules[1].revealed = updatedRules[0].met || updatedRules[1].revealed
   }
 
+  // Rule 3: Password must include an uppercase letter
   if (updatedRules[1].revealed) {
-    // Rule 3: Password must include an uppercase letter
-    updatedRules[2].met = /[A-Z]/.test(password);
-    updatedRules[2].revealed = updatedRules[1].met || updatedRules[2].revealed;
+    updatedRules[2].met = /[A-Z]/.test(password)
+    updatedRules[2].revealed = updatedRules[1].met || updatedRules[2].revealed
   }
 
+  // Rule 4: Password must include a special character
   if (updatedRules[2].revealed) {
-    // Rule 4: Password must include a special character
-    updatedRules[3].met = /[\W_]/.test(password);
-    updatedRules[3].revealed = updatedRules[2].met || updatedRules[3].revealed;
+    updatedRules[3].met = /[@#$%^&*]/.test(password)
+    updatedRules[3].revealed = updatedRules[2].met || updatedRules[3].revealed
   }
 
+  // Rule 5: Password must include a Roman numeral
   if (updatedRules[3].revealed) {
-    // Rule 5: Password must include a month of the year
-    const months = [
-      "january",
-      "february",
-      "march",
-      "april",
-      "may",
-      "june",
-      "july",
-      "august",
-      "september",
-      "october",
-      "november",
-      "december",
-    ];
-    updatedRules[4].met = months.some((month) =>
-      password.toLowerCase().includes(month)
-    );
-    updatedRules[4].revealed = updatedRules[3].met || updatedRules[4].revealed;
+    updatedRules[4].met = /[IVXLCDM]/.test(password)
+    updatedRules[4].revealed = updatedRules[3].met || updatedRules[4].revealed
   }
 
+  // Rule 6: The digits in your password must add up to 25
   if (updatedRules[4].revealed) {
-    // Rule 6: The digits in your password must add up to 25
-    const digits = password.match(/\d/g);
+    const digits = password.match(/\d/g)
     const sum = digits
       ? digits.reduce((acc, digit) => acc + parseInt(digit, 10), 0)
-      : 0;
-    updatedRules[5].met = sum === 25;
-    updatedRules[5].revealed = updatedRules[4].met || updatedRules[5].revealed;
+      : 0
+    updatedRules[5].met = sum === 25
+    updatedRules[5].revealed = updatedRules[4].met || updatedRules[5].revealed
   }
 
+  // Rule 7: Password must include a month of the year
   if (updatedRules[5].revealed) {
-    // Rule 7: Password must include the word "password"
-    updatedRules[6].met = /password/i.test(password);
-    updatedRules[6].revealed = updatedRules[5].met || updatedRules[6].revealed;
+    const months = [
+      'january',
+      'february',
+      'march',
+      'april',
+      'may',
+      'june',
+      'july',
+      'august',
+      'september',
+      'october',
+      'november',
+      'december',
+    ]
+    updatedRules[6].met = months.some((month) =>
+      password.toLowerCase().includes(month)
+    )
+    updatedRules[6].revealed = updatedRules[5].met || updatedRules[6].revealed
   }
 
+  // Rule 8: Password must include a Roman numeral (again)
   if (updatedRules[6].revealed) {
-    // Rule 8: Password must include a sequence of 3 repeated characters
-    updatedRules[7].met = /(.)\1\1/.test(password);
-    updatedRules[7].revealed = updatedRules[6].met || updatedRules[7].revealed;
+    updatedRules[7].met = /[IVXLCDM]/.test(password)
+    updatedRules[7].revealed = updatedRules[6].met || updatedRules[7].revealed
   }
 
+  // Rule 9: Password must include the word "griffith"
   if (updatedRules[7].revealed) {
-    // Rule 9: Password must include a day of the week
-    const days = [
-      "monday",
-      "tuesday",
-      "wednesday",
-      "thursday",
-      "friday",
-      "saturday",
-      "sunday",
-    ];
-    updatedRules[8].met = days.some((day) =>
-      password.toLowerCase().includes(day)
-    );
-    updatedRules[8].revealed = updatedRules[7].met || updatedRules[8].revealed;
+    updatedRules[8].met = /griffith/i.test(password)
+    updatedRules[8].revealed = updatedRules[7].met || updatedRules[8].revealed
   }
 
+  // Rule 10: Password must include a sequence of 3 repeated characters
   if (updatedRules[8].revealed) {
-    // Rule 10: Password must include a Roman numeral
-    updatedRules[9].met = /[IVXLCDM]/i.test(password);
-    updatedRules[9].revealed = updatedRules[8].met || updatedRules[9].revealed;
+    updatedRules[9].met = /(.)\1\1/.test(password)
+    updatedRules[9].revealed = updatedRules[8].met || updatedRules[9].revealed
   }
 
+  // Rule 11: Password must include the first three letters of any day of the week
   if (updatedRules[9].revealed) {
-    // Rule 11: Password must include a palindrome
-    const isPalindrome = (str: string) =>
-      str === str.split("").reverse().join("");
-    updatedRules[10].met = isPalindrome(password);
-    updatedRules[10].revealed =
-      updatedRules[9].met || updatedRules[10].revealed;
+    const daysAbbreviations = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+    updatedRules[10].met = daysAbbreviations.some((day) =>
+      password.toLowerCase().includes(day)
+    )
+    updatedRules[10].revealed = updatedRules[9].met || updatedRules[10].revealed
   }
 
+  // Rule 12: Password must not include any space characters
   if (updatedRules[10].revealed) {
-    // Rule 12: Password must include a prime number
-    const isPrime = (num: number) => {
-      for (let i = 2, sqrt = Math.sqrt(num); i <= sqrt; i++)
-        if (num % i === 0) return false;
-      return num > 1;
-    };
-    const numbers = password.match(/\d+/g);
-    updatedRules[11].met = numbers
-      ? numbers.some((num) => isPrime(parseInt(num, 10)))
-      : false;
+    updatedRules[11].met = !/\s/.test(password)
     updatedRules[11].revealed =
-      updatedRules[10].met || updatedRules[11].revealed;
+      updatedRules[10].met || updatedRules[11].revealed
   }
 
+  // Rule 13: Password must include two consecutive uppercase letters
   if (updatedRules[11].revealed) {
-    // Rule 13: Password must include a hexadecimal number
-    updatedRules[12].met = /0x[0-9A-Fa-f]+/.test(password);
+    updatedRules[12].met = /[A-Z]{2}/.test(password)
     updatedRules[12].revealed =
-      updatedRules[11].met || updatedRules[12].revealed;
+      updatedRules[11].met || updatedRules[12].revealed
   }
 
+  // Rule 14: Password must include two consecutive numbers
   if (updatedRules[12].revealed) {
-    // Rule 14: Password must include a binary number
-    updatedRules[13].met = /[01]+/.test(password);
+    updatedRules[13].met = /\d{2}/.test(password)
     updatedRules[13].revealed =
-      updatedRules[12].met || updatedRules[13].revealed;
+      updatedRules[12].met || updatedRules[13].revealed
   }
 
+  // Rule 15: Your password must contain more than 3 different special characters
   if (updatedRules[13].revealed) {
-    // Rule 15: Password must include a punctuation mark
-    updatedRules[14].met = /[.,\/#!$%\^&\*;:{}=\-_`~()]/.test(password);
+    const specialChars = password.match(/[@#$%^&*]/g)
+    updatedRules[14].met = specialChars ? new Set(specialChars).size > 3 : false
     updatedRules[14].revealed =
-      updatedRules[13].met || updatedRules[14].revealed;
+      updatedRules[13].met || updatedRules[14].revealed
   }
 
+  // Rule 16: Your password must start with an uppercase letter
   if (updatedRules[14].revealed) {
-    // Rule 16: Password must include a color name
-    const colors = [
-      "red",
-      "blue",
-      "green",
-      "yellow",
-      "purple",
-      "orange",
-      "pink",
-      "brown",
-      "black",
-      "white",
-    ];
-    updatedRules[15].met = colors.some((color) =>
-      password.toLowerCase().includes(color)
-    );
+    updatedRules[15].met = /^[A-Z]/.test(password)
     updatedRules[15].revealed =
-      updatedRules[14].met || updatedRules[15].revealed;
+      updatedRules[14].met || updatedRules[15].revealed
   }
 
+  // Rule 17: Your password must contain a palindrome (no spaces)
   if (updatedRules[15].revealed) {
-    // Rule 17: Password must include a fruit name
-    const fruits = [
-      "apple",
-      "banana",
-      "cherry",
-      "date",
-      "fig",
-      "grape",
-      "kiwi",
-      "lemon",
-      "mango",
-      "orange",
-    ];
-    updatedRules[16].met = fruits.some((fruit) =>
-      password.toLowerCase().includes(fruit)
-    );
+    const isPalindrome = (str: string) =>
+      str === str.split('').reverse().join('') && str.length > 1
+    let foundPalindrome = false
+    for (let i = 0; i < password.length; i++) {
+      for (let j = i + 2; j <= password.length; j++) {
+        const substring = password.slice(i, j)
+        if (isPalindrome(substring)) {
+          foundPalindrome = true
+          break
+        }
+      }
+      if (foundPalindrome) break
+    }
+    updatedRules[16].met = foundPalindrome
     updatedRules[16].revealed =
-      updatedRules[15].met || updatedRules[16].revealed;
+      updatedRules[15].met || updatedRules[16].revealed
   }
 
+  // Rule 18: Your password must contain at least 3 vowels
   if (updatedRules[16].revealed) {
-    // Rule 18: Password must include a country name
-    const countries = [
-      "canada",
-      "brazil",
-      "china",
-      "france",
-      "germany",
-      "india",
-      "japan",
-      "mexico",
-      "russia",
-      "usa",
-    ];
-    updatedRules[17].met = countries.some((country) =>
-      password.toLowerCase().includes(country)
-    );
+    const vowels = password.match(/[aeiou]/gi)
+    updatedRules[17].met = vowels ? vowels.length >= 3 : false
     updatedRules[17].revealed =
-      updatedRules[16].met || updatedRules[17].revealed;
+      updatedRules[16].met || updatedRules[17].revealed
   }
 
+  // Rule 19: Your password must include the word '2FA'
   if (updatedRules[17].revealed) {
-    // Rule 19: Password must include a famous landmark
-    const landmarks = [
-      "eiffel",
-      "colosseum",
-      "pyramids",
-      "statue",
-      "taj",
-      "great wall",
-      "machu",
-      "christ",
-      "petra",
-      "stonehenge",
-    ];
-    updatedRules[18].met = landmarks.some((landmark) =>
-      password.toLowerCase().includes(landmark)
-    );
+    updatedRules[18].met = password.includes('2FA')
     updatedRules[18].revealed =
-      updatedRules[17].met || updatedRules[18].revealed;
+      updatedRules[17].met || updatedRules[18].revealed
   }
 
+  // Rule 20: Your password must contain at least one even number
   if (updatedRules[18].revealed) {
-    // Rule 20: Password must include a chemical element
-    const elements = [
-      "hydrogen",
-      "helium",
-      "lithium",
-      "beryllium",
-      "boron",
-      "carbon",
-      "nitrogen",
-      "oxygen",
-      "fluorine",
-      "neon",
-    ];
-    updatedRules[19].met = elements.some((element) =>
-      password.toLowerCase().includes(element)
-    );
+    updatedRules[19].met = /[02468]/.test(password)
     updatedRules[19].revealed =
-      updatedRules[18].met || updatedRules[19].revealed;
+      updatedRules[18].met || updatedRules[19].revealed
   }
 
+  // Rule 21: Your password must contain at least one prime number (2, 3, 5, 7)
   if (updatedRules[19].revealed) {
-    // Rule 21: Password must include a constellation name
-    const constellations = [
-      "orion",
-      "ursa",
-      "leo",
-      "scorpius",
-      "cassiopeia",
-      "andromeda",
-      "pegasus",
-      "lyra",
-      "cygnus",
-      "aquarius",
-    ];
-    updatedRules[20].met = constellations.some((constellation) =>
-      password.toLowerCase().includes(constellation)
-    );
+    updatedRules[20].met = /[2357]/.test(password)
     updatedRules[20].revealed =
-      updatedRules[19].met || updatedRules[20].revealed;
+      updatedRules[19].met || updatedRules[20].revealed
   }
 
+  // Rule 22: Your password must end with a number
   if (updatedRules[20].revealed) {
-    // Rule 22: Password must include a Greek letter
-    const greekLetters = [
-      "alpha",
-      "beta",
-      "gamma",
-      "delta",
-      "epsilon",
-      "zeta",
-      "eta",
-      "theta",
-      "iota",
-      "kappa",
-    ];
-    updatedRules[21].met = greekLetters.some((letter) =>
-      password.toLowerCase().includes(letter)
-    );
+    updatedRules[21].met = /\d$/.test(password)
     updatedRules[21].revealed =
-      updatedRules[20].met || updatedRules[21].revealed;
+      updatedRules[20].met || updatedRules[21].revealed
   }
 
+  // Rule 23: Your password must include a punctuation mark
   if (updatedRules[21].revealed) {
-    // Rule 23: Password must include a mathematical symbol
-    const mathSymbols = ["+", "-", "*", "/", "=", "<", ">", "√", "π", "∞"];
-    updatedRules[22].met = mathSymbols.some((symbol) =>
-      password.includes(symbol)
-    );
+    updatedRules[22].met = /[.,!?]/.test(password)
     updatedRules[22].revealed =
-      updatedRules[21].met || updatedRules[22].revealed;
+      updatedRules[21].met || updatedRules[22].revealed
   }
 
+  // Rule 24: Your password must include both parentheses
   if (updatedRules[22].revealed) {
-    // Rule 24: Password must include a programming language name
-    const languages = [
-      "python",
-      "java",
-      "javascript",
-      "ruby",
-      "swift",
-      "kotlin",
-      "csharp",
-      "go",
-      "rust",
-      "typescript",
-    ];
-    updatedRules[23].met = languages.some((language) =>
-      password.toLowerCase().includes(language)
-    );
+    updatedRules[23].met = /\(.*\)/.test(password)
     updatedRules[23].revealed =
-      updatedRules[22].met || updatedRules[23].revealed;
+      updatedRules[22].met || updatedRules[23].revealed
   }
 
+  // Rule 25: Your password must include one character that appears exactly 3 times
   if (updatedRules[23].revealed) {
-    // Rule 25: Password must include a famous scientist's name
-    const scientists = [
-      "einstein",
-      "newton",
-      "curie",
-      "tesla",
-      "darwin",
-      "hawking",
-      "galileo",
-      "bohr",
-      "feynman",
-      "turing",
-    ];
-    updatedRules[24].met = scientists.some((scientist) =>
-      password.toLowerCase().includes(scientist)
-    );
+    const charOccurrences = password.split('').reduce((acc, char) => {
+      acc[char] = (acc[char] || 0) + 1
+      return acc
+    }, {} as Record<string, number>)
+    updatedRules[24].met = Object.values(charOccurrences).includes(3)
     updatedRules[24].revealed =
-      updatedRules[23].met || updatedRules[24].revealed;
-  }
-  if (updatedRules[24].revealed) {
-    // Rule 26: Your password must include a popular hash algorithm
-    const hashAlgorithms = [
-      "MD5",
-      "SHA-1",
-      "SHA-256",
-      "SHA-512",
-      "SHA-3",
-      "RIPEMD-160",
-      "Whirlpool",
-      "BLAKE2",
-      "BLAKE3",
-      "Tiger",
-      "HAVAL",
-      "GOST",
-      "CRC32",
-      "SHA-224",
-      "SHA-384",
-    ];
-    updatedRules[24].met = hashAlgorithms.some((hashAlgorithms) =>
-      password.toLowerCase().includes(hashAlgorithms)
-    );
-    updatedRules[24].revealed =
-      updatedRules[23].met || updatedRules[24].revealed;
+      updatedRules[23].met || updatedRules[24].revealed
   }
 
-  return updatedRules;
-};
+  // Rule 26: Your password must have exactly 6 vowels
+  if (updatedRules[24].revealed) {
+    const vowels = password.match(/[aeiou]/gi)
+    updatedRules[25].met = vowels ? vowels.length === 6 : false
+    updatedRules[25].revealed =
+      updatedRules[24].met || updatedRules[25].revealed
+  }
+
+  // Rule 27: Your password must contain a number greater than 50
+  if (updatedRules[25].revealed) {
+    const numbers = password.match(/\d+/g) // Find sequences of digits
+    updatedRules[26].met = numbers
+      ? numbers.some((num) => parseInt(num, 10) > 500)
+      : false
+    updatedRules[26].revealed =
+      updatedRules[25].met || updatedRules[26].revealed
+  }
+
+  // Rule 28: Your password must contain no consecutive lowercase letters
+  if (updatedRules[26].revealed) {
+    updatedRules[27].met = !/[a-z]{2,}/.test(password)
+    updatedRules[27].revealed =
+      updatedRules[26].met || updatedRules[27].revealed
+  }
+
+  // Rule 29: Your password must include the name of a common password-cracking algorithm (Ask teacher if unsure)
+  if (updatedRules[27].revealed) {
+    const algorithms = [
+      'MD5',
+      'SHA1',
+      'SHA256',
+      'bcrypt',
+      'PBKDF2',
+      'Argon2',
+      'NTLM',
+      'DES',
+      'Blowfish',
+      'LM',
+    ]
+    updatedRules[28].met = algorithms.some((algorithm) =>
+      password.toLowerCase().includes(algorithm.toLowerCase())
+    )
+    updatedRules[28].revealed =
+      updatedRules[27].met || updatedRules[28].revealed
+  }
+
+  // Rule 30: Your password must include the abbreviation of any Australian state or territory (e.g., NSW, QLD, VIC)
+  if (updatedRules[28].revealed) {
+    const australianStates = [
+      'NSW',
+      'QLD',
+      'VIC',
+      'TAS',
+      'SA',
+      'WA',
+      'ACT',
+      'NT',
+    ] // List of abbreviations
+    updatedRules[29].met = australianStates.some((state) =>
+      password.toLowerCase().includes(state.toLowerCase())
+    )
+    updatedRules[29].revealed =
+      updatedRules[28].met || updatedRules[29].revealed
+  }
+
+  // Function to determine if a year is a leap year
+  const isLeapYear = (year: number): boolean => {
+    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
+  }
+
+  // Extract potential 4-digit years from the password, even if there are no spaces
+  const extractYearsFromPassword = (password: string): number[] => {
+    const yearPattern = /(?:\D|^)(\d{4})(?=\D|$)/g // Match 4-digit numbers surrounded by non-digits or start/end of string
+    const foundYears = []
+    let match
+
+    while ((match = yearPattern.exec(password)) !== null) {
+      foundYears.push(parseInt(match[1], 10)) // Extract the year portion
+    }
+
+    return foundYears
+  }
+
+  // Rule 31: Your password must include a leap year
+  if (updatedRules[29].revealed) {
+    const yearsInPassword = extractYearsFromPassword(password)
+
+    updatedRules[30].met = yearsInPassword.some((year) => isLeapYear(year)) // Check if any of the years in the password is a leap year
+    updatedRules[30].revealed =
+      updatedRules[29].met || updatedRules[30].revealed
+  }
+
+  // Rule 32: 🐔 ← This is my chicken Paul. He hasn’t hatched yet, please put him in your password and keep him safe
+  if (updatedRules[30].revealed) {
+    updatedRules[31].met = password.includes('🐔')
+    updatedRules[31].revealed =
+      updatedRules[30].met || updatedRules[31].revealed
+  }
+
+  // Rule 33: Oh no! They are trying to bomb Paul. Delete all bombs to save him!
+  if (updatedRules[31].revealed) {
+    // The rule is not met if there are bombs in the password
+    if (password.includes('💣')) {
+      updatedRules[32].met = false // Rule is not met if bombs are present
+    } else {
+      updatedRules[32].met = !password.includes('💣') // Rule is met if all bombs have been removed
+    }
+    updatedRules[32].revealed =
+      updatedRules[31].met || updatedRules[32].revealed
+  }
+
+  const getActualLength = (password: string) => {
+    return [...password].length // Spread operator to correctly count emojis as 1 character
+  }
+
+  // Rule 34: Your password must include the length of your password
+  if (updatedRules[32].revealed && updatedRules[32].met) {
+    // Ensure Rule 32 is met
+    const actualLength = getActualLength(password)
+    updatedRules[33].met = password.includes(actualLength.toString())
+    updatedRules[33].revealed =
+      updatedRules[32].met || updatedRules[33].revealed
+  }
+
+  // Rule 35: The length of your password must be a prime number
+  if (updatedRules[33].revealed && updatedRules[33].met) {
+    // Ensure Rule 34 is met before revealing Rule 35
+    const actualLength = getActualLength(password)
+    const isPrime = (num: number) => {
+      if (num < 2) return false
+      for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return false
+      }
+      return true
+    }
+    updatedRules[34].met = isPrime(actualLength)
+    updatedRules[34].revealed =
+      updatedRules[33].met || updatedRules[34].revealed
+  }
+
+  return updatedRules
+}
 
 export const timeUnits = [
-  { unit: "nanoseconds", value: 1e-9 },
-  { unit: "microseconds", value: 1e-6 },
-  { unit: "milliseconds", value: 1e-3 },
-  { unit: "seconds", value: 1 },
-  { unit: "minutes", value: 60 },
-  { unit: "hours", value: 60 * 60 },
-  { unit: "days", value: 60 * 60 * 24 },
-  { unit: "weeks", value: 60 * 60 * 24 * 7 },
-  { unit: "months", value: 60 * 60 * 24 * 30 },
-  { unit: "years", value: 60 * 60 * 24 * 365 },
-  { unit: "million years", value: 60 * 60 * 24 * 365 * 1e6 },
-  { unit: "billion years", value: 60 * 60 * 24 * 365 * 1e9 },
-  { unit: "trillion years", value: 60 * 60 * 24 * 365 * 1e12 },
-  { unit: "quadrillion years", value: 60 * 60 * 24 * 365 * 1e15 },
-  { unit: "quintillion years", value: 60 * 60 * 24 * 365 * 1e18 },
-  { unit: "sextillion years", value: 60 * 60 * 24 * 365 * 1e21 },
-  { unit: "septillion years", value: 60 * 60 * 24 * 365 * 1e24 },
-];
+  { unit: 'nanoseconds', value: 1e-9 },
+  { unit: 'microseconds', value: 1e-6 },
+  { unit: 'milliseconds', value: 1e-3 },
+  { unit: 'seconds', value: 1 },
+  { unit: 'minutes', value: 60 },
+  { unit: 'hours', value: 60 * 60 },
+  { unit: 'days', value: 60 * 60 * 24 },
+  { unit: 'weeks', value: 60 * 60 * 24 * 7 },
+  { unit: 'months', value: 60 * 60 * 24 * 30 },
+  { unit: 'years', value: 60 * 60 * 24 * 365 },
+  { unit: 'million years', value: 60 * 60 * 24 * 365 * 1e6 },
+  { unit: 'billion years', value: 60 * 60 * 24 * 365 * 1e9 },
+  { unit: 'trillion years', value: 60 * 60 * 24 * 365 * 1e12 },
+  { unit: 'quadrillion years', value: 60 * 60 * 24 * 365 * 1e15 },
+  { unit: 'quintillion years', value: 60 * 60 * 24 * 365 * 1e18 },
+  { unit: 'sextillion years', value: 60 * 60 * 24 * 365 * 1e21 },
+  { unit: 'septillion years', value: 60 * 60 * 24 * 365 * 1e24 },
+  { unit: 'octillion years', value: 60 * 60 * 24 * 365 * 1e27 },
+  { unit: 'nonillion years', value: 60 * 60 * 24 * 365 * 1e30 },
+  { unit: 'decillion years', value: 60 * 60 * 24 * 365 * 1e33 },
+  { unit: 'undecillion years', value: 60 * 60 * 24 * 365 * 1e36 },
+  { unit: 'duodecillion years', value: 60 * 60 * 24 * 365 * 1e39 },
+  { unit: 'tredecillion years', value: 60 * 60 * 24 * 365 * 1e42 },
+  { unit: 'quattuordecillion years', value: 60 * 60 * 24 * 365 * 1e45 },
+  { unit: 'quindecillion years', value: 60 * 60 * 24 * 365 * 1e48 },
+  { unit: 'sexdecillion years', value: 60 * 60 * 24 * 365 * 1e51 },
+  { unit: 'septendecillion years', value: 60 * 60 * 24 * 365 * 1e54 },
+  { unit: 'octodecillion years', value: 60 * 60 * 24 * 365 * 1e57 },
+  { unit: 'novemdecillion years', value: 60 * 60 * 24 * 365 * 1e60 },
+  { unit: 'vigintillion years', value: 60 * 60 * 24 * 365 * 1e63 },
+]
