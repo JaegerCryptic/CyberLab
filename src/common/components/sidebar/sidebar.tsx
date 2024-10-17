@@ -18,8 +18,6 @@ export const Sidebar = () => {
   const { setSelectedGame } = useGame()
 
   const handleGameClick = (game: string) => {
-    console.log(game)
-
     setSelectedGame(game)
   }
 
@@ -108,6 +106,12 @@ export const Sidebar = () => {
             text='Information Hunting'
             isOpen={false}
             onClick={() => handleGameClick('Information Hunter')}
+            isCollapsible={false}
+          />
+          <CLCollapsibleListItem
+            text='Word Search'
+            isOpen={false}
+            onClick={() => handleGameClick('Word Search')}
             isCollapsible={false}
           />
         </CLCollapsibleListItem>
