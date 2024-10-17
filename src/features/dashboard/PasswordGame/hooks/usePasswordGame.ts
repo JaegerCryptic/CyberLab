@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { addBombsToPassword, explodePassword } from '../helpers'
 import { initialRules, checkRules } from '../constants'
 
@@ -16,6 +16,8 @@ export const usePasswordGame = () => {
 	const [isCongratsModalOpen, setIsCongratsModalOpen] = useState(false)
 	const [successMessageShown, setSuccessMessageShown] = useState(false)
 
+	const timerRef = useRef<NodeJS.Timeout | null>(null)
+
 	const resetGame = useCallback(() => {
 		setPassword('')
 		setRules(initialRules)
@@ -29,25 +31,35 @@ export const usePasswordGame = () => {
 		setShowFailMessage(false)
 		setIsCongratsModalOpen(false)
 		setSuccessMessageShown(false)
+		if (timerRef.current) {
+			clearInterval(timerRef.current)
+			timerRef.current = null
+		}
 	}, [])
 
 	const startBombTimer = useCallback(() => {
-		if (bombTimer !== null && bombTimer > 0 && !allBombsRemoved) {
-			const timer = setTimeout(() => {
-				setBombTimer((prev) => (prev !== null ? prev - 1 : null))
-			}, 1000)
-
-			return () => clearTimeout(timer)
+		if (timerRef.current) {
+			clearInterval(timerRef.current)
 		}
-
-		if (bombTimer === 0 && !explosionOccurred) {
-			setPassword(explodePassword(password))
-			setBombsExploded(true)
-			setExplosionOccurred(true)
-			setShowFailMessage(true)
-			setTimeout(() => setShowFailMessage(false), 5000)
-		}
-	}, [bombTimer, password, allBombsRemoved, explosionOccurred])
+		timerRef.current = setInterval(() => {
+			setBombTimer((prev) => {
+				if (prev !== null && prev > 0) {
+					return prev - 1
+				} else {
+					if (prev === 0) {
+						setPassword((prevPassword) => explodePassword(prevPassword))
+						setBombsExploded(true)
+						setExplosionOccurred(true)
+						setShowFailMessage(true)
+						setTimeout(() => setShowFailMessage(false), 5000)
+						clearInterval(timerRef.current!)
+						timerRef.current = null
+					}
+					return null
+				}
+			})
+		}, 1000)
+	}, [])
 
 	const addBombs = useCallback(() => {
 		if (rules[31].met && !bombsAdded) {
@@ -58,8 +70,10 @@ export const usePasswordGame = () => {
 
 			const updatedRules = checkRules(newPassword, rules)
 			setRules(updatedRules)
+
+			startBombTimer()
 		}
-	}, [rules, bombsAdded, password])
+	}, [rules, bombsAdded, password, startBombTimer])
 
 	const handlePasswordChange = (newPassword: string): void => {
 		try {
@@ -81,6 +95,10 @@ export const usePasswordGame = () => {
 					setShowSuccessMessage(true)
 					setSuccessMessageShown(true)
 					setTimeout(() => setShowSuccessMessage(false), 5000)
+					if (timerRef.current) {
+						clearInterval(timerRef.current)
+						timerRef.current = null
+					}
 				}
 
 				const updatedRules = checkRules(newPassword, rules)
@@ -92,7 +110,6 @@ export const usePasswordGame = () => {
 				}
 
 				addBombs()
-				startBombTimer()
 			}
 		} catch (error) {
 			console.error('Error handling password change:', error)
