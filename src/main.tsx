@@ -1,21 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import CssBaseline from "@mui/material/CssBaseline"
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import React from "react"
-import ReactDOM from "react-dom/client"
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { GlobalStyles, ThemeProvider } from "@mui/material"
-import { LocalizationProvider } from "@mui/x-date-pickers"
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3"
-import { CookiesProvider } from "react-cookie"
+import CssBaseline from '@mui/material/CssBaseline'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { GlobalStyles, ThemeProvider } from '@mui/material'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
+import { CookiesProvider } from 'react-cookie'
 
-import { ROOT_ROUTE } from "./routes/Root"
-import { darkTheme } from "./theme/style"
-import { AUTHENTICATED_ROUTES } from "./routes/AuthenticatedRoutes"
-import { STARTUP_ROUTE } from "./routes/startup/Startup"
-import { appTheme } from "./theme/style"
-import Notifier from "./features/Notifications/Notifier"
-import { GameProvider } from "./routes/GameContext"
+import { ROOT_ROUTE } from './routes/Root'
+import { darkTheme } from './theme/style'
+import { AUTHENTICATED_ROUTES } from './routes/AuthenticatedRoutes'
+import { STARTUP_ROUTE } from './routes/startup/Startup'
+import { appTheme } from './theme/style'
+import Notifier from './features/Notifications/Notifier'
+import { GameProvider } from './routes/GameContext'
 
 const router = createBrowserRouter([
 	ROOT_ROUTE,
@@ -34,7 +34,7 @@ const queryClient = new QueryClient({
 	},
 })
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>
 		<GameProvider>
 			<CookiesProvider>

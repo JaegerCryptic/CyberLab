@@ -105,7 +105,6 @@ export const InformationHunterGame = () => {
 					textAlign: 'center',
 					fontSize: appTheme.fontSize.bodyText,
 					boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)',
-					border: `6px solid ${customTheme.secondary}`,
 				}}
 			>
 				<Typography
