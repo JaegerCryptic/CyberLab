@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
 	Box,
 	Container,
@@ -15,9 +15,31 @@ export const PhishingSimulatorGame = () => {
 	const [currentPairIndex, setCurrentPairIndex] = useState(0)
 	const [score, setScore] = useState(0)
 	const [feedback, setFeedback] = useState<string | null>(null)
+	const [isAnswered, setIsAnswered] = useState(false) // New state to track if an answer has been selected
+	const [isPhishingFirst, setIsPhishingFirst] = useState(Math.random() < 0.5) // Randomly decide the order
 
 	const totalQuestions = emailPairs.length
 	const progress = ((currentPairIndex + 1) / totalQuestions) * 100
+
+	useEffect(() => {
+		setIsPhishingFirst(Math.random() < 0.5) // Randomize order for each question
+	}, [currentPairIndex])
+
+	const handleAnswerSelection = (isPhishing: boolean) => {
+		if (!isAnswered) {
+			setIsAnswered(true)
+			handleSelection(
+				isPhishing,
+				currentPairIndex,
+				setScore,
+				setFeedback,
+				setCurrentPairIndex
+			)
+			setTimeout(() => {
+				setIsAnswered(false) // Reset isAnswered after feedback is cleared
+			}, 3000)
+		}
+	}
 
 	if (currentPairIndex >= totalQuestions) {
 		return (
@@ -142,110 +164,193 @@ export const PhishingSimulatorGame = () => {
 						marginBottom: '24px',
 					}}
 				>
-					<Paper
-						sx={{
-							width: '45%',
-							padding: '16px',
-							textAlign: 'left',
-							cursor: 'pointer',
-							backgroundColor: appTheme.colors.text,
-							borderRadius: '24px',
-						}}
-						onClick={() =>
-							handleSelection(
-								false, // This is the legitimate email
-								currentPairIndex,
-								setScore,
-								setFeedback,
-								setCurrentPairIndex
-							)
-						}
-					>
-						<Typography
-							color={'black'}
-							variant='subtitle2'
-							component='div'
-							gutterBottom
-						>
-							From: {currentPair.legitimate.sender}
-						</Typography>
-						<Typography
-							color={'black'}
-							variant='subtitle2'
-							component='div'
-							gutterBottom
-						>
-							Subject: {currentPair.legitimate.subject}
-						</Typography>
-						<Typography
-							color={'black'}
-							variant='subtitle2'
-							component='div'
-							gutterBottom
-						>
-							Date: {currentPair.legitimate.timestamp}
-						</Typography>
-						<Typography
-							color={'black'}
-							variant='body1'
-							component='div'
-							gutterBottom
-						>
-							{currentPair.legitimate.body}
-						</Typography>
-					</Paper>
-					<Paper
-						sx={{
-							width: '45%',
-							padding: '16px',
-							textAlign: 'left',
-							cursor: 'pointer',
-							backgroundColor: appTheme.colors.text,
-							borderRadius: '24px',
-						}}
-						onClick={() =>
-							handleSelection(
-								true, // This is the phishing email
-								currentPairIndex,
-								setScore,
-								setFeedback,
-								setCurrentPairIndex
-							)
-						}
-					>
-						<Typography
-							color={'black'}
-							variant='subtitle2'
-							component='div'
-							gutterBottom
-						>
-							From: {currentPair.phishing.sender}
-						</Typography>
-						<Typography
-							color={'black'}
-							variant='subtitle2'
-							component='div'
-							gutterBottom
-						>
-							Subject: {currentPair.phishing.subject}
-						</Typography>
-						<Typography
-							color={'black'}
-							variant='subtitle2'
-							component='div'
-							gutterBottom
-						>
-							Date: {currentPair.phishing.timestamp}
-						</Typography>
-						<Typography
-							color={'black'}
-							variant='body1'
-							component='div'
-							gutterBottom
-						>
-							{currentPair.phishing.body}
-						</Typography>
-					</Paper>
+					{isPhishingFirst ? (
+						<>
+							<Paper
+								sx={{
+									width: '45%',
+									padding: '16px',
+									textAlign: 'left',
+									cursor: isAnswered ? 'not-allowed' : 'pointer', // Disable cursor if answered
+									backgroundColor: appTheme.colors.text,
+									borderRadius: '24px',
+									pointerEvents: isAnswered ? 'none' : 'auto', // Disable pointer events if answered
+								}}
+								onClick={() => handleAnswerSelection(true)} // This is the phishing email
+							>
+								<Typography
+									color={'black'}
+									variant='subtitle2'
+									component='div'
+									gutterBottom
+								>
+									From: {currentPair.phishing.sender}
+								</Typography>
+								<Typography
+									color={'black'}
+									variant='subtitle2'
+									component='div'
+									gutterBottom
+								>
+									Subject: {currentPair.phishing.subject}
+								</Typography>
+								<Typography
+									color={'black'}
+									variant='subtitle2'
+									component='div'
+									gutterBottom
+								>
+									Date: {currentPair.phishing.timestamp}
+								</Typography>
+								<Typography
+									color={'black'}
+									variant='body1'
+									component='div'
+									gutterBottom
+								>
+									{currentPair.phishing.body}
+								</Typography>
+							</Paper>
+							<Paper
+								sx={{
+									width: '45%',
+									padding: '16px',
+									textAlign: 'left',
+									cursor: isAnswered ? 'not-allowed' : 'pointer', // Disable cursor if answered
+									backgroundColor: appTheme.colors.text,
+									borderRadius: '24px',
+									pointerEvents: isAnswered ? 'none' : 'auto', // Disable pointer events if answered
+								}}
+								onClick={() => handleAnswerSelection(false)} // This is the legitimate email
+							>
+								<Typography
+									color={'black'}
+									variant='subtitle2'
+									component='div'
+									gutterBottom
+								>
+									From: {currentPair.legitimate.sender}
+								</Typography>
+								<Typography
+									color={'black'}
+									variant='subtitle2'
+									component='div'
+									gutterBottom
+								>
+									Subject: {currentPair.legitimate.subject}
+								</Typography>
+								<Typography
+									color={'black'}
+									variant='subtitle2'
+									component='div'
+									gutterBottom
+								>
+									Date: {currentPair.legitimate.timestamp}
+								</Typography>
+								<Typography
+									color={'black'}
+									variant='body1'
+									component='div'
+									gutterBottom
+								>
+									{currentPair.legitimate.body}
+								</Typography>
+							</Paper>
+						</>
+					) : (
+						<>
+							<Paper
+								sx={{
+									width: '45%',
+									padding: '16px',
+									textAlign: 'left',
+									cursor: isAnswered ? 'not-allowed' : 'pointer', // Disable cursor if answered
+									backgroundColor: appTheme.colors.text,
+									borderRadius: '24px',
+									pointerEvents: isAnswered ? 'none' : 'auto', // Disable pointer events if answered
+								}}
+								onClick={() => handleAnswerSelection(false)} // This is the legitimate email
+							>
+								<Typography
+									color={'black'}
+									variant='subtitle2'
+									component='div'
+									gutterBottom
+								>
+									From: {currentPair.legitimate.sender}
+								</Typography>
+								<Typography
+									color={'black'}
+									variant='subtitle2'
+									component='div'
+									gutterBottom
+								>
+									Subject: {currentPair.legitimate.subject}
+								</Typography>
+								<Typography
+									color={'black'}
+									variant='subtitle2'
+									component='div'
+									gutterBottom
+								>
+									Date: {currentPair.legitimate.timestamp}
+								</Typography>
+								<Typography
+									color={'black'}
+									variant='body1'
+									component='div'
+									gutterBottom
+								>
+									{currentPair.legitimate.body}
+								</Typography>
+							</Paper>
+							<Paper
+								sx={{
+									width: '45%',
+									padding: '16px',
+									textAlign: 'left',
+									cursor: isAnswered ? 'not-allowed' : 'pointer', // Disable cursor if answered
+									backgroundColor: appTheme.colors.text,
+									borderRadius: '24px',
+									pointerEvents: isAnswered ? 'none' : 'auto', // Disable pointer events if answered
+								}}
+								onClick={() => handleAnswerSelection(true)} // This is the phishing email
+							>
+								<Typography
+									color={'black'}
+									variant='subtitle2'
+									component='div'
+									gutterBottom
+								>
+									From: {currentPair.phishing.sender}
+								</Typography>
+								<Typography
+									color={'black'}
+									variant='subtitle2'
+									component='div'
+									gutterBottom
+								>
+									Subject: {currentPair.phishing.subject}
+								</Typography>
+								<Typography
+									color={'black'}
+									variant='subtitle2'
+									component='div'
+									gutterBottom
+								>
+									Date: {currentPair.phishing.timestamp}
+								</Typography>
+								<Typography
+									color={'black'}
+									variant='body1'
+									component='div'
+									gutterBottom
+								>
+									{currentPair.phishing.body}
+								</Typography>
+							</Paper>
+						</>
+					)}
 				</Box>
 
 				{feedback && (
