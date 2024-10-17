@@ -94,7 +94,7 @@ export const Md5HashingCrackingGame = () => {
           gutterBottom
           sx={{ color: appTheme.colors.text }}
         >
-          MD5 Hashing Cracking
+          MD5 Hashing
         </Typography>
 
         <CLTextInput
