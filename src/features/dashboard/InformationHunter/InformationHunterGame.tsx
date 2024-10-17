@@ -18,7 +18,6 @@ const customTheme = {
 	background: '#121C21',
 	backgroundAccent: '#1E2A30',
 	primary: '#1DB954',
-	secondary: '#FF4081',
 	text: '#FFFFFF',
 	textSecondary: '#B3B3B3',
 }
