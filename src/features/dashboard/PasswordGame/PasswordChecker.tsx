@@ -61,10 +61,10 @@ export const PasswordChecker = () => {
 	return (
 		<Container
 			sx={{
-				width: '90vw',
+				width: '100vw',
 				height: '50vh',
 				display: 'flex',
-				justifyContent: 'right',
+				justifyContent: 'center',
 				alignItems: 'center',
 				backgroundColor: bgColor,
 				transition: 'background-color 0.3s',
