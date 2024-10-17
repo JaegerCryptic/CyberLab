@@ -25,7 +25,7 @@ export const PasswordGame = () => {
 		<Box
 			sx={{
 				width: '100vw',
-				height: '50vh',
+				height: '100vh',
 				backgroundColor: appTheme.colors.background,
 				display: 'flex',
 				flexDirection: 'column',
@@ -83,14 +83,11 @@ export const PasswordGame = () => {
 				sx={{
 					width: '100%',
 					maxWidth: 780,
-					backgroundColor: appTheme.colors.backgroundAccent,
 					padding: '48px',
 					borderRadius: '8px',
 					color: appTheme.colors.text,
 					textAlign: 'center',
 					fontSize: appTheme.fontSize.bodyText,
-					boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)',
-					border: `6px solid ${appTheme.colors.secondary}`,
 					marginRight: '20px',
 				}}
 			>
