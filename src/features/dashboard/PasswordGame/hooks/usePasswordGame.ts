@@ -1,115 +1,132 @@
-import { useState, useEffect } from 'react'
-
+import { useState, useCallback, useRef } from 'react'
 import { addBombsToPassword, explodePassword } from '../helpers'
 import { initialRules, checkRules } from '../constants'
 
 export const usePasswordGame = () => {
-  const [password, setPassword] = useState<string>('')
-  const [rules, setRules] = useState(initialRules)
-  const [hasStartedTyping, setHasStartedTyping] = useState(false)
-  const [bombTimer, setBombTimer] = useState<number | null>(null)
-  const [bombsAdded, setBombsAdded] = useState(false)
-  const [allBombsRemoved, setAllBombsRemoved] = useState(false)
-  const [bombsExploded, setBombsExploded] = useState(false)
-  const [explosionOccurred, setExplosionOccurred] = useState(false)
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
-  const [showFailMessage, setShowFailMessage] = useState(false)
-  const [isCongratsModalOpen, setIsCongratsModalOpen] = useState(false)
-  const [successMessageShown, setSuccessMessageShown] = useState(false)
+	const [password, setPassword] = useState<string>('')
+	const [rules, setRules] = useState(initialRules)
+	const [hasStartedTyping, setHasStartedTyping] = useState(false)
+	const [bombTimer, setBombTimer] = useState<number | null>(null)
+	const [bombsAdded, setBombsAdded] = useState(false)
+	const [allBombsRemoved, setAllBombsRemoved] = useState(false)
+	const [bombsExploded, setBombsExploded] = useState(false)
+	const [explosionOccurred, setExplosionOccurred] = useState(false)
+	const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+	const [showFailMessage, setShowFailMessage] = useState(false)
+	const [isCongratsModalOpen, setIsCongratsModalOpen] = useState(false)
+	const [successMessageShown, setSuccessMessageShown] = useState(false)
 
-  const resetGame = () => {
-    setPassword('')
-    setRules(initialRules)
-    setHasStartedTyping(false)
-    setBombTimer(null)
-    setBombsAdded(false)
-    setAllBombsRemoved(false)
-    setBombsExploded(false)
-    setExplosionOccurred(false)
-    setShowSuccessMessage(false)
-    setShowFailMessage(false)
-    setIsCongratsModalOpen(false)
-    setSuccessMessageShown(false)
-  }
+	const timerRef = useRef<NodeJS.Timeout | null>(null)
 
-  const handlePasswordChange = (newPassword: string): void => {
-    if (!bombsExploded || explosionOccurred) {
-      setPassword(newPassword)
+	const resetGame = useCallback(() => {
+		setPassword('')
+		setRules(initialRules)
+		setHasStartedTyping(false)
+		setBombTimer(null)
+		setBombsAdded(false)
+		setAllBombsRemoved(false)
+		setBombsExploded(false)
+		setExplosionOccurred(false)
+		setShowSuccessMessage(false)
+		setShowFailMessage(false)
+		setIsCongratsModalOpen(false)
+		setSuccessMessageShown(false)
+		if (timerRef.current) {
+			clearInterval(timerRef.current)
+			timerRef.current = null
+		}
+	}, [])
 
-      if (!hasStartedTyping && newPassword.length > 0) {
-        setHasStartedTyping(true)
-      }
+	const startBombTimer = useCallback(() => {
+		if (timerRef.current) {
+			clearInterval(timerRef.current)
+		}
+		timerRef.current = setInterval(() => {
+			setBombTimer((prev) => {
+				if (prev !== null && prev > 0) {
+					return prev - 1
+				} else {
+					if (prev === 0) {
+						setPassword((prevPassword) => explodePassword(prevPassword))
+						setBombsExploded(true)
+						setExplosionOccurred(true)
+						setShowFailMessage(true)
+						setTimeout(() => setShowFailMessage(false), 5000)
+						clearInterval(timerRef.current!)
+						timerRef.current = null
+					}
+					return null
+				}
+			})
+		}, 1000)
+	}, [])
 
-      if (
-        bombsAdded &&
-        !newPassword.includes('💣') &&
-        !bombsExploded &&
-        !successMessageShown
-      ) {
-        setAllBombsRemoved(true)
-        setBombTimer(null)
-        setShowSuccessMessage(true)
-        setSuccessMessageShown(true)
-        setTimeout(() => setShowSuccessMessage(false), 5000)
-      }
+	const addBombs = useCallback(() => {
+		if (rules[31].met && !bombsAdded) {
+			const newPassword = addBombsToPassword(password, 15)
+			setPassword(newPassword)
+			setBombTimer(10)
+			setBombsAdded(true)
 
-      const updatedRules = checkRules(newPassword, rules)
-      setRules(updatedRules)
+			const updatedRules = checkRules(newPassword, rules)
+			setRules(updatedRules)
 
-      const allMet = updatedRules.every((rule) => rule.met)
-      if (allMet) {
-        setIsCongratsModalOpen(true)
-      }
-    }
-  }
+			startBombTimer()
+		}
+	}, [rules, bombsAdded, password, startBombTimer])
 
-  useEffect(() => {
-    if (rules[31].met && !bombsAdded) {
-      const newPassword = addBombsToPassword(password, 15)
-      setPassword(newPassword)
-      setBombTimer(10)
-      setBombsAdded(true)
+	const handlePasswordChange = (newPassword: string): void => {
+		try {
+			if (!bombsExploded || explosionOccurred) {
+				setPassword(newPassword)
 
-      const updatedRules = checkRules(newPassword, rules)
-      setRules(updatedRules)
-    }
-  }, [rules, bombsAdded, password])
+				if (!hasStartedTyping && newPassword.length > 0) {
+					setHasStartedTyping(true)
+				}
 
-  useEffect(() => {
-    if (bombTimer !== null && bombTimer > 0 && !allBombsRemoved) {
-      const timer = setTimeout(() => {
-        setBombTimer(bombTimer - 1)
-      }, 1000)
+				if (
+					bombsAdded &&
+					!newPassword.includes('💣') &&
+					!bombsExploded &&
+					!successMessageShown
+				) {
+					setAllBombsRemoved(true)
+					setBombTimer(null)
+					setShowSuccessMessage(true)
+					setSuccessMessageShown(true)
+					setTimeout(() => setShowSuccessMessage(false), 5000)
+					if (timerRef.current) {
+						clearInterval(timerRef.current)
+						timerRef.current = null
+					}
+				}
 
-      return () => clearTimeout(timer)
-    }
+				const updatedRules = checkRules(newPassword, rules)
+				setRules(updatedRules)
 
-    if (bombTimer === 0 && !explosionOccurred) {
-      setPassword(explodePassword(password))
-      setBombsExploded(true)
-      setExplosionOccurred(true)
-      setShowFailMessage(true)
-      setTimeout(() => setShowFailMessage(false), 5000)
-    }
-  }, [bombTimer, password, allBombsRemoved, explosionOccurred])
+				const allMet = updatedRules.every((rule) => rule.met)
+				if (allMet) {
+					setIsCongratsModalOpen(true)
+				}
 
-  useEffect(() => {
-    return () => {
-      resetGame()
-    }
-  }, [])
+				addBombs()
+			}
+		} catch (error) {
+			console.error('Error handling password change:', error)
+		}
+	}
 
-  return {
-    password,
-    rules,
-    hasStartedTyping,
-    bombTimer,
-    allBombsRemoved,
-    showSuccessMessage,
-    showFailMessage,
-    isCongratsModalOpen,
-    handlePasswordChange,
-    resetGame,
-    setIsCongratsModalOpen,
-  }
+	return {
+		password,
+		rules,
+		hasStartedTyping,
+		bombTimer,
+		allBombsRemoved,
+		showSuccessMessage,
+		showFailMessage,
+		isCongratsModalOpen,
+		handlePasswordChange,
+		resetGame,
+		setIsCongratsModalOpen,
+	}
 }

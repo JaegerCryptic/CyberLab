@@ -15,71 +15,86 @@ import { appTheme } from '../../theme/style'
 import { WordSearch } from './WordSearch/WordSearch'
 
 export const Dashboard = () => {
-  const { selectedGame } = useGame() as {
-    selectedGame: keyof typeof gameDescriptions
-  }
-  const [popupOpen, setPopupOpen] = useState(true)
-  const [previousGame, setPreviousGame] = useState<string | null>(null)
+	const { selectedGame } = useGame() as {
+		selectedGame: keyof typeof gameDescriptions
+	}
+	const [popupOpen, setPopupOpen] = useState(true)
+	const [previousGame, setPreviousGame] = useState<string | null>(null)
 
-  const handleClosePopup = () => {
-    setPopupOpen(false)
-  }
+	const handleClosePopup = () => {
+		setPopupOpen(false)
+	}
 
-  useEffect(() => {
-    if (selectedGame && selectedGame !== previousGame) {
-      setPopupOpen(true)
-      setPreviousGame(selectedGame)
-    }
-  }, [selectedGame, previousGame])
+	useEffect(() => {
+		if (selectedGame && selectedGame !== previousGame) {
+			setPopupOpen(true)
+			setPreviousGame(selectedGame)
+		}
+	}, [selectedGame, previousGame])
 
-  return (
-    <div className='dashboard'>
-      <TopBar />
-      <Sidebar />
-      <Box sx={{ padding: 2 }}>
-        <div className='dashboard-content'>
-          {selectedGame ? (
-            <div className='content'>
-              <GamePopup
-                open={popupOpen}
-                onClose={handleClosePopup}
-                title={selectedGame}
-                description={gameDescriptions[selectedGame]}
-              />
-              {selectedGame === 'Password Game' ? (
-                <PasswordGame />
-              ) : selectedGame === 'Password Checker' ? (
-                <PasswordChecker />
-              ) : selectedGame === 'MD5 Hashing Cracking' ? (
-                <Md5HashingCrackingGame />
-              ) : selectedGame === 'Information Hunter' ? (
-                <InformationHunterGame />
-              ) : selectedGame === 'Phishing Simulator' ? (
-                <PhishingSimulatorGame />
-              ) : selectedGame === 'Word Search' ? (
-                <WordSearch />
-              ) : (
-                <Typography color={appTheme.colors.error.main} variant='h1'>
-                  An error occurred. Please try again.
-                </Typography>
-              )}
-            </div>
-          ) : (
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '100vh',
-              }}
-            >
-              <Typography variant='button' color={appTheme.colors.highlight}>
-                Select your module to get started.
-              </Typography>
-            </Box>
-          )}
-        </div>
-      </Box>
-    </div>
-  )
+	return (
+		<div className='dashboard'>
+			<TopBar />
+			<Sidebar />
+			<Box sx={{ padding: 2 }}>
+				<div className='dashboard-content'>
+					{selectedGame ? (
+						<div className='content'>
+							{selectedGame !== 'About SCP Foundation' && (
+								<GamePopup
+									open={popupOpen}
+									onClose={handleClosePopup}
+									title={selectedGame}
+									description={gameDescriptions[selectedGame]}
+								/>
+							)}
+							{selectedGame === 'Password Game' ? (
+								<PasswordGame />
+							) : selectedGame === 'Password Checker' ? (
+								<PasswordChecker />
+							) : selectedGame === 'MD5 Hashing Cracking' ? (
+								<Md5HashingCrackingGame />
+							) : selectedGame === 'Information Hunter' ? (
+								<InformationHunterGame />
+							) : selectedGame === 'Phishing Simulator' ? (
+								<PhishingSimulatorGame />
+							) : selectedGame === 'Word Search' ? (
+								<WordSearch />
+							) : selectedGame === 'About SCP Foundation' ? (
+								<Box
+									sx={{
+										display: 'flex',
+										alignItems: 'center',
+										justifyContent: 'center',
+										height: '100vh',
+									}}
+								>
+									<Typography variant='h4' color={appTheme.colors.text}>
+										Learn more about the SCP Foundation...
+									</Typography>
+								</Box>
+							) : (
+								<Typography color={appTheme.colors.error.main} variant='h1'>
+									An error occurred. Please try again.
+								</Typography>
+							)}
+						</div>
+					) : (
+						<Box
+							sx={{
+								display: 'flex',
+								alignItems: 'center',
+								justifyContent: 'center',
+								height: '100vh',
+							}}
+						>
+							<Typography variant='button' color={appTheme.colors.highlight}>
+								Select your module to get started.
+							</Typography>
+						</Box>
+					)}
+				</div>
+			</Box>
+		</div>
+	)
 }

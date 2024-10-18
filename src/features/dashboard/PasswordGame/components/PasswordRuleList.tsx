@@ -9,8 +9,8 @@ import {
 } from "@mui/material"
 import { Check as CheckIcon, Close as CloseIcon } from "@mui/icons-material"
 
-import { Rule } from "../constants"
 import { appTheme } from "../../../../theme/style"
+import { Rule } from "../constants"
 
 interface RuleListProps {
 	rules: Rule[]

@@ -18,152 +18,152 @@ const buttonSuccess = { main: '#3FD79C', light: '#a8d5a5', dark: '#388e3c' }
 const buttonError = { main: '#BA1A1A', light: '#ffb3b3', dark: '#8B0000' }
 
 const appColors = {
-  primary: PRIMARY_COLOUR,
-  accent: ACCENT_COLOUR,
-  secondary: SECONDARY_COLOUR,
-  secondaryAccent: SECONDARY_ACCENT_COLOUR,
-  tertiary: TERTIARY_COLOUR,
-  tertiaryAccent: TERTIARY_ACCENT_COLOUR,
-  background: BACKGROUND_COLOUR,
-  backgroundAccent: BACKGROUND_ACCENT_COLOUR,
-  text: TEXT_COLOUR,
-  textAccent: TEXT_ACCENT_COLOUR,
-  white: WHITE_COLOUR,
-  highlight: HIGHLIGHT_COLOUR,
-  selectHighlight: '#FF0000',
-  error: buttonError,
-  warning: '#FF9A01',
-  success: buttonSuccess,
+	primary: PRIMARY_COLOUR,
+	accent: ACCENT_COLOUR,
+	secondary: SECONDARY_COLOUR,
+	secondaryAccent: SECONDARY_ACCENT_COLOUR,
+	tertiary: TERTIARY_COLOUR,
+	tertiaryAccent: TERTIARY_ACCENT_COLOUR,
+	background: BACKGROUND_COLOUR,
+	backgroundAccent: BACKGROUND_ACCENT_COLOUR,
+	text: TEXT_COLOUR,
+	textAccent: TEXT_ACCENT_COLOUR,
+	white: WHITE_COLOUR,
+	highlight: HIGHLIGHT_COLOUR,
+	selectHighlight: '#FF0000',
+	error: buttonError,
+	warning: '#FF9A01',
+	success: buttonSuccess,
 }
 
 const appFontSizes = {
-  heading1: 36,
-  heading2: 24,
-  bodyText: 18,
-  buttonText: 14,
-  captionText: 12,
-  topWebsite: 22,
-  aboutSpc: 18,
-  fieldAgent: 18,
-  classifiedTabs: 18,
+	heading1: 36,
+	heading2: 24,
+	bodyText: 18,
+	buttonText: 14,
+	captionText: 12,
+	topWebsite: 22,
+	aboutSpc: 18,
+	fieldAgent: 18,
+	classifiedTabs: 18,
 }
 
 const appFontFamilies = {
-  primary: 'Space Grotesk, sans-serif',
-  secondary: 'Space Grotesk, sans-serif',
+	primary: 'Space Grotesk, sans-serif',
+	secondary: 'Space Grotesk, sans-serif',
 }
 
 export const appTheme = {
-  colors: appColors,
-  fontSize: appFontSizes,
-  fontFamily: appFontFamilies,
+	colors: appColors,
+	fontSize: appFontSizes,
+	fontFamily: appFontFamilies,
 }
 
 export const h1Style = {
-  fontSize: appFontSizes.heading1,
-  fontWeight: 700,
-  fontFamily: appFontFamilies.secondary,
-  color: appColors.text,
+	fontSize: appFontSizes.heading1,
+	fontWeight: 700,
+	fontFamily: appFontFamilies.secondary,
+	color: appColors.text,
 }
 
 export const customTypography = {
-  topWebsite: {
-    fontSize: appFontSizes.topWebsite,
-    fontWeight: 700,
-    color: appTheme.colors.white,
-  },
-  aboutSpc: {
-    fontSize: appFontSizes.aboutSpc,
-    fontWeight: 500,
-    color: appTheme.colors.white,
-  },
-  fieldAgent: {
-    fontSize: appFontSizes.fieldAgent,
-    fontWeight: 400,
-    color: appTheme.colors.highlight,
-  },
-  classifiedTabs: {
-    fontSize: appFontSizes.classifiedTabs,
-    fontWeight: 400,
-    color: appTheme.colors.white,
-  },
+	topWebsite: {
+		fontSize: appFontSizes.topWebsite,
+		fontWeight: 700,
+		color: appTheme.colors.white,
+	},
+	aboutSpc: {
+		fontSize: appFontSizes.aboutSpc,
+		fontWeight: 500,
+		color: appTheme.colors.white,
+	},
+	fieldAgent: {
+		fontSize: appFontSizes.fieldAgent,
+		fontWeight: 400,
+		color: appTheme.colors.highlight,
+	},
+	classifiedTabs: {
+		fontSize: appFontSizes.classifiedTabs,
+		fontWeight: 400,
+		color: appTheme.colors.white,
+	},
 }
 
 export const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    background: {
-      default: appTheme.colors.background,
-    },
-    text: {
-      primary: appTheme.colors.text,
-    },
-    primary: {
-      main: appTheme.colors.primary,
-    },
-    secondary: {
-      main: appTheme.colors.secondary,
-    },
-    error: { main: appTheme.colors.error.main },
-    warning: { main: appTheme.colors.warning },
-    success: { main: appTheme.colors.success.main },
-  },
-  typography: {
-    fontSize: appFontSizes.bodyText,
-    fontFamily: appFontFamilies.primary,
-    h1: {
-      fontSize: appFontSizes.heading1,
-      fontWeight: 700,
-      color: appTheme.colors.text,
-    },
-    h2: {
-      fontSize: appFontSizes.heading2,
-      fontWeight: 700,
-      color: appTheme.colors.text,
-    },
-    h3: {
-      fontSize: 16,
-      fontWeight: 500,
-      color: appTheme.colors.text,
-    },
-    h4: {
-      fontSize: 14,
-      fontWeight: 500,
-      color: appTheme.colors.text,
-    },
-    body1: {
-      fontSize: appFontSizes.bodyText,
-      fontWeight: 400,
-      color: appTheme.colors.text,
-    },
-    body2: {
-      fontSize: appFontSizes.captionText,
-      fontWeight: 400,
-      color: appTheme.colors.text,
-    },
-    caption: {
-      fontSize: appFontSizes.captionText,
-      color: '#48454E',
-    },
-    button: {
-      fontSize: appFontSizes.buttonText,
-      fontWeight: 600,
-      color: appColors.textAccent,
-      textTransform: 'none',
-    },
-  },
+	palette: {
+		mode: 'dark',
+		background: {
+			default: appTheme.colors.background,
+		},
+		text: {
+			primary: appTheme.colors.text,
+		},
+		primary: {
+			main: appTheme.colors.primary,
+		},
+		secondary: {
+			main: appTheme.colors.secondary,
+		},
+		error: { main: appTheme.colors.error.main },
+		warning: { main: appTheme.colors.warning },
+		success: { main: appTheme.colors.success.main },
+	},
+	typography: {
+		fontSize: appFontSizes.bodyText,
+		fontFamily: appFontFamilies.primary,
+		h1: {
+			fontSize: appFontSizes.heading1,
+			fontWeight: 700,
+			color: appTheme.colors.text,
+		},
+		h2: {
+			fontSize: appFontSizes.heading2,
+			fontWeight: 700,
+			color: appTheme.colors.text,
+		},
+		h3: {
+			fontSize: 16,
+			fontWeight: 500,
+			color: appTheme.colors.text,
+		},
+		h4: {
+			fontSize: 14,
+			fontWeight: 500,
+			color: appTheme.colors.text,
+		},
+		body1: {
+			fontSize: appFontSizes.bodyText,
+			fontWeight: 400,
+			color: appTheme.colors.text,
+		},
+		body2: {
+			fontSize: appFontSizes.captionText,
+			fontWeight: 400,
+			color: appTheme.colors.text,
+		},
+		caption: {
+			fontSize: appFontSizes.captionText,
+			color: '#48454E',
+		},
+		button: {
+			fontSize: appFontSizes.buttonText,
+			fontWeight: 600,
+			color: appColors.textAccent,
+			textTransform: 'none',
+		},
+	},
 })
 
 // Modal styling
 export const modalStyle = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: appTheme.colors.backgroundAccent,
-  border: `2px solid ${appTheme.colors.secondary}`,
-  boxShadow: 24,
-  p: 4,
-  color: appTheme.colors.text,
+	position: 'absolute' as 'absolute',
+	top: '50%',
+	left: '50%',
+	transform: 'translate(-50%, -50%)',
+	width: 400,
+	bgcolor: appTheme.colors.backgroundAccent,
+	border: `2px solid ${appTheme.colors.secondary}`,
+	boxShadow: 24,
+	p: 4,
+	color: appTheme.colors.text,
 }
