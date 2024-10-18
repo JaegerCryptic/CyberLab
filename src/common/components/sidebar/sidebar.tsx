@@ -102,12 +102,12 @@ export const Sidebar = () => {
 					isOpen={isDropdownOpen4U9Z}
 					onClick={toggleDropdown4U9Z}
 				>
-					<CLCollapsibleListItem
+					{/* <CLCollapsibleListItem
 						text='Information Hunting'
 						isOpen={false}
 						onClick={() => handleGameClick('Information Hunter')}
 						isCollapsible={false}
-					/>
+					/> */}
 					<CLCollapsibleListItem
 						text='Word Search'
 						isOpen={false}
